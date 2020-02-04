@@ -9740,10 +9740,52 @@ Set-Alias -Name cygwin -Value $cygwin
 <div created="20200202190822789" modified="20200202191039725" tags="doc" title="Aliases">
 <pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
 </div>
-<div created="20200204194753356" modified="20200204200214093" tags="setup avr toolchain" title="avrgcc">
-<pre>* [[Microchip list of toolchain links for popular operating systems|https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers]]
+<div created="20200204194753356" modified="20200204204126326" tags="setup avr toolchain" title="avrgcc">
+<pre>! Download
+* [[Microchip list of toolchain links for popular operating systems|https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers]]
 ** download the Windows AVR 8-bit Toolchain
-** Microchip requires you register an account</pre>
+** Microchip requires you register an account
+** unzip download
+** move avr8-gnu-toolchain-win32_x86 to Cygwin home folder
+
+! Setup
+
+!! `make`
+
+
+!! Vim `find` search path
+Add `/avr/include` sub-folder to Vim `path`. Vim searches directories in `path` when using `gf` or any `find` command.
+
+```vim
+&quot; $MYVIMRC
+&quot;
+&quot; . -- dot
+&quot;    search relative to directory of current file
+&quot; ,, -- empty string between two commas
+&quot;    search in current directory
+set path=.,/usr/include,,
+&quot;
+&quot; += -- add path
+&quot; ** -- double star
+&quot;    match directories in downward search
+set path+=**
+&quot;
+&quot; The path so far: path=.,/usr/include,,**
+&quot;
+&quot; ---Unit test framework paths---
+&quot; My mock-c for faking functions
+let mock_c_include=mock_c_path . '/include'
+let &amp;path = &amp;path . ',' . mock_c_include
+&quot;
+&quot; My tweaked version of Unity
+let unity_include=mock_c_path . '/test/unity'
+let &amp;path = &amp;path . ',' . unity_include
+&quot;
+&quot; ---AVR-GCC---
+let avr_include='~/avr8-gnu-toolchain-win32_x86/avr/include'
+let &amp;path = &amp;path . ',' . avr_include
+&quot;
+```</pre>
 </div>
 <div created="20200202180407251" modified="20200204195218168" tags="profile list-links" title="Contents">
 <pre>My notes about profiles
