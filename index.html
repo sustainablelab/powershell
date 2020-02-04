@@ -161,6 +161,8 @@ Error message and password prompt
 
 <li>$:/GitHub/Username</li>
 
+<li>$:/Import</li>
+
 <li>$:/isEncrypted</li>
 
 <li>$:/palette</li>
@@ -198,6 +200,8 @@ Error message and password prompt
 <li>Alias cygwin</li>
 
 <li>Aliases</li>
+
+<li>avrgcc</li>
 
 <li>Contents</li>
 
@@ -9443,6 +9447,16 @@ Error message and password prompt
 <div created="20200204163419634" modified="20200204163421152" title="$:/GitHub/Username">
 <pre>sustainablelab</pre>
 </div>
+<div plugin-type="import" status="pending" title="$:/Import" type="application/json">
+<pre>{
+    &quot;tiddlers&quot;: {
+        &quot;Untitled&quot;: {
+            &quot;title&quot;: &quot;Untitled&quot;,
+            &quot;text&quot;: &quot;&lt;ul style=\&quot;box-sizing: border-box; color: rgb(216, 224, 233); font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Helvetica, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(59, 66, 81); text-decoration-style: initial; text-decoration-color: initial;\&quot;&gt;&lt;li style=\&quot;box-sizing: border-box;\&quot;&gt;&lt;br class=\&quot;Apple-interchange-newline\&quot;&gt;make&lt;/li&gt;&lt;/ul&gt;&quot;
+        }
+    }
+}</pre>
+</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
@@ -9470,7 +9484,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200204181018844" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200204181029614" list="[[Cygwin packages]] Contents [[Add $profile variable to .bashrc]] [[Run python.exe from Cygwin]]" modified="20200204193609065" title="$:/StoryList">
+<div created="20200204181029614" list="avrgcc [[Cygwin packages]] Contents [[Add $profile variable to .bashrc]]" modified="20200204194951699" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9726,6 +9740,9 @@ Set-Alias -Name cygwin -Value $cygwin
 <div created="20200202190822789" modified="20200202191039725" tags="doc" title="Aliases">
 <pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
 </div>
+<div created="20200204194753356" modified="20200204194817503" tags="setup avr toolchain" title="avrgcc">
+<pre>https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers</pre>
+</div>
 <div created="20200202180407251" modified="20200204180947320" tags="profile list-links" title="Contents">
 <pre>My notes about profiles
 &lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]]&gt;&gt;
@@ -9784,7 +9801,7 @@ Create the Profile:
 PS&gt; New-Item -Path $PROFILE
 ```</pre>
 </div>
-<div created="20200204193524544" modified="20200204194504342" tags="cygwin setup" title="Cygwin packages">
+<div created="20200204193524544" modified="20200204194949807" tags="cygwin setup toolchain" title="Cygwin packages">
 <pre>* git
 * vim
 * tree
@@ -9792,7 +9809,10 @@ PS&gt; New-Item -Path $PROFILE
 * gcc
 ** latest stable release:
 *** version 7.5, released November 2019
-*** version 7.4 is closest matching Cygwin package</pre>
+*** version 7.4 is closest matching Cygwin package
+* python
+** I have no reason to install the Cygwin Python package
+** [[Run python.exe from Cygwin]] instead</pre>
 </div>
 <div created="20200202180241348" modified="20200204160816738" tags="profile" title="Edit a profile">
 <pre>Open the profile in a text editor:
