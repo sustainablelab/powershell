@@ -9997,7 +9997,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 ```
 </pre>
 </div>
-<div created="20200205210601762" modified="20200205211039678" tags="Windows python setup" title="Install Python packages on Windows">
+<div created="20200205210601762" modified="20200205215338168" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install Python package in Windows Python installation
 
 Pip often needs updating:
@@ -10042,67 +10042,6 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 pygame 1.9.6
 Hello from the pygame community. https://www.pygame.org/contribute.html
 &gt;&gt;&gt; help(pygame)
-```
-
-Run a Python script using the ''Windows Python from within Cygwin'' with `python.exe`.
-
-Example: this Python script prints the Python version, from which you can tell whether it is the Windows or Cygwin Python installation.
-
-```python
-# ~/test-python.py
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-'''
-USAGE:
-    $ ./test-python.py
-        Vim: ;so
-        Run with `python3` installed in Cygwin
-
-    This ran with 3.6.9 (default, Jul 21 2019, 14:33:59)
-    [GCC 7.4.0]
-
-    &gt; python.exe ./test-python.py
-        Vim: ;sw
-        Run with `Python37` installed in Windows
-
-    This ran with 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28)
-    [MSC v.1916 64 bit (AMD64)]
-'''
-
-import sys
-print(f&quot;This ran with {sys.version}&quot;)
-```
-
-By default my Python scripts do not have permission to execute. Change this with `chmod`:
-
-```bash
-$ chmod 744 test-python.py
-```
-
-Execute the script from `bash` to see the Cygwin Python like this:
-
-```bash
-$ ./test-python.py
-This ran with 3.6.9 (default, Jul 21 2019, 14:33:59)
-[GCC 7.4.0]
-```
-
-Execute the script from `bash` to see the Windows Python like this:
-
-```bash
-$ python.exe ./test-python.py
-This ran with 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
-```
-
-My Vim shortcut to source the current file using the Windows Python installation is `;sw` ([s]ource with [w]indows).
-
-Or to make ;so use the Windows Python installation too, change the ''shebang'' from `python3` to `python.exe`:
-
-```powershell
-#!/usr/bin/env python.exe
-# -*- coding: utf-8 -*-
-import sys
-print(f&quot;This ran with {sys.version}&quot;)
 ```</pre>
 </div>
 <div created="20200202183205082" modified="20200202185144338" tags="security run-scripts" title="Permission to run scripts in PowerShell">
