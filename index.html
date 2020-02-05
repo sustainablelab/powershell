@@ -219,6 +219,8 @@ Error message and password prompt
 
 <li>Run python.exe from Cygwin</li>
 
+<li>Select Python install via Vim shortcut</li>
+
 <li>Variables</li>
 
 </ul>
@@ -9481,7 +9483,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200205214633563" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200205214051709" list="Contents [[Run python.exe from Cygwin]] [[Install Python packages on Windows]] [[Install Python on Windows]]" modified="20200205214641117" title="$:/StoryList">
+<div created="20200205214051709" list="[[Select Python install via Vim shortcut]] Contents [[Run python.exe from Cygwin]] [[Install Python packages on Windows]] [[Install Python on Windows]]" modified="20200205214641117" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -10097,6 +10099,68 @@ execute '!python.exe &quot;$(cygpath -w %)&quot;'
 * the surrounding &quot;$()&quot; are necessary to get the `cygpath` output and to treat the backslashes in the Windows path string as a raw string and not as escape sequences
 
 The nice thing about this solution is it does not require editing the Windows environment variables or adding aliases in the Cygwin `.bashrc`.</pre>
+</div>
+<div created="20200205215339377" modified="20200205215504512" tags="python cygwin setup run-scripts" title="Select Python install via Vim shortcut">
+<pre>Run a Python script using the ''Windows Python from within Cygwin'' with `python.exe`.
+
+Example: this Python script prints the Python version, from which you can tell whether it is the Windows or Cygwin Python installation.
+
+```python
+# ~/test-python.py
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+'''
+USAGE:
+    $ ./test-python.py
+        Vim: ;so
+        Run with `python3` installed in Cygwin
+
+    This ran with 3.6.9 (default, Jul 21 2019, 14:33:59)
+    [GCC 7.4.0]
+
+    &gt; python.exe ./test-python.py
+        Vim: ;sw
+        Run with `Python37` installed in Windows
+
+    This ran with 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28)
+    [MSC v.1916 64 bit (AMD64)]
+'''
+
+import sys
+print(f&quot;This ran with {sys.version}&quot;)
+```
+
+By default my Python scripts do not have permission to execute. Change this with `chmod`:
+
+```bash
+$ chmod 744 test-python.py
+```
+
+Execute the script from `bash` to see the Cygwin Python like this:
+
+```bash
+$ ./test-python.py
+This ran with 3.6.9 (default, Jul 21 2019, 14:33:59)
+[GCC 7.4.0]
+```
+
+Execute the script from `bash` to see the Windows Python like this:
+
+```bash
+$ python.exe ./test-python.py
+This ran with 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+```
+
+My Vim shortcut to source the current file using the Windows Python installation is `;sw` ([s]ource with [w]indows).
+
+Or to make ;so use the Windows Python installation too, change the ''shebang'' from `python3` to `python.exe`:
+
+```powershell
+#!/usr/bin/env python.exe
+# -*- coding: utf-8 -*-
+import sys
+print(f&quot;This ran with {sys.version}&quot;)
+```</pre>
 </div>
 <div created="20200202185934789" modified="20200202190048489" tags="doc" title="Variables">
 <pre>[[variables|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables?view=powershell-7#working-with-variables]]</pre>
