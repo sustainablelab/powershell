@@ -9999,7 +9999,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 ```
 </pre>
 </div>
-<div created="20200205210601762" modified="20200205221044978" tags="Windows python setup" title="Install Python packages on Windows">
+<div created="20200205210601762" modified="20200205221303229" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install with `pip`
 
 See the `pip` help:
@@ -10045,6 +10045,8 @@ Start by updating `pip`:
 PS&gt; python -m pip install --upgrade pip
 ```
 
+`--upgrade` or `-U` updates an existing installation
+
 ! Numpy
 Install package `numpy`
 
@@ -10085,13 +10087,6 @@ Required-by:
 ```
 
 ! Pygame
-Install package `pygame` using `python -m` to call `pip` as a module:
-
-```powershell
-PS&gt; python -m pip install pygame
-```
-
-Or just call `pip` directly:
 
 ```powershell
 PS&gt; pip install pygame
