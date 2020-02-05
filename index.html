@@ -203,6 +203,8 @@ Error message and password prompt
 
 <li>avrgcc</li>
 
+<li>Contents</li>
+
 <li>Create a profile</li>
 
 <li>Edit a profile</li>
@@ -212,8 +214,6 @@ Error message and password prompt
 <li>Install Python packages on Windows</li>
 
 <li>Permission to run scripts in PowerShell</li>
-
-<li>Profile</li>
 
 <li>Run python.exe from Cygwin</li>
 
@@ -9479,7 +9479,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200205211654613" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/More</pre>
 </div>
-<div created="20200205211651318" list="[[Add $profile variable to .bashrc]]" modified="20200205212047137" title="$:/StoryList">
+<div created="20200205211651318" list="Contents" modified="20200205212202860" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9807,6 +9807,19 @@ let &amp;path = &amp;path . ',' . avr_include
 &quot;
 ```</pre>
 </div>
+<div created="20200202180407251" modified="20200205212236768" tags="profile list-links" title="Contents">
+<pre>My notes about profiles
+&lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]]&gt;&gt;
+Example profile snippets
+&lt;&lt;list-links &quot;[tag[profile]tag[snippet]!tag[list-links]]&gt;&gt;
+Python setup
+&lt;&lt;list-links &quot;[tag[python]]&quot;&gt;&gt;
+Toolchain setup
+&lt;&lt;list-links &quot;[tag[toolchain]tag[setup]]&quot;&gt;&gt;
+Official PowerShell Documentation
+&lt;&lt;list-links &quot;[tag[doc]!tag[list-links]]&gt;&gt;
+</pre>
+</div>
 <div created="20200202174104351" modified="20200202180400852" tags="profile" title="Create a profile">
 <pre>The `PowerShell` profile can go in `$PSHOME`:
 
@@ -10095,14 +10108,6 @@ Unblock the `$PROFILE` with `Unblock-File`:
 ```powershell
 PS&gt; Unblock-File $PROFILE
 ```</pre>
-</div>
-<div created="20200202180407251" modified="20200202191832767" tags="profile list-links" title="Profile">
-<pre>My notes about profiles
-&lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]]&gt;&gt;
-Example profile snippets
-&lt;&lt;list-links &quot;[tag[profile]tag[snippet]!tag[list-links]]&gt;&gt;
-Official PowerShell Documentation
-&lt;&lt;list-links &quot;[tag[doc]!tag[list-links]]&gt;&gt;</pre>
 </div>
 <div created="20200204175921314" modified="20200205185208693" tags="python cygwin run-scripts" title="Run python.exe from Cygwin">
 <pre>//Issue:// Cygwin does not have access to the Windows USB ports. Python applications using `pyserial` do not work.
