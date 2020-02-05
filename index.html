@@ -9483,7 +9483,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200205214633563" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200205214051709" list="Contents [[Select Python install via Vim shortcut]]" modified="20200205215627359" title="$:/StoryList">
+<div created="20200205214051709" list="Contents [[Install Python packages on Windows]]" modified="20200205215701049" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9999,31 +9999,37 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 ```
 </pre>
 </div>
-<div created="20200205210601762" modified="20200205215338168" tags="Windows python setup" title="Install Python packages on Windows">
+<div created="20200205210601762" modified="20200205215832210" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install Python package in Windows Python installation
 
 Pip often needs updating:
 
 ```powershell
-python -m pip install --upgrade pip
+PS&gt; python -m pip install --upgrade pip
+```
+
+Install package `numpy`
+
+```powershell
+PS&gt; pip install numpy
 ```
 
 Install package `pygame` using `python -m` to call `pip` as a module:
 
 ```powershell
-&gt; python -m pip install pygame
+PS&gt; python -m pip install pygame
 ```
 
 Or just call `pip` directly:
 
 ```powershell
-&gt; pip install pygame
+PS&gt; pip install pygame
 ```
 
 Add flag `-U` to ''update'' an existing installation
 
 ```powershell
-&gt; pip install -U pygame
+PS&gt; pip install -U pygame
 ```
 
 Run Python at the command line with `-c` to execute a few lines of code.
@@ -10031,13 +10037,13 @@ Run Python at the command line with `-c` to execute a few lines of code.
 Use this `-c` trick to check the package version number:
 
 ```powershell
-&gt; python -c 'import pygame;print(pygame.ver)'
+PS&gt; python -c 'import pygame;print(pygame.ver)'
 ```
 
 Different packages have different ways of accessing the version number. Read the package documentation by starting Python and doing `help(package_name)`:
 
 ```powershell
-&gt; python
+PS&gt; python
 Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD 4)] on win32
 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
 &gt;&gt;&gt; import pygame
