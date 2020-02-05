@@ -9740,7 +9740,7 @@ Set-Alias -Name cygwin -Value $cygwin
 <div created="20200202190822789" modified="20200202191039725" tags="doc" title="Aliases">
 <pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
 </div>
-<div created="20200204194753356" modified="20200204205339368" tags="setup avr toolchain" title="avrgcc">
+<div created="20200204194753356" modified="20200204212033856" tags="setup avr toolchain" title="avrgcc">
 <pre>! Download
 * [[Microchip list of toolchain links for popular operating systems|https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers]]
 ** download the Windows AVR 8-bit Toolchain
@@ -9750,6 +9750,28 @@ Set-Alias -Name cygwin -Value $cygwin
 * [[Microchip pack repository for Atmel ATmega Series Device Support (1.4.346)|http://packs.download.atmel.com/]]
 ** Click `Download` to download the `Atmel.ATmega_DFP.1.4.346.atpack`
 ** These are for the `.o`, `.a`, and `spec` files used during linking
+
+The `.atpack` is a compressed file.
+
+* Windows does not know it can uncompress it
+* right-click the `.atpack` file and rename it by adding a `.zip` suffix
+** disregard the Windows warning
+* the new file name is:
+```
+Atmel.ATmega_DFP.1.4.346.atpack.zip
+```
+* right-click again and select `Extract` to unzip
+
+Building for the `ATmega328p` only requires three files from the ATmega Device Family Pack.
+
+* create a folder (I use my Cygwin home directory) named `ATmega_DFP/1.4.346/gcc/dev/atmega328p`
+** the number is the version number of the DFP (from the `.atpack` file name)
+
+```bash
+$ mkdir -p ATmega_DFP/1.4.346/gcc/dev/atmega328p
+```
+
+* 
 
 ! Setup
 
