@@ -9999,7 +9999,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 ```
 </pre>
 </div>
-<div created="20200205210601762" modified="20200205221303229" tags="Windows python setup" title="Install Python packages on Windows">
+<div created="20200205210601762" modified="20200205224333468" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install with `pip`
 
 See the `pip` help:
@@ -10084,6 +10084,63 @@ License: BSD
 Location: c:\users\mike\appdata\local\programs\python\python38\lib\site-packages
 Requires:
 Required-by:
+```
+
+Get package help from within Python.
+
+```powershell
+PS&gt; python
+```
+
+```python
+&gt;&gt;&gt; import numpy
+&gt;&gt;&gt; help(numpy)
+```
+
+Output this to a file and open in Vim to make it easy to search:
+
+```bash
+$ python.exe -c &quot;import numpy; help(numpy)&quot; &gt; help-numpy.man
+$ vim help-numpy.man
+```
+
+Repeat for the built-in package `ctypes`:
+
+```bash
+$ !-2:gs/numpy/ctypes/
+python.exe -c &quot;import ctypes; help(ctypes)&quot; &gt; help-ctypes.man
+```
+
+An alternative to the `python.exe -c` style is to run `pydoc` as a module and pass the package to get documentation for:
+
+```powershell
+PS C:\Users\mike&gt; python -m pydoc ctypes
+```
+
+Get help on a specific function:
+
+```powershell
+PS C:\Users\mike&gt; python -m pydoc _ctypes.LoadLibrary
+Help on built-in function LoadLibrary in _ctypes:
+
+_ctypes.LoadLibrary = LoadLibrary(...)
+    LoadLibrary(name, load_flags) -&gt; handle
+
+    Load an executable (usually a DLL), and return a handle to it.
+    The handle may be used to locate exported functions in this
+    module. load_flags are as defined for LoadLibraryEx in the
+    Windows API.
+
+PS C:\Users\mike&gt; python -m pydoc ctypes.LibraryLoader.LoadLibrary
+Help on function LoadLibrary in ctypes.LibraryLoader:
+
+ctypes.LibraryLoader.LoadLibrary = LoadLibrary(self, name)
+```
+
+Browse all available documentation for my Python installation using `Brave`:
+
+```powershell
+PS C:\Users\mike&gt; python -m pydoc -b
 ```
 
 ! Pygame
