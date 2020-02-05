@@ -9739,15 +9739,29 @@ Set-Alias -Name cygwin -Value $cygwin
 <div created="20200202190822789" modified="20200202191039725" tags="doc" title="Aliases">
 <pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
 </div>
-<div created="20200205212005865" modified="20200205234114669" tags="avr setup toolchain" title="avrgcc">
+<div created="20200205212005865" modified="20200205234305110" tags="avr setup toolchain" title="avrgcc">
 <pre>! Download
 
 !! avr8-gnu-toolchain
 * [[Microchip list of toolchain links for popular operating systems|https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers]]
 ** download the Windows AVR 8-bit Toolchain
 ** Microchip requires you register an account
-** unzip download
-** move avr8-gnu-toolchain-win32_x86 to Cygwin home folder
+Unzip the download and move `avr8-gnu-toolchain-win32_x86` to Cygwin home folder
+
+```
+/home/mike/
+▾ avr8-gnu-toolchain-win32_x86/
+  ▸ avr/
+  ▸ bin/
+  ▸ doc/
+  ▸ i686-w64-mingw32/
+  ▸ include/
+  ▸ info/
+  ▸ lib/
+  ▸ libexec/
+  ▸ man/
+  ▸ share/
+```
 
 !! ATmega_DFP
 * [[Microchip pack repository for Atmel ATmega Series Device Support (1.4.346)|http://packs.download.atmel.com/]]
