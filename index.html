@@ -9483,7 +9483,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200205214633563" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200205214051709" list="Contents [[Cygwin packages]] avrgcc" modified="20200205234002239" title="$:/StoryList">
+<div created="20200205214051709" list="Contents [[Add $profile variable to .bashrc]] [[Cygwin packages]] avrgcc" modified="20200205234940434" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9739,7 +9739,7 @@ Set-Alias -Name cygwin -Value $cygwin
 <div created="20200202190822789" modified="20200202191039725" tags="doc" title="Aliases">
 <pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
 </div>
-<div created="20200205212005865" modified="20200205234305110" tags="avr setup toolchain" title="avrgcc">
+<div created="20200205212005865" modified="20200205235306896" tags="avr setup toolchain" title="avrgcc">
 <pre>! Download
 
 !! avr8-gnu-toolchain
@@ -9788,7 +9788,23 @@ Building for the `ATmega328p` only requires three files from the ATmega Device F
 $ mkdir -p ATmega_DFP/1.4.346/gcc/dev/atmega328p
 ```
 
-* 
+* copy the three files needed from `atpack`
+
+The new folder looks like this:
+
+```
+/home/mike/
+▾ ATmega_DFP/
+  ▾ 1.4.346/
+    ▾ gcc/
+      ▾ dev/
+        ▾ atmega328p/
+          ▾ avr5/
+              crtatmega328p.o
+              libatmega328p.a
+          ▾ device-specs/
+              specs-atmega328p
+```
 
 ! Setup
 
