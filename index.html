@@ -9499,7 +9499,7 @@ set -o vi
 <div created="20200202190739876" modified="20200205184524630" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div created="20200205184120436" list="[[Run python.exe from Cygwin]] [[Install Python on Windows]] Profile [[Create a profile]]" modified="20200205185211521" title="$:/StoryList">
+<div created="20200205210325859" list="[[Run python.exe from Cygwin]] [[Install Python on Windows]] Profile" modified="20200205210330435" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9560,8 +9560,8 @@ set -o vi
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200205184548078" title="$:/temp/search">
-<pre>download</pre>
+<div created="20200202173605395" modified="20200205210323225" title="$:/temp/search">
+<pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -9813,7 +9813,7 @@ But it's easier to remember `brave` without the `.$` prefix. Make an alias inste
 
 {{Alias brave}}</pre>
 </div>
-<div created="20200205185215208" modified="20200205185631716" title="Install Python on Windows">
+<div created="20200205185215208" modified="20200205210449644" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
 * Download the executable installer for Windows:
 
@@ -9823,7 +9823,114 @@ python-3.8.1-amd64.exe
 
 * Run the installer
 * Customize to add `py` launcher
-** Select option to ''Add Python to environment variables''</pre>
+** Select option to ''Add Python to environment variables''
+
+! Install Python package in Windows Python installation
+
+Pip often needs updating:
+
+```powershell
+python -m pip install --upgrade pip
+```
+
+Install package `pygame` using `python -m` to call `pip` as a module:
+
+```powershell
+&gt; python -m pip install pygame
+```
+
+Or just call `pip` directly:
+
+```powershell
+&gt; pip install pygame
+```
+
+Add flag `-U` to ''update'' an existing installation
+
+```powershell
+&gt; pip install -U pygame
+```
+
+Run Python at the command line with `-c` to execute a few lines of code.
+
+Use this `-c` trick to check the package version number:
+
+```powershell
+&gt; python -c 'import pygame;print(pygame.ver)'
+```
+
+Different packages have different ways of accessing the version number. Read the package documentation by starting Python and doing `help(package_name)`:
+
+```powershell
+&gt; python
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD 4)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import pygame
+pygame 1.9.6
+Hello from the pygame community. https://www.pygame.org/contribute.html
+&gt;&gt;&gt; help(pygame)
+```
+
+Run a Python script using the ''Windows Python from within Cygwin'' with `python.exe`.
+
+Example: this Python script prints the Python version, from which you can tell whether it is the Windows or Cygwin Python installation.
+
+```python
+# ~/test-python.py
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+'''
+USAGE:
+    $ ./test-python.py
+        Vim: ;so
+        Run with `python3` installed in Cygwin
+
+    This ran with 3.6.9 (default, Jul 21 2019, 14:33:59)
+    [GCC 7.4.0]
+
+    &gt; python.exe ./test-python.py
+        Vim: ;sw
+        Run with `Python37` installed in Windows
+
+    This ran with 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28)
+    [MSC v.1916 64 bit (AMD64)]
+'''
+
+import sys
+print(f&quot;This ran with {sys.version}&quot;)
+```
+
+By default my Python scripts do not have permission to execute. Change this with `chmod`:
+
+```bash
+$ chmod 744 test-python.py
+```
+
+Execute the script from `bash` to see the Cygwin Python like this:
+
+```bash
+$ ./test-python.py
+This ran with 3.6.9 (default, Jul 21 2019, 14:33:59)
+[GCC 7.4.0]
+```
+
+Execute the script from `bash` to see the Windows Python like this:
+
+```bash
+$ python.exe ./test-python.py
+This ran with 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+```
+
+My Vim shortcut to source the current file using the Windows Python installation is `;sw` ([s]ource with [w]indows).
+
+Or to make ;so use the Windows Python installation too, change the ''shebang'' from `python3` to `python.exe`:
+
+```powershell
+#!/usr/bin/env python.exe
+# -*- coding: utf-8 -*-
+import sys
+print(f&quot;This ran with {sys.version}&quot;)
+```</pre>
 </div>
 <div created="20200202183205082" modified="20200202185144338" tags="security run-scripts" title="Permission to run scripts in PowerShell">
 <pre>Windows disables running scripts by default.
