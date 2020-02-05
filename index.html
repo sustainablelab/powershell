@@ -207,6 +207,8 @@ Error message and password prompt
 
 <li>Create a profile</li>
 
+<li>Cygwin packages</li>
+
 <li>Edit a profile</li>
 
 <li>Install Python on Windows</li>
@@ -9461,8 +9463,8 @@ Error message and password prompt
 <div created="20200202174140671" modified="20200202174140671" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20200205212112664" modified="20200205212116651" title="$:/state/sidebar">
-<pre>yes</pre>
+<div created="20200205212112664" modified="20200205212612695" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
 <div created="20200202173701637" modified="20200202173701637" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Palette</pre>
@@ -9479,7 +9481,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200205211654613" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/More</pre>
 </div>
-<div created="20200205211651318" list="Contents" modified="20200205212202860" title="$:/StoryList">
+<div created="20200205211651318" list="[[Cygwin packages]] Contents" modified="20200205212202860" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9807,9 +9809,9 @@ let &amp;path = &amp;path . ',' . avr_include
 &quot;
 ```</pre>
 </div>
-<div created="20200202180407251" modified="20200205212458557" tags="profile list-links" title="Contents">
+<div created="20200202180407251" modified="20200205212515303" tags="profile list-links" title="Contents">
 <pre>My notes about profiles
-&lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]!sort[modified]]&gt;&gt;
+&lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]sort[modified]]&gt;&gt;
 Example profile snippets
 &lt;&lt;list-links &quot;[tag[profile]tag[snippet]!tag[list-links]!sort[modified]]&gt;&gt;
 Python setup
@@ -9867,6 +9869,19 @@ Create the Profile:
 ```powershell
 PS&gt; New-Item -Path $PROFILE
 ```</pre>
+</div>
+<div created="20200205212554585" modified="20200205212627044" tags="toolchain setup cygwin" title="Cygwin packages">
+<pre>* git
+* vim
+* tree
+* make
+* gcc
+** latest stable release:
+*** version 7.5, released November 2019
+*** version 7.4 is closest matching Cygwin package
+* python
+** I have no reason to install the Cygwin Python package
+** [[Run python.exe from Cygwin]] instead</pre>
 </div>
 <div created="20200202180241348" modified="20200204160816738" tags="profile" title="Edit a profile">
 <pre>Open the profile in a text editor:
