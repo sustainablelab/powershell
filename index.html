@@ -197,8 +197,6 @@ Error message and password prompt
 
 <li>Create a profile</li>
 
-<li>Draft of 'Install Python on Windows'</li>
-
 <li>Edit a profile</li>
 
 <li>Install Python on Windows</li>
@@ -9503,7 +9501,7 @@ set -o vi
 <div created="20200202190739876" modified="20200205184524630" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div created="20200205210325859" list="[[Install Python package in Windows Python installation]] [[Run python.exe from Cygwin]] [[Draft of 'Install Python on Windows']] Profile" modified="20200205210330435" title="$:/StoryList">
+<div created="20200205210325859" list="[[Install Python package in Windows Python installation]] [[Run python.exe from Cygwin]] [[Install Python on Windows]] Profile" modified="20200205210330435" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9768,20 +9766,6 @@ Create the Profile:
 PS&gt; New-Item -Path $PROFILE
 ```</pre>
 </div>
-<div created="20200205185215208" draft.of="Install Python on Windows" draft.title="Install Python on Windows" modified="20200205210556954" title="Draft of 'Install Python on Windows'">
-<pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
-* Download the executable installer for Windows:
-
-```
-python-3.8.1-amd64.exe
-```
-
-* Run the installer
-* Customize to add `py` launcher
-** Select option to ''Add Python to environment variables''
-
-</pre>
-</div>
 <div created="20200202180241348" modified="20200204160816738" tags="profile" title="Edit a profile">
 <pre>Open the profile in a text editor:
 
@@ -9831,7 +9815,7 @@ But it's easier to remember `brave` without the `.$` prefix. Make an alias inste
 
 {{Alias brave}}</pre>
 </div>
-<div created="20200205185215208" modified="20200205210449644" title="Install Python on Windows">
+<div created="20200205185215208" modified="20200205210956555" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
 * Download the executable installer for Windows:
 
@@ -9843,111 +9827,39 @@ python-3.8.1-amd64.exe
 * Customize to add `py` launcher
 ** Select option to ''Add Python to environment variables''
 
-! Install Python package in Windows Python installation
+Check Python is installed:
 
-Pip often needs updating:
+* `Win+x` then press `i` to open a Windows PowerShell
+* Type `python` at the prompt
 
-```powershell
-python -m pip install --upgrade pip
-```
-
-Install package `pygame` using `python -m` to call `pip` as a module:
+Expect Python 3.8.1 to start up:
 
 ```powershell
-&gt; python -m pip install pygame
-```
-
-Or just call `pip` directly:
-
-```powershell
-&gt; pip install pygame
-```
-
-Add flag `-U` to ''update'' an existing installation
-
-```powershell
-&gt; pip install -U pygame
-```
-
-Run Python at the command line with `-c` to execute a few lines of code.
-
-Use this `-c` trick to check the package version number:
-
-```powershell
-&gt; python -c 'import pygame;print(pygame.ver)'
-```
-
-Different packages have different ways of accessing the version number. Read the package documentation by starting Python and doing `help(package_name)`:
-
-```powershell
-&gt; python
-Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD 4)] on win32
+PS C:\Users\mike&gt; python
+Python 3.8.1 (tags/v3.8.1:1b293b6, Dec 18 2019, 23:11:46) [MSC v.1916 64 bit (AMD64)] on win32
 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-&gt;&gt;&gt; import pygame
-pygame 1.9.6
-Hello from the pygame community. https://www.pygame.org/contribute.html
-&gt;&gt;&gt; help(pygame)
 ```
 
-Run a Python script using the ''Windows Python from within Cygwin'' with `python.exe`.
+Exit Python:
 
-Example: this Python script prints the Python version, from which you can tell whether it is the Windows or Cygwin Python installation.
-
-```python
-# ~/test-python.py
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-'''
-USAGE:
-    $ ./test-python.py
-        Vim: ;so
-        Run with `python3` installed in Cygwin
-
-    This ran with 3.6.9 (default, Jul 21 2019, 14:33:59)
-    [GCC 7.4.0]
-
-    &gt; python.exe ./test-python.py
-        Vim: ;sw
-        Run with `Python37` installed in Windows
-
-    This ran with 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28)
-    [MSC v.1916 64 bit (AMD64)]
-'''
-
-import sys
-print(f&quot;This ran with {sys.version}&quot;)
+```python-repl
+&gt;&gt;&gt; exit()
 ```
 
-By default my Python scripts do not have permission to execute. Change this with `chmod`:
-
-```bash
-$ chmod 744 test-python.py
-```
-
-Execute the script from `bash` to see the Cygwin Python like this:
-
-```bash
-$ ./test-python.py
-This ran with 3.6.9 (default, Jul 21 2019, 14:33:59)
-[GCC 7.4.0]
-```
-
-Execute the script from `bash` to see the Windows Python like this:
-
-```bash
-$ python.exe ./test-python.py
-This ran with 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
-```
-
-My Vim shortcut to source the current file using the Windows Python installation is `;sw` ([s]ource with [w]indows).
-
-Or to make ;so use the Windows Python installation too, change the ''shebang'' from `python3` to `python.exe`:
+Upgrade package `pip`:
 
 ```powershell
-#!/usr/bin/env python.exe
-# -*- coding: utf-8 -*-
-import sys
-print(f&quot;This ran with {sys.version}&quot;)
+WARNING: You are using pip version 19.2.3, however version 20.0.2 is available.
+You should consider upgrading via the 'python -m pip install --upgrade pip' command.
+PS C:\Users\mike&gt; python -m pip install --upgrade pip
+Collecting pip
+  Downloading https://files.pythonhosted.org/packages/54/0c/d01aa759fdc501a58f431eb594a17495f15b88da142ce14b5845662c13f3/pip-20.0.2-py2.py3-none-any.whl (1.4MB)
+     |████████████████████████████████| 1.4MB 3.3MB/s
+Installing collected packages: pip
+  Found existing installation: pip 19.2.3
+    Uninstalling pip-19.2.3:
+      Successfully uninstalled pip-19.2.3
+Successfully installed pip-20.0.2
 ```</pre>
 </div>
 <div created="20200205210601762" modified="20200205210617151" tags="" title="Install Python package in Windows Python installation">
