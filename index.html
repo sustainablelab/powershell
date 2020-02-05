@@ -145,6 +145,8 @@ Error message and password prompt
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/home</li>
 
+<li>$:/config/RelinkOnRename</li>
+
 <li>$:/config/WikiParserRules/Inline/wikilink</li>
 
 <li>$:/core</li>
@@ -201,7 +203,7 @@ Error message and password prompt
 
 <li>Install Python on Windows</li>
 
-<li>Install Python package in Windows Python installation</li>
+<li>Install Python packages on Windows</li>
 
 <li>Permission to run scripts in PowerShell</li>
 
@@ -262,6 +264,9 @@ set -o vi
 </div>
 <div created="20200202190745438" modified="20200202190745438" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/home">
 <pre>show</pre>
+</div>
+<div created="20200205211021319" modified="20200205211021319" title="$:/config/RelinkOnRename">
+<pre>yes</pre>
 </div>
 <div created="20200202173715702" modified="20200202173715702" title="$:/config/WikiParserRules/Inline/wikilink">
 <pre>disable</pre>
@@ -9501,7 +9506,7 @@ set -o vi
 <div created="20200202190739876" modified="20200205184524630" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div created="20200205210325859" list="[[Install Python package in Windows Python installation]] [[Run python.exe from Cygwin]] [[Install Python on Windows]] Profile" modified="20200205210330435" title="$:/StoryList">
+<div created="20200205210325859" list="[[Install Python packages on Windows]] [[Run python.exe from Cygwin]] [[Install Python on Windows]] Profile" modified="20200205210330435" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9815,7 +9820,7 @@ But it's easier to remember `brave` without the `.$` prefix. Make an alias inste
 
 {{Alias brave}}</pre>
 </div>
-<div created="20200205185215208" modified="20200205210956555" title="Install Python on Windows">
+<div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
 * Download the executable installer for Windows:
 
@@ -9862,7 +9867,7 @@ Installing collected packages: pip
 Successfully installed pip-20.0.2
 ```</pre>
 </div>
-<div created="20200205210601762" modified="20200205210617151" tags="" title="Install Python package in Windows Python installation">
+<div created="20200205210601762" modified="20200205211039678" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install Python package in Windows Python installation
 
 Pip often needs updating:
