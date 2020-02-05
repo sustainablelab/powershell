@@ -9999,8 +9999,8 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 ```
 </pre>
 </div>
-<div created="20200205210601762" modified="20200205215832210" tags="Windows python setup" title="Install Python packages on Windows">
-<pre>! Install Python package in Windows Python installation
+<div created="20200205210601762" modified="20200205220627932" tags="Windows python setup" title="Install Python packages on Windows">
+<pre>! Install with `pip`
 
 Pip often needs updating:
 
@@ -10008,10 +10008,55 @@ Pip often needs updating:
 PS&gt; python -m pip install --upgrade pip
 ```
 
+See the pip help:
+
+```powershell
+PS C:\Users\mike&gt; pip -h
+
+Usage:
+  pip &lt;command&gt; [options]
+
+Commands:
+  install                     Install packages.
+  download                    Download packages.
+  uninstall                   Uninstall packages.
+  freeze                      Output installed packages in requirements format.
+  list                        List installed packages.
+  show                        Show information about installed packages.
+  check                       Verify installed packages have compatible dependencies.
+  config                      Manage local and global configuration.
+  search                      Search PyPI for packages.
+  wheel                       Build wheels from your requirements.
+  hash                        Compute hashes of package archives.
+  completion                  A helper command used for command completion.
+  debug                       Show information useful for debugging.
+  help                        Show help for commands.
+
+General Options:
+  -h, --help                  Show help.
+```
+
+! Numpy
 Install package `numpy`
 
 ```powershell
-PS&gt; pip install numpy
+PS C:\Users\mike&gt; pip install numpy
+Collecting numpy
+  Downloading numpy-1.18.1-cp38-cp38-win_amd64.whl (12.8 MB)
+     |████████████████████████████████| 12.8 MB 3.2 MB/s
+Installing collected packages: numpy
+Successfully installed numpy-1.18.1
+```
+
+List the pacakges installed so far:
+
+```powershell
+PS C:\Users\mike&gt; pip list
+Package    Version
+---------- -------
+numpy      1.18.1
+pip        20.0.2
+setuptools 41.2.0
 ```
 
 Install package `pygame` using `python -m` to call `pip` as a module:
