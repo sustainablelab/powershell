@@ -9478,10 +9478,10 @@ Error message and password prompt
 <div created="20200205211656028" modified="20200205211656028" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20200202190739876" modified="20200205212821041" title="$:/state/tab/sidebar--595412856">
+<div created="20200202190739876" modified="20200205214633563" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div list="Contents" title="$:/StoryList">
+<div created="20200205214051709" list="Contents [[Run python.exe from Cygwin]] [[Install Python packages on Windows]] [[Install Python on Windows]]" modified="20200205214641117" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9932,7 +9932,7 @@ But it's easier to remember `brave` without the `.$` prefix. Make an alias inste
 
 {{Alias brave}}</pre>
 </div>
-<div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
+<div created="20200205185215208" modified="20200205215111676" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
 * Download the executable installer for Windows:
 
@@ -9977,7 +9977,25 @@ Installing collected packages: pip
     Uninstalling pip-19.2.3:
       Successfully uninstalled pip-19.2.3
 Successfully installed pip-20.0.2
-```</pre>
+```
+
+Check Python is accessible from Cygwin.
+
+Open `bash`:
+
+```powershell
+PS&gt; bash
+```
+
+Try running `python`:
+
+```bash
+$ python
+Python 3.8.1 (tags/v3.8.1:1b293b6, Dec 18 2019, 23:11:46) [MSC v.1916 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; exit()
+```
+</pre>
 </div>
 <div created="20200205210601762" modified="20200205211039678" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install Python package in Windows Python installation
