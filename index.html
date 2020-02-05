@@ -177,6 +177,8 @@ Error message and password prompt
 
 <li>$:/state/tab-2065006209</li>
 
+<li>$:/state/tab/moresidebar-1850697562</li>
+
 <li>$:/state/tab/sidebar--595412856</li>
 
 <li>$:/StoryList</li>
@@ -196,6 +198,8 @@ Error message and password prompt
 <li>Alias cygwin</li>
 
 <li>Aliases</li>
+
+<li>avrgcc</li>
 
 <li>Create a profile</li>
 
@@ -9503,10 +9507,13 @@ set -o vi
 <div created="20200204163321249" modified="20200204163321249" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
 </div>
-<div created="20200202190739876" modified="20200205184524630" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20200205211656028" modified="20200205211656028" title="$:/state/tab/moresidebar-1850697562">
+<pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20200205210325859" list="[[Install Python packages on Windows]] [[Run python.exe from Cygwin]] [[Install Python on Windows]] Profile" modified="20200205210330435" title="$:/StoryList">
+<div created="20200202190739876" modified="20200205211654613" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/More</pre>
+</div>
+<div created="20200205211651318" list="avrgcc" modified="20200205211915971" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9722,6 +9729,78 @@ Set-Alias -Name cygwin -Value $cygwin
 </div>
 <div created="20200202190822789" modified="20200202191039725" tags="doc" title="Aliases">
 <pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
+</div>
+<div created="20200205212005865" modified="20200205212014225" tags="" title="avrgcc">
+<pre>! Download
+* [[Microchip list of toolchain links for popular operating systems|https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers]]
+** download the Windows AVR 8-bit Toolchain
+** Microchip requires you register an account
+** unzip download
+** move avr8-gnu-toolchain-win32_x86 to Cygwin home folder
+* [[Microchip pack repository for Atmel ATmega Series Device Support (1.4.346)|http://packs.download.atmel.com/]]
+** Click `Download` to download the `Atmel.ATmega_DFP.1.4.346.atpack`
+** These are for the `.o`, `.a`, and `spec` files used during linking
+
+The `.atpack` is a compressed file.
+
+* Windows does not know it can uncompress it
+* right-click the `.atpack` file and rename it by adding a `.zip` suffix
+** disregard the Windows warning
+* the new file name is:
+```
+Atmel.ATmega_DFP.1.4.346.atpack.zip
+```
+* right-click again and select `Extract` to unzip
+
+Building for the `ATmega328p` only requires three files from the ATmega Device Family Pack.
+
+* create a folder (I use my Cygwin home directory) named `ATmega_DFP/1.4.346/gcc/dev/atmega328p`
+** the number is the version number of the DFP (from the `.atpack` file name)
+
+```bash
+$ mkdir -p ATmega_DFP/1.4.346/gcc/dev/atmega328p
+```
+
+* 
+
+! Setup
+
+!! `make`
+
+
+!! Vim `find` search path
+Add `/avr/include` sub-folder to Vim `path`. Vim searches directories in `path` when using `gf` or any `find` command.
+
+```vim
+&quot; $MYVIMRC
+&quot;
+&quot; . -- dot
+&quot;    search relative to directory of current file
+&quot; ,, -- empty string between two commas
+&quot;    search in current directory
+set path=.,/usr/include,,
+&quot;
+&quot; += -- add path
+&quot; ** -- double star
+&quot;    match directories in downward search
+set path+=**
+&quot;
+&quot; The path so far: path=.,/usr/include,,**
+&quot;
+&quot; ---Unit test framework paths---
+&quot; My mock-c for faking functions
+let mock_c_include=mock_c_path . '/include'
+let &amp;path = &amp;path . ',' . mock_c_include
+&quot;
+&quot; My tweaked version of Unity
+let unity_include=mock_c_path . '/test/unity'
+let &amp;path = &amp;path . ',' . unity_include
+&quot;
+&quot; ---AVR-GCC---
+let avr_include='~/avr8-gnu-toolchain-win32_x86/avr/include'
+let &amp;path = &amp;path . ',' . avr_include
+&quot;
+```</pre>
 </div>
 <div created="20200202174104351" modified="20200202180400852" tags="profile" title="Create a profile">
 <pre>The `PowerShell` profile can go in `$PSHOME`:
