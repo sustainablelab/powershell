@@ -9999,16 +9999,10 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 ```
 </pre>
 </div>
-<div created="20200205210601762" modified="20200205220627932" tags="Windows python setup" title="Install Python packages on Windows">
+<div created="20200205210601762" modified="20200205220921405" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install with `pip`
 
-Pip often needs updating:
-
-```powershell
-PS&gt; python -m pip install --upgrade pip
-```
-
-See the pip help:
+See the `pip` help:
 
 ```powershell
 PS C:\Users\mike&gt; pip -h
@@ -10034,6 +10028,21 @@ Commands:
 
 General Options:
   -h, --help                  Show help.
+```
+
+Commands I use are:
+
+* `install`
+** install a package with `pip install` or `python -m pip install`
+* `list`
+** list what is installed
+* `show`
+** info about a package
+
+Start by updating `pip`:
+
+```powershell
+PS&gt; python -m pip install --upgrade pip
 ```
 
 ! Numpy
