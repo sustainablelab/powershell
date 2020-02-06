@@ -9483,7 +9483,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200205212821041" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200206140132499" list="[[User-defined bash shortcuts]] Contents" modified="20200206140132499" title="$:/StoryList">
+<div created="20200206140132499" list="Contents" modified="20200206140132499" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9811,11 +9811,13 @@ let &amp;path = &amp;path . ',' . avr_include
 &quot;
 ```</pre>
 </div>
-<div created="20200202180407251" modified="20200206140127160" tags="profile list-links" title="Contents">
+<div created="20200202180407251" modified="20200206140511459" tags="profile list-links" title="Contents">
 <pre>My notes about profiles
 &lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]sort[modified]]&gt;&gt;
-Example profile snippets
+Profile snippets
 &lt;&lt;list-links &quot;[tag[profile]tag[snippet]!tag[list-links]!sort[modified]]&gt;&gt;
+Bash setup snippets
+&lt;&lt;list-links &quot;[tag[setup]tag[snippet]!tag[list-links]!sort[modified]]&gt;&gt;
 Python setup
 &lt;&lt;list-links &quot;[tag[python]!sort[modified]]&quot;&gt;&gt;
 Toolchain setup
@@ -10143,10 +10145,14 @@ execute '!python.exe &quot;$(cygpath -w %)&quot;'
 
 The nice thing about this solution is it does not require editing the Windows environment variables or adding aliases in the Cygwin `.bashrc`.</pre>
 </div>
-<div created="20200206140141732" modified="20200206140305015" tags="snippet setup" title="User-defined bash shortcuts">
-<pre>Example: map email address to a function key
+<div created="20200206140141732" modified="20200206140358851" tags="snippet setup" title="User-defined bash shortcuts">
+<pre>Put shortcuts in `~/.minttyrc`
+
+Example: map email address to a function key
 
 ```
+# ~/.minttyrc
+#
 # User-defined shortcuts (KeyFunctions=)
 KeyFunctions=F11:`echo -n sustainablelab@gmail.com`
 ```</pre>
