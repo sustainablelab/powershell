@@ -219,6 +219,8 @@ Error message and password prompt
 
 <li>Run python.exe from Cygwin</li>
 
+<li>User-defined bash shortcuts</li>
+
 <li>Variables</li>
 
 </ul>
@@ -9481,7 +9483,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200205212821041" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div list="Contents" title="$:/StoryList">
+<div created="20200206140132499" list="[[User-defined bash shortcuts]] Contents" modified="20200206140132499" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -10140,6 +10142,14 @@ execute '!python.exe &quot;$(cygpath -w %)&quot;'
 * the surrounding &quot;$()&quot; are necessary to get the `cygpath` output and to treat the backslashes in the Windows path string as a raw string and not as escape sequences
 
 The nice thing about this solution is it does not require editing the Windows environment variables or adding aliases in the Cygwin `.bashrc`.</pre>
+</div>
+<div created="20200206140141732" modified="20200206140305015" tags="snippet setup" title="User-defined bash shortcuts">
+<pre>Example: map email address to a function key
+
+```
+# User-defined shortcuts (KeyFunctions=)
+KeyFunctions=F11:`echo -n sustainablelab@gmail.com`
+```</pre>
 </div>
 <div created="20200202185934789" modified="20200202190048489" tags="doc" title="Variables">
 <pre>[[variables|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables?view=powershell-7#working-with-variables]]</pre>
