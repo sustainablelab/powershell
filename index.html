@@ -219,8 +219,6 @@ Error message and password prompt
 
 <li>Run python.exe from Cygwin</li>
 
-<li>Select Python install via Vim shortcut</li>
-
 <li>Variables</li>
 
 </ul>
@@ -9480,10 +9478,10 @@ Error message and password prompt
 <div created="20200205211656028" modified="20200205211656028" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20200202190739876" modified="20200205214633563" title="$:/state/tab/sidebar--595412856">
+<div created="20200202190739876" modified="20200205212821041" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200205214051709" list="Contents [[Add $profile variable to .bashrc]] [[Cygwin packages]] avrgcc" modified="20200205234940434" title="$:/StoryList">
+<div list="Contents" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9544,8 +9542,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200205233957564" title="$:/temp/search">
-<pre>toolchain</pre>
+<div created="20200202173605395" modified="20200206131833911" title="$:/temp/search">
+<pre>display</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -9739,31 +9737,13 @@ Set-Alias -Name cygwin -Value $cygwin
 <div created="20200202190822789" modified="20200202191039725" tags="doc" title="Aliases">
 <pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
 </div>
-<div created="20200205212005865" modified="20200205235342594" tags="avr setup toolchain" title="avrgcc">
+<div created="20200205212005865" modified="20200205212030911" tags="avr setup toolchain" title="avrgcc">
 <pre>! Download
-
-!! avr8-gnu-toolchain
 * [[Microchip list of toolchain links for popular operating systems|https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers]]
 ** download the Windows AVR 8-bit Toolchain
 ** Microchip requires you register an account
-Unzip the download and move `avr8-gnu-toolchain-win32_x86` to Cygwin home folder
-
-```
-/home/mike/
-▾ avr8-gnu-toolchain-win32_x86/
-  ▸ avr/
-  ▸ bin/
-  ▸ doc/
-  ▸ i686-w64-mingw32/
-  ▸ include/
-  ▸ info/
-  ▸ lib/
-  ▸ libexec/
-  ▸ man/
-  ▸ share/
-```
-
-!! ATmega_DFP
+** unzip download
+** move avr8-gnu-toolchain-win32_x86 to Cygwin home folder
 * [[Microchip pack repository for Atmel ATmega Series Device Support (1.4.346)|http://packs.download.atmel.com/]]
 ** Click `Download` to download the `Atmel.ATmega_DFP.1.4.346.atpack`
 ** These are for the `.o`, `.a`, and `spec` files used during linking
@@ -9788,23 +9768,7 @@ Building for the `ATmega328p` only requires three files from the ATmega Device F
 $ mkdir -p ATmega_DFP/1.4.346/gcc/dev/atmega328p
 ```
 
-* copy the three files needed from `atpack`
-
-The new folder looks like this:
-
-```
-/home/mike/
-▾ ATmega_DFP/
-  ▾ 1.4.346/
-    ▾ gcc/
-      ▾ dev/
-        ▾ atmega328p/
-          ▾ avr5/
-              crtatmega328p.o
-              libatmega328p.a
-          ▾ device-specs/
-              specs-atmega328p
-```
+* 
 
 ! Setup
 
@@ -9845,13 +9809,13 @@ let &amp;path = &amp;path . ',' . avr_include
 &quot;
 ```</pre>
 </div>
-<div created="20200202180407251" modified="20200205215543627" tags="profile list-links" title="Contents">
+<div created="20200202180407251" modified="20200206140127160" tags="profile list-links" title="Contents">
 <pre>My notes about profiles
 &lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]sort[modified]]&gt;&gt;
 Example profile snippets
 &lt;&lt;list-links &quot;[tag[profile]tag[snippet]!tag[list-links]!sort[modified]]&gt;&gt;
 Python setup
-&lt;&lt;list-links &quot;[tag[python]sort[modified]]&quot;&gt;&gt;
+&lt;&lt;list-links &quot;[tag[python]!sort[modified]]&quot;&gt;&gt;
 Toolchain setup
 &lt;&lt;list-links &quot;[tag[toolchain]tag[setup]!sort[modified]]&quot;&gt;&gt;
 Official PowerShell Documentation
@@ -9968,7 +9932,7 @@ But it's easier to remember `brave` without the `.$` prefix. Make an alias inste
 
 {{Alias brave}}</pre>
 </div>
-<div created="20200205185215208" modified="20200205215111676" tags="python setup Windows" title="Install Python on Windows">
+<div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
 * Download the executable installer for Windows:
 
@@ -10013,187 +9977,33 @@ Installing collected packages: pip
     Uninstalling pip-19.2.3:
       Successfully uninstalled pip-19.2.3
 Successfully installed pip-20.0.2
-```
-
-Check Python is accessible from Cygwin.
-
-Open `bash`:
-
-```powershell
-PS&gt; bash
-```
-
-Try running `python`:
-
-```bash
-$ python
-Python 3.8.1 (tags/v3.8.1:1b293b6, Dec 18 2019, 23:11:46) [MSC v.1916 64 bit (AMD64)] on win32
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-&gt;&gt;&gt; exit()
-```
-</pre>
+```</pre>
 </div>
-<div created="20200205210601762" modified="20200205233744704" tags="Windows python setup" title="Install Python packages on Windows">
-<pre>! Install with `pip`
+<div created="20200205210601762" modified="20200205211039678" tags="Windows python setup" title="Install Python packages on Windows">
+<pre>! Install Python package in Windows Python installation
 
-See the `pip` help:
-
-```powershell
-PS C:\Users\mike&gt; pip -h
-
-Usage:
-  pip &lt;command&gt; [options]
-
-Commands:
-  install                     Install packages.
-  download                    Download packages.
-  uninstall                   Uninstall packages.
-  freeze                      Output installed packages in requirements format.
-  list                        List installed packages.
-  show                        Show information about installed packages.
-  check                       Verify installed packages have compatible dependencies.
-  config                      Manage local and global configuration.
-  search                      Search PyPI for packages.
-  wheel                       Build wheels from your requirements.
-  hash                        Compute hashes of package archives.
-  completion                  A helper command used for command completion.
-  debug                       Show information useful for debugging.
-  help                        Show help for commands.
-
-General Options:
-  -h, --help                  Show help.
-```
-
-Commands I use are:
-
-* `install`
-** install a package with `pip install` or `python -m pip install`
-* `list`
-** list what is installed
-* `show`
-** info about a package
-
-Start by updating `pip`:
+Pip often needs updating:
 
 ```powershell
-PS&gt; python -m pip install --upgrade pip
+python -m pip install --upgrade pip
 ```
 
-`--upgrade` or `-U` updates an existing installation
-
-! Numpy
-Install package `numpy`
+Install package `pygame` using `python -m` to call `pip` as a module:
 
 ```powershell
-PS C:\Users\mike&gt; pip install numpy
-Collecting numpy
-  Downloading numpy-1.18.1-cp38-cp38-win_amd64.whl (12.8 MB)
-     |████████████████████████████████| 12.8 MB 3.2 MB/s
-Installing collected packages: numpy
-Successfully installed numpy-1.18.1
+&gt; python -m pip install pygame
 ```
 
-List the packages installed so far:
+Or just call `pip` directly:
 
 ```powershell
-PS C:\Users\mike&gt; pip list
-Package    Version
----------- -------
-numpy      1.18.1
-pip        20.0.2
-setuptools 41.2.0
-```
-
-Show information about the `numpy` package installed:
-
-```powershell
-PS C:\Users\mike&gt; pip show numpy
-Name: numpy
-Version: 1.18.1
-Summary: NumPy is the fundamental package for array computing with Python.
-Home-page: https://www.numpy.org
-Author: Travis E. Oliphant et al.
-Author-email: None
-License: BSD
-Location: c:\users\mike\appdata\local\programs\python\python38\lib\site-packages
-Requires:
-Required-by:
-```
-
-Get package help from within Python.
-
-```powershell
-PS&gt; python
-```
-
-```python
-&gt;&gt;&gt; import numpy
-&gt;&gt;&gt; help(numpy)
-```
-
-Output this to a file and open in Vim to make it easy to search:
-
-```bash
-$ python.exe -c &quot;import numpy; help(numpy)&quot; &gt; help-numpy.man
-$ vim help-numpy.man
-```
-
-Repeat for the built-in package `ctypes`:
-
-```bash
-$ !-2:gs/numpy/ctypes/
-python.exe -c &quot;import ctypes; help(ctypes)&quot; &gt; help-ctypes.man
-```
-
-An alternative to the `python.exe -c` style is to run `pydoc` as a module and pass the package to get documentation for:
-
-```powershell
-PS C:\Users\mike&gt; python -m pydoc ctypes
-```
-
-Get help on a specific function:
-
-```powershell
-PS C:\Users\mike&gt; python -m pydoc _ctypes.LoadLibrary
-Help on built-in function LoadLibrary in _ctypes:
-
-_ctypes.LoadLibrary = LoadLibrary(...)
-    LoadLibrary(name, load_flags) -&gt; handle
-
-    Load an executable (usually a DLL), and return a handle to it.
-    The handle may be used to locate exported functions in this
-    module. load_flags are as defined for LoadLibraryEx in the
-    Windows API.
-
-PS C:\Users\mike&gt; python -m pydoc ctypes.LibraryLoader.LoadLibrary
-Help on function LoadLibrary in ctypes.LibraryLoader:
-
-ctypes.LibraryLoader.LoadLibrary = LoadLibrary(self, name)
-```
-
-Browse all available documentation for my Python installation using `Brave`:
-
-```powershell
-PS C:\Users\mike&gt; python -m pydoc -b
-```
-
-While looking at someone else's code, quickly open the documentation in Vim:
-
-```vim
-:!python -m pydoc ctypes.CDLL &gt; help-ctypes-CDLL.man
-:vsplit help-ctypes-CDLL.man
-```
-
-! Pygame
-
-```powershell
-PS&gt; pip install pygame
+&gt; pip install pygame
 ```
 
 Add flag `-U` to ''update'' an existing installation
 
 ```powershell
-PS&gt; pip install -U pygame
+&gt; pip install -U pygame
 ```
 
 Run Python at the command line with `-c` to execute a few lines of code.
@@ -10201,77 +10011,22 @@ Run Python at the command line with `-c` to execute a few lines of code.
 Use this `-c` trick to check the package version number:
 
 ```powershell
-PS&gt; python -c 'import pygame;print(pygame.ver)'
+&gt; python -c 'import pygame;print(pygame.ver)'
 ```
 
 Different packages have different ways of accessing the version number. Read the package documentation by starting Python and doing `help(package_name)`:
 
 ```powershell
-PS&gt; python
+&gt; python
 Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD 4)] on win32
 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
 &gt;&gt;&gt; import pygame
 pygame 1.9.6
 Hello from the pygame community. https://www.pygame.org/contribute.html
 &gt;&gt;&gt; help(pygame)
-```</pre>
-</div>
-<div created="20200202183205082" modified="20200202185144338" tags="security run-scripts" title="Permission to run scripts in PowerShell">
-<pre>Windows disables running scripts by default.
-
-```powershell
-PS&gt; Get-ExecutionPolicy
-Restricted
 ```
 
-```powershell
-PS&gt; Get-ExecutionPolicy -Scope CurrentUser
-Undefined
-```
-
-The current user execution policy is `Undefined`, so why is the execution policy `Restricted`?
-
-&gt; If no execution policy is set in any scope, the effective execution policy is Restricted, which is the default for Windows clients.
-
-//see [[Microsoft powershell documentation |https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7]]//
-
-Change the execution policy to at least run `Signed` scripts:
-
-```powershell
-PS&gt; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-Select `y` when prompted `Do you want to change the execution policy`?
-
-//The above only needs to be performed once. The change is permanently stored in the registry.//
-
-`RemoteSigned` also runs script that are //unblocked//. ''Unblock'' is the easy alternative to ''signing''.
-
-Unblock the `$PROFILE` with `Unblock-File`:
-
-```powershell
-PS&gt; Unblock-File $PROFILE
-```</pre>
-</div>
-<div created="20200204175921314" modified="20200205215600086" tags="python cygwin run-scripts" title="Run python.exe from Cygwin">
-<pre>//Issue:// Cygwin does not have access to the Windows USB ports. Python applications using `pyserial` do not work.
-
-//Solution:// Run Python scripts using the [[Windows `python.exe`|Install Python on Windows]] instead of the Cygwin Python installation.
-
-Create a Vim shortcut to source a script using `python.exe`:
-
-```vim
-execute '!python.exe &quot;$(cygpath -w %)&quot;'
-```
-
-* `%` is the path to the file in the active window
-* `cygpath -w` converts the POSIX path to a Windows path
-* the surrounding &quot;$()&quot; are necessary to get the `cygpath` output and to treat the backslashes in the Windows path string as a raw string and not as escape sequences
-
-The nice thing about this solution is it does not require editing the Windows environment variables or adding aliases in the Cygwin `.bashrc`.</pre>
-</div>
-<div created="20200205215339377" modified="20200205215632770" tags="python cygwin setup run-scripts" title="Select Python install via Vim shortcut">
-<pre>Run a Python script using the ''Windows Python from within Cygwin'' with `python.exe`.
+Run a Python script using the ''Windows Python from within Cygwin'' with `python.exe`.
 
 Example: this Python script prints the Python version, from which you can tell whether it is the Windows or Cygwin Python installation.
 
@@ -10331,6 +10086,60 @@ Or to make ;so use the Windows Python installation too, change the ''shebang'' f
 import sys
 print(f&quot;This ran with {sys.version}&quot;)
 ```</pre>
+</div>
+<div created="20200202183205082" modified="20200202185144338" tags="security run-scripts" title="Permission to run scripts in PowerShell">
+<pre>Windows disables running scripts by default.
+
+```powershell
+PS&gt; Get-ExecutionPolicy
+Restricted
+```
+
+```powershell
+PS&gt; Get-ExecutionPolicy -Scope CurrentUser
+Undefined
+```
+
+The current user execution policy is `Undefined`, so why is the execution policy `Restricted`?
+
+&gt; If no execution policy is set in any scope, the effective execution policy is Restricted, which is the default for Windows clients.
+
+//see [[Microsoft powershell documentation |https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7]]//
+
+Change the execution policy to at least run `Signed` scripts:
+
+```powershell
+PS&gt; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+Select `y` when prompted `Do you want to change the execution policy`?
+
+//The above only needs to be performed once. The change is permanently stored in the registry.//
+
+`RemoteSigned` also runs script that are //unblocked//. ''Unblock'' is the easy alternative to ''signing''.
+
+Unblock the `$PROFILE` with `Unblock-File`:
+
+```powershell
+PS&gt; Unblock-File $PROFILE
+```</pre>
+</div>
+<div created="20200204175921314" modified="20200205185208693" tags="python cygwin run-scripts" title="Run python.exe from Cygwin">
+<pre>//Issue:// Cygwin does not have access to the Windows USB ports. Python applications using `pyserial` do not work.
+
+//Solution:// Run Python scripts using the [[Windows `python.exe`|Install Python on Windows]] instead of the Cygwin Python installation.
+
+Create a Vim shortcut to source a script using `python.exe`:
+
+```vim
+execute '!python.exe &quot;$(cygpath -w %)&quot;'
+```
+
+* `%` is the path to the file in the active window
+* `cygpath -w` converts the POSIX path to a Windows path
+* the surrounding &quot;$()&quot; are necessary to get the `cygpath` output and to treat the backslashes in the Windows path string as a raw string and not as escape sequences
+
+The nice thing about this solution is it does not require editing the Windows environment variables or adding aliases in the Cygwin `.bashrc`.</pre>
 </div>
 <div created="20200202185934789" modified="20200202190048489" tags="doc" title="Variables">
 <pre>[[variables|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables?view=powershell-7#working-with-variables]]</pre>
