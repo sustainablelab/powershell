@@ -9905,7 +9905,7 @@ But it's easier to remember `brave` without the `.$` prefix. Make an alias inste
 
 {{Alias brave}}</pre>
 </div>
-<div created="20200208201226894" modified="20200208203615592" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
+<div created="20200208201226894" modified="20200208203810351" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
 <pre>Python omni complete in Vim `i_CTRL-X_CTRL-O` requires Python is installed. See:
 
 ```
@@ -9939,7 +9939,21 @@ To complete from a package, the package needs to be installed too.
 
 Install `pip` with the Cygwin package manager.
 
-//Search for `python37-pip`//</pre>
+//Search for `python37-pip`//
+
+Same goes for any package. I get `Errno13` on any attempt to install with `pip` at the bash command line.
+
+Comfirm the packages are installed:
+
+```bash
+$ pip3.7 list
+Package    Version
+---------- -------
+numpy      1.16.2 
+pip        19.2.3 
+pygame     1.9.6  
+setuptools 41.2.0 
+```</pre>
 </div>
 <div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
