@@ -209,6 +209,10 @@ Error message and password prompt
 
 <li>Cygwin packages</li>
 
+<li>Draft of 'Create a profile'</li>
+
+<li>Draft of 'Python path for package import'</li>
+
 <li>Edit a profile</li>
 
 <li>Install Python on Windows</li>
@@ -216,6 +220,8 @@ Error message and password prompt
 <li>Install Python packages on Windows</li>
 
 <li>Permission to run scripts in PowerShell</li>
+
+<li>Profile locations</li>
 
 <li>Python path for package import</li>
 
@@ -9487,7 +9493,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200208192822576" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200208192640172" list="[[Python path for package import]] [[VIM `find` search path]] avrgcc [[Create a profile]] Contents" modified="20200208192820282" title="$:/StoryList">
+<div created="20200208192640172" list="[[Profile locations]] [[Draft of 'Python path for package import']] [[VIM `find` search path]] avrgcc [[Draft of 'Create a profile']] Contents" modified="20200208193730665" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9548,8 +9554,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200208192816453" title="$:/temp/search">
-<pre>VIM `find` search path</pre>
+<div created="20200202173605395" modified="20200208193729365" title="$:/temp/search">
+<pre>Profile location</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -9863,6 +9869,49 @@ PS&gt; New-Item -Path $PROFILE
 ** I have no reason to install the Cygwin Python package
 ** [[Run python.exe from Cygwin]] instead</pre>
 </div>
+<div created="20200202174104351" draft.of="Create a profile" draft.title="Create a profile" modified="20200208193717581" tags="profile" title="Draft of 'Create a profile'">
+<pre>{{Profile locations}}
+! Create a Profile
+
+Create a `WindowsPowerShell` directory in `$HOME`:
+
+```powershell
+PS&gt; mkdir C:\Users\{your-username}\Documents\WindowsPowerShell
+```
+
+//Enter the above by typing//:
+
+* `mkdir $HOME/D`
+* then pressing tab to expand the `Documents` path
+* then typing `WindowsPowerShell`
+
+Create the Profile:
+
+```powershell
+PS&gt; New-Item -Path $PROFILE
+```</pre>
+</div>
+<div created="20200208193223881" draft.of="Python path for package import" draft.title="Python path for package import" modified="20200208193525248" tags="python setup import package module" title="Draft of 'Python path for package import'">
+<pre>Check the PYTHONPATH in PowerShell
+
+```powershell
+PS&gt; python -c &quot;import sys; print('\n'.join(sys.path))&quot;
+
+C:\Users\mike\AppData\Local\Programs\Python\Python38\python38.zip
+C:\Users\mike\AppData\Local\Programs\Python\Python38\DLLs
+C:\Users\mike\AppData\Local\Programs\Python\Python38\lib
+C:\Users\mike\AppData\Local\Programs\Python\Python38
+C:\Users\mike\AppData\Local\Programs\Python\Python38\lib\site-packages
+```
+
+Check the Windows environment variable `$env:PYTHONPATH`
+
+```powershell
+PS&gt; echo $env:PYTHONPATH
+```
+
+Expect this variable is empty if not defined in the [[PowerShell profile|]].</pre>
+</div>
 <div created="20200202180241348" modified="20200204160816738" tags="profile" title="Edit a profile">
 <pre>Open the profile in a text editor:
 
@@ -10103,6 +10152,39 @@ Unblock the `$PROFILE` with `Unblock-File`:
 ```powershell
 PS&gt; Unblock-File $PROFILE
 ```</pre>
+</div>
+<div created="20200208193717577" modified="20200208193737802" tags="profile" title="Profile locations">
+<pre>! PowerShell Profile locations
+
+The `PowerShell` profile can go in `$PSHOME`:
+
+```powershell
+PS&gt; echo $PSHOME
+C:\Windows\System32\WindowsPowerShell\v1.0
+```
+
+Or the `PowerShell` profile can go in `$HOME`:
+
+```powershell
+PS&gt; echo $HOME
+C:\Users\{your-username}
+```
+
+The `$PROFILE` variable has the path PowerShell expects:
+
+```powershell
+PS&gt; echo $PROFILE
+C:\Users\{your-username}\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+```
+
+But if I do not create a profile, the profile does not exist yet:
+
+```powershell
+PS&gt; ls $PROFILE
+ls : Cannot find path
+...
+```
+</pre>
 </div>
 <div created="20200208193223881" modified="20200208193337735" tags="python setup import package module" title="Python path for package import">
 <pre>```
