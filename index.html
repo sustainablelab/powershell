@@ -217,6 +217,8 @@ Error message and password prompt
 
 <li>Permission to run scripts in PowerShell</li>
 
+<li>Python path for package import</li>
+
 <li>Run python.exe from Cygwin</li>
 
 <li>User-defined bash shortcuts in .minttyrc</li>
@@ -9485,7 +9487,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200208192822576" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200208192640172" list="[[VIM `find` search path]] avrgcc [[Create a profile]] Contents" modified="20200208192820282" title="$:/StoryList">
+<div created="20200208192640172" list="[[Python path for package import]] [[VIM `find` search path]] avrgcc [[Create a profile]] Contents" modified="20200208192820282" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -10100,6 +10102,17 @@ Unblock the `$PROFILE` with `Unblock-File`:
 
 ```powershell
 PS&gt; Unblock-File $PROFILE
+```</pre>
+</div>
+<div created="20200208193223881" modified="20200208193337735" tags="python setup import package module" title="Python path for package import">
+<pre>```
+PS&gt; python -c &quot;import sys; print('\n'.join(sys.path))&quot;
+
+C:\Users\mike\AppData\Local\Programs\Python\Python38\python38.zip
+C:\Users\mike\AppData\Local\Programs\Python\Python38\DLLs
+C:\Users\mike\AppData\Local\Programs\Python\Python38\lib
+C:\Users\mike\AppData\Local\Programs\Python\Python38
+C:\Users\mike\AppData\Local\Programs\Python\Python38\lib\site-packages
 ```</pre>
 </div>
 <div created="20200204175921314" modified="20200205185208693" tags="python cygwin run-scripts" title="Run python.exe from Cygwin">
