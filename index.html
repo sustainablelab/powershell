@@ -10157,7 +10157,7 @@ Example: map email address to a function key
 KeyFunctions=F11:`echo -n sustainablelab@gmail.com`
 ```</pre>
 </div>
-<div created="20200202185934789" modified="20200208172832838" tags="doc" title="Variables">
+<div created="20200202185934789" modified="20200208173433289" tags="doc" title="Variables">
 <pre>[[variables|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables?view=powershell-7#working-with-variables]]
 
 List all variables:
@@ -10170,6 +10170,31 @@ Or
 
 ```powershell
 PS&gt; gv
+```
+
+//Abbreviated output://
+
+```
+
+Name                           Value                                                         
+----                           -----                                                         
+$                              clip                                                          
+?                              True                                                          
+^                              gv                                                            
+args                           {}                                                            
+bash                           C:\Users\Public\Desktop\Cygwin64 Terminal.lnk                 
+...
+true                           True                                                          
+```
+
+Look for variables with `gv {type-something, then tab-complete}`
+
+```powershell
+PS&gt; gv pshome
+
+Name                           Value                                                         
+----                           -----                                                         
+PSHOME                         C:\Windows\System32\WindowsPowerShell\v1.0                    
 ```</pre>
 </div>
 
