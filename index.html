@@ -9905,8 +9905,9 @@ But it's easier to remember `brave` without the `.$` prefix. Make an alias inste
 
 {{Alias brave}}</pre>
 </div>
-<div created="20200208201226894" modified="20200208203810351" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
-<pre>Python omni complete in Vim `i_CTRL-X_CTRL-O` requires Python is installed. See:
+<div created="20200208201226894" modified="20200208204720181" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
+<pre>! Context
+Python omni complete in Vim `i_CTRL-X_CTRL-O` requires Python is installed. See:
 
 ```
 /usr/share/vim/vim81/autoload/python3complete.vim
@@ -9922,6 +9923,7 @@ The Windows Python installation is not sufficient.
 
 Vim needs to be able to call Python from the command line. Maybe there's a way to add a path? Don't know. I fix this by installing a Python package with the Cygwin package manager.
 
+! Setup
 If `:py3 print(&quot;hey&quot;)` fails, install a Python package with the Cygwin package manager:
 
 [img[img/screenshot-install-cyg-pkg-python37.PNG]]
@@ -9941,9 +9943,13 @@ Install `pip` with the Cygwin package manager.
 
 //Search for `python37-pip`//
 
-Same goes for any package. I get `Errno13` on any attempt to install with `pip` at the bash command line.
+I get `Errno13` on any attempt to install with `pip` at the bash command line, even to upgrade pip.
 
-Comfirm the packages are installed:
+! Install the packages I want omni-complete to work for
+
+Use the Cygwin package manager to install Python packages.
+
+Confirm the packages are installed:
 
 ```bash
 $ pip3.7 list
@@ -9952,8 +9958,20 @@ Package    Version
 numpy      1.16.2 
 pip        19.2.3 
 pygame     1.9.6  
-setuptools 41.2.0 
-```</pre>
+setuptools 41.2.0
+```
+
+//Ignore warning to upgrade pip.//
+
+! Done
+That's it. Unfortunately `pip` is useless at the command line for installing Python packages.
+
+But this was for Vim.
+
+From withinn Vim, now I can:
+
+* execute a Python one-liner from the command line
+* `i_CTRL-X_CTR-O` to omni-complete on any Python37 package that is installed with the Cygwin package manager</pre>
 </div>
 <div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
