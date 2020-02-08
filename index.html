@@ -211,8 +211,6 @@ Error message and password prompt
 
 <li>Cygwin packages</li>
 
-<li>Draft of 'Create a profile'</li>
-
 <li>Edit a profile</li>
 
 <li>Install Python on Cygwin for Vim</li>
@@ -9494,10 +9492,10 @@ Error message and password prompt
 <div created="20200205211656028" modified="20200205211656028" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20200202190739876" modified="20200208192822576" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20200202190739876" modified="20200208202712654" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div created="20200208192640172" list="[[Install Python on Cygwin for Vim]] [[Powershell grep is called findstr]] [[Python path for package import]] [[VIM `find` search path]] avrgcc [[Draft of 'Create a profile']] Contents" modified="20200208194053149" title="$:/StoryList">
+<div created="20200208192640172" list="[[Install Python on Cygwin for Vim]] [[Powershell grep is called findstr]] [[Python path for package import]] [[VIM `find` search path]] avrgcc [[Create a profile]] Contents" modified="20200208194053149" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9823,35 +9821,9 @@ Official PowerShell Documentation
 &lt;&lt;list-links &quot;[tag[doc]!tag[list-links]!sort[modified]]&gt;&gt;
 </pre>
 </div>
-<div created="20200202174104351" modified="20200202180400852" tags="profile" title="Create a profile">
-<pre>The `PowerShell` profile can go in `$PSHOME`:
-
-```powershell
-PS&gt; echo $PSHOME
-C:\Windows\System32\WindowsPowerShell\v1.0
-```
-
-Or the `PowerShell` profile can go in `$HOME`:
-
-```powershell
-PS&gt; echo $HOME
-C:\Users\{your-username}
-```
-
-The `$PROFILE` variable has the path PowerShell expects:
-
-```powershell
-PS&gt; echo $PROFILE
-C:\Users\{your-username}\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-```
-
-But the profile does not exist yet:
-
-```powershell
-PS&gt; ls $PROFILE
-ls : Cannot find path
-...
-```
+<div created="20200202174104351" modified="20200208202256832" tags="profile" title="Create a profile">
+<pre>{{Profile locations}}
+! Create a Profile
 
 Create a `WindowsPowerShell` directory in `$HOME`:
 
@@ -9883,28 +9855,6 @@ PS&gt; New-Item -Path $PROFILE
 * python
 ** I have no reason to install the Cygwin Python package
 ** [[Run python.exe from Cygwin]] instead</pre>
-</div>
-<div created="20200202174104351" draft.of="Create a profile" draft.title="Create a profile" modified="20200208193717581" tags="profile" title="Draft of 'Create a profile'">
-<pre>{{Profile locations}}
-! Create a Profile
-
-Create a `WindowsPowerShell` directory in `$HOME`:
-
-```powershell
-PS&gt; mkdir C:\Users\{your-username}\Documents\WindowsPowerShell
-```
-
-//Enter the above by typing//:
-
-* `mkdir $HOME/D`
-* then pressing tab to expand the `Documents` path
-* then typing `WindowsPowerShell`
-
-Create the Profile:
-
-```powershell
-PS&gt; New-Item -Path $PROFILE
-```</pre>
 </div>
 <div created="20200202180241348" modified="20200204160816738" tags="profile" title="Edit a profile">
 <pre>Open the profile in a text editor:
@@ -9955,7 +9905,7 @@ But it's easier to remember `brave` without the `.$` prefix. Make an alias inste
 
 {{Alias brave}}</pre>
 </div>
-<div created="20200208201226894" modified="20200208202249551" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim">
+<div created="20200208201226894" modified="20200208202812345" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim">
 <pre>Python omni complete in Vim `i_CTRL-X_CTRL-O` requires Python is installed. See:
 
 ```
@@ -9984,7 +9934,12 @@ Now this should work in Vim:
 :py3 print(&quot;hey&quot;)
 hey
 ```
-</pre>
+
+To complete from a package, the package needs to be installed too.
+
+Install `pip` with the Cygwin package manager.
+
+//Search for `python37-pip`//</pre>
 </div>
 <div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
