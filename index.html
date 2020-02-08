@@ -193,6 +193,8 @@ Error message and password prompt
 
 <li>Add $profile variable to .bashrc</li>
 
+<li>Add environment variables to the PowerShell profile</li>
+
 <li>Alias bash</li>
 
 <li>Alias brave</li>
@@ -9491,7 +9493,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200208192822576" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200208192640172" list="[[Python path for package import]] [[VIM `find` search path]] avrgcc [[Draft of 'Create a profile']] Contents" modified="20200208193826878" title="$:/StoryList">
+<div created="20200208192640172" list="[[Python path for package import]] [[Add environment variables to the PowerShell profile]] [[VIM `find` search path]] avrgcc [[Draft of 'Create a profile']] Contents" modified="20200208194053149" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9701,6 +9703,17 @@ Add this line to the `.bashrc`:
 # ~/.bashrc
 #
 set -o vi
+```</pre>
+</div>
+<div created="20200208194131390" modified="20200208194412860" tags="profile" title="Add environment variables to the PowerShell profile">
+<pre>TODO: write this example
+
+```
+# Microsoft.PowerShell_profile.ps1
+#
+# somepylib_path is the path to some Python library that is not already in sys.path (PYTHONPATH). Add this path by appending to $env:PYTHONPATH
+$somelib=&quot;C:\somepath&quot;
+$env:PYTHONPATH = &quot;$env:PYTHONPATH;$somelib&quot;
 ```</pre>
 </div>
 <div created="20200202191912861" modified="20200202194058648" tags="profile snippet" title="Alias bash" type="">
