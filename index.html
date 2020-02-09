@@ -167,9 +167,13 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
+<li>$:/state/edit/references-1742993775</li>
+
 <li>$:/state/showeditpreview</li>
 
 <li>$:/state/sidebar</li>
+
+<li>$:/state/tab--1498284803</li>
 
 <li>$:/state/tab--1963855381</li>
 
@@ -182,6 +186,8 @@ Error message and password prompt
 <li>$:/state/tab/sidebar--595412856</li>
 
 <li>$:/StoryList</li>
+
+<li>$:/temp/advancedsearch</li>
 
 <li>$:/temp/info-plugin</li>
 
@@ -201,8 +207,6 @@ Error message and password prompt
 
 <li>Alias cygwin</li>
 
-<li>Aliases</li>
-
 <li>avrgcc</li>
 
 <li>Contents</li>
@@ -210,6 +214,8 @@ Error message and password prompt
 <li>Create a profile</li>
 
 <li>Cygwin packages</li>
+
+<li>Draft of 'Create a profile'</li>
 
 <li>Edit a profile</li>
 
@@ -220,6 +226,8 @@ Error message and password prompt
 <li>Install Python packages on Windows</li>
 
 <li>Permission to run scripts in PowerShell</li>
+
+<li>PowerShell Aliases</li>
 
 <li>Powershell grep is called findstr</li>
 
@@ -9474,11 +9482,17 @@ Error message and password prompt
 <div created="20200202173743905" modified="20200202173910659" title="$:/SiteTitle">
 <pre>PowerShell Reference</pre>
 </div>
+<div created="20200209183841700" modified="20200209183841700" title="$:/state/edit/references-1742993775">
+<pre>show</pre>
+</div>
 <div created="20200202174140671" modified="20200202174140671" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
 <div created="20200205212112664" modified="20200205212739053" title="$:/state/sidebar">
 <pre>yes</pre>
+</div>
+<div created="20200209183806686" modified="20200209183806686" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Standard</pre>
 </div>
 <div created="20200202173701637" modified="20200202173701637" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Palette</pre>
@@ -9495,8 +9509,11 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200208202712654" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div created="20200208192640172" list="[[PowerShell Variables]] [[Install Python on Cygwin for Vim omni-complete]] [[Powershell grep is called findstr]] [[Python path for package import]] [[VIM `find` search path]] avrgcc [[Create a profile]] Contents" modified="20200209183736353" title="$:/StoryList">
+<div created="20200208192640172" list="$:/AdvancedSearch [[PowerShell Aliases]] [[PowerShell Variables]] [[Install Python on Cygwin for Vim omni-complete]] [[Powershell grep is called findstr]] [[Python path for package import]] [[VIM `find` search path]] avrgcc [[Draft of 'Create a profile']] [[Profile locations]] Contents" modified="20200209183843504" title="$:/StoryList">
 <pre></pre>
+</div>
+<div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
+<pre>doc</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
 <pre>{
@@ -9556,8 +9573,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200209183734299" title="$:/temp/search">
-<pre>variables</pre>
+<div created="20200202173605395" modified="20200209183801137" title="$:/temp/search">
+<pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -9759,9 +9776,6 @@ $cygwin = &quot;C:\Users\{your-username}\Downloads\setup-x86_64.exe&quot;
 Set-Alias -Name cygwin -Value $cygwin
 ```</pre>
 </div>
-<div created="20200202190822789" modified="20200202191039725" tags="doc" title="Aliases">
-<pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
-</div>
 <div created="20200205212005865" modified="20200208192910895" tags="avr setup toolchain" title="avrgcc">
 <pre>! Download
 * [[Microchip list of toolchain links for popular operating systems|https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers]]
@@ -9855,6 +9869,28 @@ PS&gt; New-Item -Path $PROFILE
 * python
 ** I have no reason to install the Cygwin Python package
 ** [[Run python.exe from Cygwin]] instead</pre>
+</div>
+<div created="20200202174104351" draft.of="Create a profile" draft.title="Create a PowerShell profile" modified="20200209183839150" tags="profile" title="Draft of 'Create a profile'">
+<pre>{{Profile locations}}
+! Create a Profile
+
+Create a `WindowsPowerShell` directory in `$HOME`:
+
+```powershell
+PS&gt; mkdir C:\Users\{your-username}\Documents\WindowsPowerShell
+```
+
+//Enter the above by typing//:
+
+* `mkdir $HOME/D`
+* then pressing tab to expand the `Documents` path
+* then typing `WindowsPowerShell`
+
+Create the Profile:
+
+```powershell
+PS&gt; New-Item -Path $PROFILE
+```</pre>
 </div>
 <div created="20200202180241348" modified="20200204160816738" tags="profile" title="Edit a profile">
 <pre>Open the profile in a text editor:
@@ -10165,6 +10201,9 @@ Unblock the `$PROFILE` with `Unblock-File`:
 PS&gt; Unblock-File $PROFILE
 ```</pre>
 </div>
+<div created="20200202190822789" modified="20200209183820695" tags="doc" title="PowerShell Aliases">
+<pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
+</div>
 <div created="20200208195033671" modified="20200208195427624" tags="Windows grep" title="Powershell grep is called findstr">
 <pre>PowerShell does not have `grep`.
 
@@ -10217,7 +10256,7 @@ Name                           Value
 PSHOME                         C:\Windows\System32\WindowsPowerShell\v1.0                    
 ```</pre>
 </div>
-<div created="20200208193717577" modified="20200208193803097" tags="profile" title="Profile locations">
+<div created="20200208193717577" modified="20200209183901483" tags="profile" title="Profile locations">
 <pre>! PowerShell Profile locations
 
 The `PowerShell` profile can go in `$PSHOME`:
@@ -10241,7 +10280,7 @@ PS&gt; echo $PROFILE
 C:\Users\{your-username}\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 ```
 
-But if I do not [[create a profile|Create a profile]], the profile does not exist yet:
+But if I do not [[create a profile|Create a PowerShell profile]], the profile does not exist yet:
 
 ```powershell
 PS&gt; ls $PROFILE
