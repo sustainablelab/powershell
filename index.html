@@ -221,6 +221,8 @@ Error message and password prompt
 
 <li>Edit a PowerShell Profile</li>
 
+<li>Git merge</li>
+
 <li>Install Python on Cygwin for Vim omni-complete</li>
 
 <li>Install Python on Windows</li>
@@ -9498,8 +9500,8 @@ Error message and password prompt
 <div created="20200202174140671" modified="20200202174140671" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20200205212112664" modified="20200209184603731" title="$:/state/sidebar">
-<pre>no</pre>
+<div created="20200205212112664" modified="20200209185101269" title="$:/state/sidebar">
+<pre>yes</pre>
 </div>
 <div created="20200209183806686" modified="20200209183806686" title="$:/state/tab--1498284803">
 <pre>$:/core/ui/AdvancedSearch/Standard</pre>
@@ -9519,7 +9521,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200209184106443" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200209184627522" list="Contents [[Windows Processes]]" modified="20200209184627522" title="$:/StoryList">
+<div created="20200209184627522" list="[[Git merge]] [[Cygwin packages]] Contents" modified="20200209211231393" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9583,8 +9585,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200209184044189" title="$:/temp/search">
-<pre>Add environment variables to the PowerShell Profile</pre>
+<div created="20200202173605395" modified="20200209211229599" title="$:/temp/search">
+<pre>git</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -9928,6 +9930,40 @@ PS&gt; .$brave
 But it's easier to remember `brave` without the `.$` prefix. Make an alias instead:
 
 {{Alias brave}}</pre>
+</div>
+<div created="20200209211239489" modified="20200209211748486" tags="git setup" title="Git merge">
+<pre>The following is copied from https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git
+
+Set up `vimdiff` as the default merge tool:
+
+```bash
+$ git config merge.tool vimdiff
+$ git config merge.conflictstyle diff3
+$ git config mergetool.prompt false
+```
+
+```vim
+  ╔═══════╦══════╦════════╗
+  ║       ║      ║        ║
+  ║ LOCAL ║ BASE ║ REMOTE ║
+  ║       ║      ║        ║
+  ╠═══════╩══════╩════════╣
+  ║                       ║
+  ║        MERGED         ║
+  ║                       ║
+  ╚═══════════════════════╝
+```
+
+&gt; LOCAL – this is file from the current branch
+&gt; 
+&gt; BASE – common ancestor, how file looked before both changes
+&gt;
+&gt; REMOTE – file you are merging into your branch
+&gt;
+&gt; MERGED – merge result, this is what gets saved in the repo
+
+See additional info here:
+https://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/#fromHistor</pre>
 </div>
 <div created="20200208201226894" modified="20200208204720181" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
 <pre>! Context
