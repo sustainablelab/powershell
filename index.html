@@ -219,6 +219,8 @@ Error message and password prompt
 
 <li>Create a PowerShell Profile</li>
 
+<li>Customize bash commands</li>
+
 <li>Cygwin packages</li>
 
 <li>Edit a PowerShell Profile</li>
@@ -9528,7 +9530,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200209184106443" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200209184627522" list="[[Use Vi shortcuts in bash]] [[Add $profile variable to .bashrc]] [[User-defined bash shortcuts in .minttyrc]] [[Git merge]] [[Cygwin packages]] Contents" modified="20200209223341745" title="$:/StoryList">
+<div created="20200209184627522" list="[[Customize bash commands]] [[Use Vi shortcuts in bash]] [[Add $profile variable to .bashrc]] [[User-defined bash shortcuts in .minttyrc]] [[Git merge]] [[Cygwin packages]] Contents" modified="20200209223341745" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9864,6 +9866,63 @@ Create the Profile:
 
 ```powershell
 PS&gt; New-Item -Path $PROFILE
+```</pre>
+</div>
+<div created="20200209223417458" modified="20200209231521222" tags="bash bashrc setup snippet" title="Customize bash commands">
+<pre>The `.bashrc` comes with recommendations for customizations. See the section in the default `.bashrc` that starts with the line:
+
+```bash
+# Aliases
+```
+
+In bash, unlike in Windows, removing, copying, and moving happen without any //are you sure// prompt.
+
+The `-i` flags adds the prompt. Alias these commands to the `-i` version to get the prompt without typing `-i`:
+
+```bash
+# ~/.bashrc
+#
+# Interactive operation...
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+```
+
+The output of `ls` has many flags for customization.
+
+```bash
+# ~/.bashrc
+#
+alias ls='ls -p'
+alias lsd='\ls --color'
+```
+
+* `-p` appends a slash to folders
+** useful for parsing `ls` output for folder names
+** example:
+*** `ls | grep /` //list all folders//
+*** `ls | grep -v /` //list all files//
+
+* `--color` prints in color:
+** folders are purple
+** scripts are green
+** text files are white
+
+Printing in color is undesirable when direction the output of `ls` to a file because the output includes the terminal color codes. So I use `lsd` for this special colorized version.
+
+The alias has `\ls` so that the colorized version is the original `ls` with the `--color` flag. Otherwise, `lsd` would colorize the `ls -p` version of `ls` since that alias is defined first in my `.bashrc`.
+
+! Alias multiple commands
+
+* `lsfi` to list files
+* `lsfo` to list folders
+
+```bash
+# ~/.bashrc
+#
+alias lsd='\ls --color'
+alias lsfi='lsd -lh -p | grep -v /'
+alias lsfo='lsd -lh -p | grep /'
 ```</pre>
 </div>
 <div created="20200205212554585" modified="20200205212627044" tags="toolchain setup cygwin" title="Cygwin packages">
@@ -10350,7 +10409,7 @@ execute '!python.exe &quot;$(cygpath -w %)&quot;'
 
 The nice thing about this solution is it does not require editing the Windows environment variables or adding aliases in the Cygwin `.bashrc`.</pre>
 </div>
-<div created="20200209223231304" modified="20200209223231304" tags="" title="Use Vi shortcuts in bash">
+<div created="20200209223231304" modified="20200209223413457" tags="bash bashrc setup snippet" title="Use Vi shortcuts in bash">
 <pre>Enable Vi shortcuts on the bash command line:
 
 Add this line to the `.bashrc`:
