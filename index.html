@@ -167,6 +167,10 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
+<li>$:/state/edit/references-1536780435</li>
+
+<li>$:/state/edit/references-1577910769</li>
+
 <li>$:/state/edit/references-1742993775</li>
 
 <li>$:/state/showeditpreview</li>
@@ -211,13 +215,11 @@ Error message and password prompt
 
 <li>Contents</li>
 
-<li>Create a profile</li>
+<li>Create a PowerShell Profile</li>
 
 <li>Cygwin packages</li>
 
-<li>Draft of 'Create a profile'</li>
-
-<li>Edit a profile</li>
+<li>Edit a PowerShell Profile</li>
 
 <li>Install Python on Cygwin for Vim omni-complete</li>
 
@@ -9482,6 +9484,12 @@ Error message and password prompt
 <div created="20200202173743905" modified="20200202173910659" title="$:/SiteTitle">
 <pre>PowerShell Reference</pre>
 </div>
+<div created="20200209184002119" modified="20200209184002119" title="$:/state/edit/references-1536780435">
+<pre>show</pre>
+</div>
+<div created="20200209183917403" modified="20200209183917403" title="$:/state/edit/references-1577910769">
+<pre>show</pre>
+</div>
 <div created="20200209183841700" modified="20200209183841700" title="$:/state/edit/references-1742993775">
 <pre>show</pre>
 </div>
@@ -9509,7 +9517,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200208202712654" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div created="20200208192640172" list="$:/AdvancedSearch [[PowerShell Aliases]] [[PowerShell Variables]] [[Install Python on Cygwin for Vim omni-complete]] [[Powershell grep is called findstr]] [[Python path for package import]] [[VIM `find` search path]] avrgcc [[Draft of 'Create a profile']] [[Profile locations]] Contents" modified="20200209183843504" title="$:/StoryList">
+<div created="20200208192640172" list="$:/AdvancedSearch [[Edit a PowerShell Profile]] [[PowerShell Aliases]] [[PowerShell Variables]] [[Install Python on Cygwin for Vim omni-complete]] [[Powershell grep is called findstr]] [[Python path for package import]] [[VIM `find` search path]] avrgcc [[Create a PowerShell Profile]] [[Profile locations]] Contents" modified="20200209183948557" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9835,7 +9843,7 @@ Official PowerShell Documentation
 &lt;&lt;list-links &quot;[tag[doc]!tag[list-links]!sort[modified]]&gt;&gt;
 </pre>
 </div>
-<div created="20200202174104351" modified="20200208202256832" tags="profile" title="Create a profile">
+<div created="20200202174104351" modified="20200209183921397" tags="profile" title="Create a PowerShell Profile">
 <pre>{{Profile locations}}
 ! Create a Profile
 
@@ -9870,29 +9878,7 @@ PS&gt; New-Item -Path $PROFILE
 ** I have no reason to install the Cygwin Python package
 ** [[Run python.exe from Cygwin]] instead</pre>
 </div>
-<div created="20200202174104351" draft.of="Create a profile" draft.title="Create a PowerShell profile" modified="20200209183839150" tags="profile" title="Draft of 'Create a profile'">
-<pre>{{Profile locations}}
-! Create a Profile
-
-Create a `WindowsPowerShell` directory in `$HOME`:
-
-```powershell
-PS&gt; mkdir C:\Users\{your-username}\Documents\WindowsPowerShell
-```
-
-//Enter the above by typing//:
-
-* `mkdir $HOME/D`
-* then pressing tab to expand the `Documents` path
-* then typing `WindowsPowerShell`
-
-Create the Profile:
-
-```powershell
-PS&gt; New-Item -Path $PROFILE
-```</pre>
-</div>
-<div created="20200202180241348" modified="20200204160816738" tags="profile" title="Edit a profile">
+<div created="20200202180241348" modified="20200209184006790" tags="profile" title="Edit a PowerShell Profile">
 <pre>Open the profile in a text editor:
 
 ```powershell
@@ -10256,7 +10242,7 @@ Name                           Value
 PSHOME                         C:\Windows\System32\WindowsPowerShell\v1.0                    
 ```</pre>
 </div>
-<div created="20200208193717577" modified="20200209183901483" tags="profile" title="Profile locations">
+<div created="20200208193717577" modified="20200209183940883" tags="profile" title="Profile locations">
 <pre>! PowerShell Profile locations
 
 The `PowerShell` profile can go in `$PSHOME`:
@@ -10280,7 +10266,7 @@ PS&gt; echo $PROFILE
 C:\Users\{your-username}\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 ```
 
-But if I do not [[create a profile|Create a PowerShell profile]], the profile does not exist yet:
+But if I do not [[create a profile|Create a PowerShell Profile]], the profile does not exist yet:
 
 ```powershell
 PS&gt; ls $PROFILE
