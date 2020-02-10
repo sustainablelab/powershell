@@ -9509,8 +9509,8 @@ Error message and password prompt
 <div created="20200202174140671" modified="20200202174140671" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20200205212112664" modified="20200210203404120" title="$:/state/sidebar">
-<pre>no</pre>
+<div created="20200205212112664" modified="20200210210758310" title="$:/state/sidebar">
+<pre>yes</pre>
 </div>
 <div created="20200209183806686" modified="20200209183806686" title="$:/state/tab--1498284803">
 <pre>$:/core/ui/AdvancedSearch/Standard</pre>
@@ -9530,7 +9530,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200210202848259" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div created="20200210194506757" list="[[Python path for package import]] [[Install Python on Cygwin for Vim omni-complete]] Contents" modified="20200210203339673" title="$:/StoryList">
+<div created="20200210194506757" list="[[Python path for package import]] [[Add environment variables to the PowerShell Profile]] [[Install Python on Cygwin for Vim omni-complete]] Contents" modified="20200210211238244" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -10079,7 +10079,7 @@ $ git config mergetool.prompt false
 See additional info here:
 https://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/#fromHistor</pre>
 </div>
-<div created="20200208201226894" modified="20200210194642598" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
+<div created="20200208201226894" modified="20200210212149976" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
 <pre>! Context
 Python omni complete in Vim `i_CTRL-X_CTRL-O` requires Python is installed. See:
 
@@ -10150,7 +10150,27 @@ From withinn Vim, now I can:
 See my two //StackOverflow// posts on this topic:
 
 * [[https://stackoverflow.com/questions/2084875/vims-omnicompletion-with-python-just-doesnt-work/57861300#57861300]]
-* [[https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501]]</pre>
+* [[https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501]]
+
+Lastly, use omni completion on user-defined packages by placing them in Cygwin Python `USER_SITE` and adding that path to the `$env:PYTHONPATH` for Windows to import those user-defined packages.
+
+```powershell
+# Microsoft.PowerShell_profile.ps1
+#
+# User-defined packages are in the Cygwin Python USER_SITE path for Vim to see
+# them during omni completion (i_CTRL-X_CTRL-O)
+# Make these packages available to Windows Python by appending to the
+# $env:PYTHONPATH
+$cygpy_USER_SITE = &quot;C:\cygwin64\home\mike\.local\lib\python3.7\site-packages&quot;
+$env:PYTHONPATH = &quot;$cygpy_USER_SITE&quot;
+```
+
+`$env:PYTHONPATH` is empty until set by the PowerShell profile. Make this the first path on `$env:PYTHONPATH`. For other paths, append them like this:
+
+```powershell
+$some_lib_repo = &quot;C:\{path-to-some_lib}&quot;
+$env:PYTHONPATH = &quot;$env:PYTHONPATH;$some_lib_repo&quot;
+```</pre>
 </div>
 <div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
