@@ -9868,7 +9868,7 @@ Create the Profile:
 PS&gt; New-Item -Path $PROFILE
 ```</pre>
 </div>
-<div created="20200209223417458" modified="20200210003736913" tags="bash bashrc setup snippet" title="Customize bash commands">
+<div created="20200209223417458" modified="20200210010010611" tags="bash bashrc setup snippet" title="Customize bash commands">
 <pre>! Look in `.bashrc`
 
 The `.bashrc` comes with recommendations for customizations. See the section in the default `.bashrc` that starts with the line:
@@ -9927,6 +9927,35 @@ Printing in color is undesirable when direction the output of `ls` to a file bec
 The alias for `lsd` has `\ls` so that the colorized version is the //original// `ls` with the `--color` flag.
 
 Otherwise, `lsd` would colorize the `ls -p` version of `ls` since that alias is defined first in my `.bashrc`.
+
+! `ls | grep` examples
+
+List all hidden files, but ignore `.`, `..` and Vim ''undo'' files.
+
+```bash
+ls -A | grep -v &quot;~&quot;
+```
+
+* `ls -A` -- list //almost// all hidden files; excludes `.` and `..`.
+* `ls -A` on its own still lists `Vim` ''undo'' files, which clutter the `ls` output.
+* `Vim` ''undo'' files end in `~`
+* pipe the output of `ls` to `grep`
+* use `grep` flag `-v` to ignore all files that have `&quot;~&quot;` in their name
+
+List files only.
+
+```bash
+ls -p | grep -v /
+```
+
+* `ls -p` -- append `/` to folder names
+* pipe to `grep -v /` to remove folders from the `ls` output
+
+List folders only.
+
+```bash
+ls -p | grep /
+```
 
 ! Do not alias piped commands
 
