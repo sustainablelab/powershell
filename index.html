@@ -9527,10 +9527,10 @@ Error message and password prompt
 <div created="20200205211656028" modified="20200205211656028" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20200202190739876" modified="20200209184106443" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20200202190739876" modified="20200210202848259" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div created="20200210194506757" list="[[PowerShell Aliases]] [[Alias bash]] [[Install Python on Cygwin for Vim omni-complete]] Contents" modified="20200210202117160" title="$:/StoryList">
+<div created="20200210194506757" list="[[Python path for package import]] [[Install Python on Cygwin for Vim omni-complete]] Contents" modified="20200210203339673" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9594,8 +9594,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200210202113871" title="$:/temp/search">
-<pre>alias</pre>
+<div created="20200202173605395" modified="20200210203334264" title="$:/temp/search">
+<pre>Add</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10344,7 +10344,7 @@ Unblock the `$PROFILE` with `Unblock-File`:
 PS&gt; Unblock-File $PROFILE
 ```</pre>
 </div>
-<div created="20200202190822789" modified="20200210202754136" tags="doc" title="PowerShell Aliases">
+<div created="20200202190822789" modified="20200210202820019" tags="doc" title="PowerShell Aliases">
 <pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]
 
 ```powershell
@@ -10387,7 +10387,8 @@ Example:
 * PowerShell `ls` aliases to `Get-ChildItem`
 ** Add a `-` after `ls` then hit tab to cycle through possible matches for //hidden files//
 ** the flag is named `-Hidden`
-** so `ls -h` then tab turns into `ls -Hidden` to view hidden files</pre>
+** so `ls -h` then tab turns into `ls -Hidden` to view hidden files
+** `ls -h` works as well</pre>
 </div>
 <div created="20200208195033671" modified="20200208195427624" tags="Windows grep" title="Powershell grep is called findstr">
 <pre>PowerShell does not have `grep`.
@@ -10474,7 +10475,7 @@ Name                           Value
 PSHOME                         C:\Windows\System32\WindowsPowerShell\v1.0                    
 ```</pre>
 </div>
-<div created="20200208193223881" modified="20200210202105445" tags="python setup import package module" title="Python path for package import">
+<div created="20200208193223881" modified="20200210203355659" tags="python setup import package module" title="Python path for package import">
 <pre>Check the PYTHONPATH in PowerShell
 
 ```powershell
@@ -10517,6 +10518,14 @@ $ python.exe -m site --user-site
 C:\Users\mike\AppData\Roaming\Python\Python38\site-packages
 ```
 
+The path does not exist yet:
+
+```powershell
+PS&gt; cd $HOME\AppData\Roaming\
+PS&gt; ls Python
+ls : Cannot find path 'C:\Users\mike\AppData\Roaming\Python' because it does not exist.
+```
+
 Check Cygwin Python `USER_SITE` from bash:
 
 ```bash
@@ -10538,7 +10547,9 @@ Check Vim Python `USER_SITE` from the Vim command line:
 /home/mike/.local/lib/python3.7/site-packages
 ```
 
+This is the same path found at the bash command line. It does not exist yet.
 
+Create the `USER_SITE` paths when you need them. Put user-defined packages in the Cygwin Python `USER_SITE` path so Vim can find them. Then add the Cygwin Python `USER_SITE` path as a [[temporary Windows environment variable via the PowerShell Profile|Add environment variables to the PowerShell Profile]].
 </pre>
 </div>
 <div created="20200204175921314" modified="20200205185208693" tags="python cygwin run-scripts" title="Run python.exe from Cygwin">
