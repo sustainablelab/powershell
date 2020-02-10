@@ -9868,7 +9868,7 @@ Create the Profile:
 PS&gt; New-Item -Path $PROFILE
 ```</pre>
 </div>
-<div created="20200209223417458" modified="20200209234233991" tags="bash bashrc setup snippet" title="Customize bash commands">
+<div created="20200209223417458" modified="20200210003736913" tags="bash bashrc setup snippet" title="Customize bash commands">
 <pre>! Look in `.bashrc`
 
 The `.bashrc` comes with recommendations for customizations. See the section in the default `.bashrc` that starts with the line:
@@ -9928,7 +9928,9 @@ The alias for `lsd` has `\ls` so that the colorized version is the //original// 
 
 Otherwise, `lsd` would colorize the `ls -p` version of `ls` since that alias is defined first in my `.bashrc`.
 
-! Alias for piped commands
+! Do not alias piped commands
+
+Do not do this:
 
 ```bash
 # ~/.bashrc
@@ -9937,10 +9939,20 @@ alias lsfi='lsd -lh -p | grep -v /'
 alias lsfo='lsd -p | grep /'
 ```
 
+These aliases behave as expected when `ls` is called on its own.
+
 * `lsfi` to list files
 ** `-l` //long format//: print all info, not just name
 ** `-lh` print file size in //human-friendly// units like `K`, `M`, `G`, not in bytes
-* `lsfo` to list folders</pre>
+* `lsfo` to list folders
+
+But they behave strangely when `ls` is used in a broader context.
+
+For example `lsfi ~` should list the files in the home directory, instead, it lists the files in the `pwd`.
+
+This happens because the alias does a simple substitution. Any arguments passed to `ls`, like the directory name or any flags, end up //at the end of the command//, i.e., after the text substitution.
+
+Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
 <div created="20200205212554585" modified="20200205212627044" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>* git
