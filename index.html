@@ -10344,19 +10344,50 @@ Unblock the `$PROFILE` with `Unblock-File`:
 PS&gt; Unblock-File $PROFILE
 ```</pre>
 </div>
-<div created="20200202190822789" modified="20200210202218980" tags="doc" title="PowerShell Aliases">
+<div created="20200202190822789" modified="20200210202754136" tags="doc" title="PowerShell Aliases">
 <pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]
 
 ```powershell
 PS&gt; alias
 CommandType     Name
------------     ----                                               -------    ------
+-----------     ----
 Alias           % -&gt; ForEach-Object
 Alias           ? -&gt; Where-Object
-Alias           ac -&gt; Add-Content
-Alias           asnp -&gt; Add-PSSnapin
+...
 Alias           bash -&gt; Cygwin64 Terminal.lnk
-```</pre>
+...
+Alias           cat -&gt; Get-Content
+Alias           cd -&gt; Set-Location
+...
+Alias           cp -&gt; Copy-Item
+...
+Alias           h -&gt; Get-History
+Alias           history -&gt; Get-History
+...
+Alias           kill -&gt; Stop-Process
+...
+Alias           ls -&gt; Get-ChildItem
+Alias           man -&gt; help
+Alias           md -&gt; mkdir
+...
+Alias           mv -&gt; Move-Item
+...
+Alias           pwd -&gt; Get-Location
+...
+Alias           rm -&gt; Remove-Item
+Alias           rmdir -&gt; Remove-Item
+...
+```
+
+This list is useful to figure out corresponding flags in PowerShell.
+
+Example:
+
+* `ls -a` is list all hidden files in bash.
+* PowerShell `ls` aliases to `Get-ChildItem`
+** Add a `-` after `ls` then hit tab to cycle through possible matches for //hidden files//
+** the flag is named `-Hidden`
+** so `ls -h` then tab turns into `ls -Hidden` to view hidden files</pre>
 </div>
 <div created="20200208195033671" modified="20200208195427624" tags="Windows grep" title="Powershell grep is called findstr">
 <pre>PowerShell does not have `grep`.
