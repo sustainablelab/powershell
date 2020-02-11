@@ -191,6 +191,8 @@ Error message and password prompt
 
 <li>$:/state/tab/sidebar--595412856</li>
 
+<li>$:/state/tabs/controlpanel/toolbars-1345989671</li>
+
 <li>$:/StoryList</li>
 
 <li>$:/temp/advancedsearch</li>
@@ -9513,17 +9515,17 @@ Error message and password prompt
 <div created="20200202174140671" modified="20200202174140671" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20200205212112664" modified="20200211151955871" title="$:/state/sidebar">
-<pre>no</pre>
+<div created="20200205212112664" modified="20200211152114939" title="$:/state/sidebar">
+<pre>yes</pre>
 </div>
 <div created="20200209183806686" modified="20200209183806686" title="$:/state/tab--1498284803">
 <pre>$:/core/ui/AdvancedSearch/Standard</pre>
 </div>
-<div created="20200202173701637" modified="20200202173701637" title="$:/state/tab--1963855381">
-<pre>$:/core/ui/ControlPanel/Palette</pre>
+<div created="20200202173701637" modified="20200211152204899" title="$:/state/tab--1963855381">
+<pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
 </div>
-<div created="20200202173648870" modified="20200205212855956" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Info</pre>
+<div created="20200202173648870" modified="20200211152127663" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Appearance</pre>
 </div>
 <div created="20200204163321249" modified="20200204163321249" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
@@ -9534,7 +9536,10 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200211140826293" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200211140511260" list="Contents [[PowerShell Variables]]" modified="20200211143106265" title="$:/StoryList">
+<div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
+<pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
+</div>
+<div created="20200211152125329" list="[[Install Python packages on Windows]] Contents [[PowerShell Variables]]" modified="20200211154650423" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9598,8 +9603,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200211140736408" title="$:/temp/search">
-<pre>bash</pre>
+<div created="20200202173605395" modified="20200211154648366" title="$:/temp/search">
+<pre>pip install</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10184,7 +10189,7 @@ Installing collected packages: pip
 Successfully installed pip-20.0.2
 ```</pre>
 </div>
-<div created="20200205210601762" modified="20200205211039678" tags="Windows python setup" title="Install Python packages on Windows">
+<div created="20200205210601762" modified="20200211155019937" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install Python package in Windows Python installation
 
 Pip often needs updating:
@@ -10192,6 +10197,26 @@ Pip often needs updating:
 ```powershell
 python -m pip install --upgrade pip
 ```
+
+! List of packages
+* numpy
+* opencv
+* pygame
+* pytest
+** //installing pytest also installs://
+** pyparsing
+** six
+** packaging
+** attrs
+** pluggy
+** colorama
+** atomicwrites
+** wcwidth
+** more-itertools
+** py
+
+
+! Examples installing packages
 
 Install package `pygame` using `python -m` to call `pip` as a module:
 
