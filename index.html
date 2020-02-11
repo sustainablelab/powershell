@@ -10189,7 +10189,7 @@ Installing collected packages: pip
 Successfully installed pip-20.0.2
 ```</pre>
 </div>
-<div created="20200205210601762" modified="20200211155019937" tags="Windows python setup" title="Install Python packages on Windows">
+<div created="20200205210601762" modified="20200211161155055" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install Python package in Windows Python installation
 
 Pip often needs updating:
@@ -10200,21 +10200,31 @@ python -m pip install --upgrade pip
 
 ! List of packages
 * numpy
-* opencv
+** faster and easier arrays
+** tight integration with `pygame`
+* opencv-python
+** image manipulation
+** import as `import cv2`
 * pygame
+** `SDL2` wrapper
+** //not just for games//
+** make GUIs
 * pytest
+** colorize output of `unittest` without any extra effort
+** simplest use: `python -m pytest -v {thing-to-test}` replaces `python -m unittest discover -v {thing-to-test}`
 ** //installing pytest also installs://
-** pyparsing
-** six
-** packaging
-** attrs
-** pluggy
-** colorama
-** atomicwrites
-** wcwidth
-** more-itertools
-** py
-
+*** `pyparsing`
+*** `six`
+*** `packaging`
+*** `attrs`
+*** `pluggy`
+*** `colorama`
+*** `atomicwrites`
+*** `wcwidth`
+*** `more-itertools`
+*** `py`
+* pytest-testdox
+** https://pypi.org/project/pytest-testdox/
 
 ! Examples installing packages
 
