@@ -9803,17 +9803,17 @@ alias rm='rm -i'
 alias vi='vim'
 ```</pre>
 </div>
-<div created="20200211141046174" modified="20200211141450824" tags="doc bash" title="Bash variables">
-<pre>`export` lists //all// variables
-
-I think the lines starting with `declare -x` are variables defined by Windows; lines without the `declare -x` preface are variables defined by Cygwin.
+<div created="20200211141046174" modified="20200211142317668" tags="doc bash" title="Bash variables">
+<pre>* `export` lists //all// variables
+* `export -p` also lists all variables
 
 ```bash
 $ export
 declare -x ALLUSERSPROFILE=&quot;C:\\ProgramData&quot;
 declare -x APPDATA=&quot;C:\\Users\\mike\\AppData\\Roaming&quot;
 ...
-PYTHONPATH=&quot;C:\\cygwin64\\home\\mike\\.local\\lib\\python3.7\\site-packages&quot;
+declare -x PYTHONPATH=&quot;C:\\cygwin64\\home\\mike\\.local\\lib\\python3.7\\site-packages&quot;
+...
 declare -x USERNAME=&quot;mike&quot;
 declare -x USERPROFILE=&quot;C:\\Users\\mike&quot;
 declare -x WINDIR=&quot;C:\\WINDOWS&quot;
