@@ -9803,8 +9803,10 @@ alias rm='rm -i'
 alias vi='vim'
 ```</pre>
 </div>
-<div created="20200211141046174" modified="20200211141350807" tags="doc bash" title="Bash variables">
+<div created="20200211141046174" modified="20200211141450824" tags="doc bash" title="Bash variables">
 <pre>`export` lists //all// variables
+
+I think the lines starting with `declare -x` are variables defined by Windows; lines without the `declare -x` preface are variables defined by Cygwin.
 
 ```bash
 $ export
