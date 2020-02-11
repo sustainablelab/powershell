@@ -221,8 +221,6 @@ Error message and password prompt
 
 <li>Cygwin packages</li>
 
-<li>Draft of 'Contents'</li>
-
 <li>Edit a PowerShell Profile</li>
 
 <li>Git merge</li>
@@ -9536,7 +9534,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200211140826293" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200211140511260" list="[[Draft of 'Contents']] [[Windows Processes]] [[PowerShell Aliases]]" modified="20200211142807742" title="$:/StoryList">
+<div created="20200211140511260" list="Contents" modified="20200211142851922" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9821,7 +9819,7 @@ declare -x USERPROFILE=&quot;C:\\Users\\mike&quot;
 declare -x WINDIR=&quot;C:\\WINDOWS&quot;
 ```</pre>
 </div>
-<div created="20200202180407251" modified="20200209184141195" tags="profile list-links" title="Contents">
+<div created="20200202180407251" modified="20200211142937854" tags="profile list-links" title="Contents">
 <pre>My notes about the PowerShell Profile
 &lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]sort[modified]]&gt;&gt;
 Profile snippets
@@ -9832,8 +9830,10 @@ Python setup
 &lt;&lt;list-links &quot;[tag[python]!sort[modified]]&quot;&gt;&gt;
 Toolchain setup
 &lt;&lt;list-links &quot;[tag[toolchain]tag[setup]!sort[modified]]&quot;&gt;&gt;
-Official PowerShell Documentation
-&lt;&lt;list-links &quot;[tag[doc]!tag[list-links]!sort[modified]]&gt;&gt;
+PowerShell Documentation
+&lt;&lt;list-links &quot;[tag[powershell]tag[doc]!tag[list-links]!sort[modified]]&gt;&gt;
+Bash Documentation
+&lt;&lt;list-links &quot;[tag[bash]tag[doc]!tag[list-links]!sort[modified]]&gt;&gt;
 </pre>
 </div>
 <div created="20200202174104351" modified="20200209183921397" tags="profile" title="Create a PowerShell Profile">
@@ -9985,23 +9985,6 @@ Use a `function` instead of an `alias` if the intent is a piped command or more 
 * python
 ** I have no reason to install the Cygwin Python package
 ** [[Run python.exe from Cygwin]] instead</pre>
-</div>
-<div created="20200202180407251" draft.of="Contents" draft.title="Contents" modified="20200211142758428" tags="profile list-links" title="Draft of 'Contents'">
-<pre>My notes about the PowerShell Profile
-&lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]sort[modified]]&gt;&gt;
-Profile snippets
-&lt;&lt;list-links &quot;[tag[profile]tag[snippet]!tag[list-links]!sort[modified]]&gt;&gt;
-Bash setup snippets
-&lt;&lt;list-links &quot;[tag[setup]tag[snippet]!tag[list-links]!sort[modified]]&gt;&gt;
-Python setup
-&lt;&lt;list-links &quot;[tag[python]!sort[modified]]&quot;&gt;&gt;
-Toolchain setup
-&lt;&lt;list-links &quot;[tag[toolchain]tag[setup]!sort[modified]]&quot;&gt;&gt;
-PowerShell Documentation
-&lt;&lt;list-links &quot;[tag[doc]!tag[list-links]!sort[modified]]&gt;&gt;
-Bash Documentation
-&lt;&lt;list-links &quot;[tag[bash]tag[doc]!tag[list-links]!sort[modified]]&gt;&gt;
-</pre>
 </div>
 <div created="20200202180241348" modified="20200209184006790" tags="profile" title="Edit a PowerShell Profile">
 <pre>Open the profile in a text editor:
@@ -10387,7 +10370,7 @@ $cygwin = &quot;C:\Users\{your-username}\Downloads\setup-x86_64.exe&quot;
 Set-Alias -Name cygwin -Value $cygwin
 ```</pre>
 </div>
-<div created="20200202190822789" modified="20200209183820695" tags="doc" title="PowerShell Aliases">
+<div created="20200202190822789" modified="20200211142838053" tags="doc powershell" title="PowerShell Aliases">
 <pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
 </div>
 <div created="20200208195033671" modified="20200208195427624" tags="Windows grep" title="Powershell grep is called findstr">
@@ -10435,7 +10418,7 @@ ls : Cannot find path
 ```
 </pre>
 </div>
-<div created="20200202185934789" modified="20200209183749535" tags="doc" title="PowerShell Variables">
+<div created="20200202185934789" modified="20200211142858328" tags="powershell doc" title="PowerShell Variables">
 <pre>[[variables|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables?view=powershell-7#working-with-variables]]
 
 List all variables:
