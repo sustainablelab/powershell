@@ -9513,7 +9513,7 @@ Error message and password prompt
 <div created="20200202174140671" modified="20200202174140671" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20200205212112664" modified="20200211142657822" title="$:/state/sidebar">
+<div created="20200205212112664" modified="20200211151955871" title="$:/state/sidebar">
 <pre>no</pre>
 </div>
 <div created="20200209183806686" modified="20200209183806686" title="$:/state/tab--1498284803">
@@ -9534,7 +9534,7 @@ Error message and password prompt
 <div created="20200202190739876" modified="20200211140826293" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200211140511260" list="Contents" modified="20200211142851922" title="$:/StoryList">
+<div created="20200211140511260" list="Contents [[PowerShell Variables]]" modified="20200211143106265" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -10418,7 +10418,7 @@ ls : Cannot find path
 ```
 </pre>
 </div>
-<div created="20200202185934789" modified="20200211142858328" tags="powershell doc" title="PowerShell Variables">
+<div created="20200202185934789" modified="20200211152001874" tags="powershell doc" title="PowerShell Variables">
 <pre>[[variables|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables?view=powershell-7#working-with-variables]]
 
 List all variables:
@@ -10456,6 +10456,79 @@ PS&gt; gv pshome
 Name                           Value                                                         
 ----                           -----                                                         
 PSHOME                         C:\Windows\System32\WindowsPowerShell\v1.0                    
+```
+
+Exclude system variables from the list:
+
+```powershell
+PS&gt; gv | where {($_.Value -notlike &quot;System*&quot;)}
+```
+
+Hone this list down by only looking at variables to a `C:\*` path:
+
+```powershell
+PS&gt; gv | where {($_.Value -notlike &quot;System*&quot; -and $_.Value -like &quot;C:\*&quot;)}
+
+Name                           Value
+----                           -----
+bash                           C:\Users\Public\Desktop\Cygwin64 Terminal.lnk
+brave                          C:\Program Files (x86)\BraveSoftware\Brave-Browser\Applicat...
+...
+HOME                           C:\Users\mike
+PROFILE                        C:\Users\mike\Documents\WindowsPowerShell\Microsoft.PowerSh...
+PSHOME                         C:\Windows\System32\WindowsPowerShell\v1.0
+PWD                            C:\Users\mike
+```
+
+I defined variables lowercase. I view my user-defined variables by ignoring uppercase.
+
+The capitalized variables are start with `H` or `P`, so this works:
+
+```powershell
+PS C:\Users\mike&gt; gv | where {($_.Name -notlike &quot;H*&quot; -and $_.Name -notlike &quot;P*&quot; -and $_.Value -like &quot;C:\*&quot;)}
+```
+
+But the better way is to use a regex to eliminate matches that start with a capital letter.
+
+`-like` and `-notlike` are simple matches with `*` wildcard ([[see examples here|https://powershellexplained.com/2017-07-31-Powershell-regex-regular-expression/]]).
+
+Use `-match` instead of `-like`.
+
+Since the matching is case-sensitive, use `cmatch`.
+
+* `cmatch` is the ''case-sensitive'' version of `match`
+* there are also case-sensitive versions of all the variations: `clike`, `cnotlike`, `cnotmatch`
+
+```powershell
+PS&gt; gv | where {($_.Value -like &quot;C:\*&quot; -and $_.Name -cmatch '[^A-Z]')}
+
+Name                           Value
+----                           -----
+bash                           C:\Users\Public\Desktop\Cygwin64 Terminal.lnk
+brave                          C:\Program Files (x86)\BraveSoftware\Brave-Browser\Applicat...
+cyghome                        C:\cygwin64\home\mike\
+cygpy_USER_SITE                C:\cygwin64\home\mike\.local\lib\python3.7\site-packages
+cygwin                         C:\Users\mike\Downloads\setup-x86_64.exe
+```
+
+The regex `[^A-Z]` says //the first character cannot be a capital letter//.
+
+* `[A-Z]` is all capital letters
+* `[^A-Z]` is all lower-case letters
+** `[a-z]` is similar, but it says //the first letter must be a lower-case letter// which is not exactly what I want (e.g., what if the first character is `_`)
+
+This is impossible to remember, so put in the PowerShell Profile:
+
+```powershell
+# Microsoft.PowerShell_profile.ps1
+#
+# pv -- list profile variables
+function Get-ProfileVariables {
+    Get-Variable | Where-Object {
+        ($_.Value -like &quot;C:\*&quot; -and $_.Name -cmatch '[^A-Z]')
+    }
+}
+Set-Alias -Name pv -Value Get-ProfileVariables
 ```</pre>
 </div>
 <div created="20200208193223881" modified="20200209184040831" tags="python setup import package module" title="Python path for package import">
