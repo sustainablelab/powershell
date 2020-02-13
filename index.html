@@ -9546,7 +9546,7 @@ Error message and password prompt
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200213134817394" list="[[Install Python on Cygwin for Vim omni-complete]] [[Git searching]]" modified="20200213160631675" title="$:/StoryList">
+<div created="20200213134817394" list="" modified="20200213163321411" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -10079,7 +10079,7 @@ $ git config mergetool.prompt false
 See additional info here:
 https://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/#fromHistor</pre>
 </div>
-<div created="20200213144234371" modified="20200213160544614" tags="doc git" title="Git searching">
+<div created="20200213144234371" modified="20200213163045186" tags="doc git" title="Git searching">
 <pre>! A cautionary tale
 TiddlyWiki's GitHub Saver ''//autosave-on// '' erased a ton of content I'd added a few days ago. Luckily I went to reference the content, could not find it, knew I wasn't going crazy, and then started cursing...
 
@@ -10344,7 +10344,51 @@ Previous HEAD position was 6983715 Saved by TiddlyWiki
 HEAD is now at 084a6b8 Saved by TiddlyWiki
 ```
 
-Refresh browser. Yep -- man that was a lot of precious time I would have lost!.</pre>
+Refresh browser. Yep -- man that was a lot of precious time I would have lost!
+
+I'm paranoid there is more content in other tiddlers too. To double-check, the fastest way is to use vimdiff.
+
+I go back to `master` and pull the big fixes I've made.
+
+```bash
+$ git checkout master
+$ git remote update
+$ git pull
+```
+
+```bash
+$ history | grep &quot;git checkout&quot;
+  529  git checkout f0ef5bb~
+  533  git checkout f0ef5bb
+  534  git checkout master
+  537  git checkout 6983715
+  540  git checkout 084a6b8
+  546  git checkout master
+  550  history | grep &quot;git checkout&quot;
+$ !540
+git checkout 084a6b8
+```
+
+Make a copy of this old `index.html`
+
+```bash
+$ cp index.html old-index.html
+```
+
+`old-index.html` is not a tracked file, so I can reset `HEAD` to the latest commit in `master` and `old-index.html` will still be in my working files.
+
+```bash
+$ git checkout master
+$ vimdiff index.html old-index.html
+```
+
+In Vim:
+
+*  `]c` to jump to next change
+* green text in `index.html` is only in the //new//
+* green dashed lines in `index.html` shows where something is in //old// that is missing from //new//
+* green dashed lines in `old-index.html` shows where something is in //new// that is missing from //old//
+* red text is in both //new// and //old//, but is //changed//</pre>
 </div>
 <div created="20200208201226894" modified="20200213161910803" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
 <pre>! Context
@@ -10717,8 +10761,51 @@ $cygwin = &quot;C:\Users\{your-username}\Downloads\setup-x86_64.exe&quot;
 Set-Alias -Name cygwin -Value $cygwin
 ```</pre>
 </div>
-<div created="20200202190822789" modified="20200211142838053" tags="doc powershell" title="PowerShell Aliases">
-<pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]</pre>
+<div created="20200202190822789" modified="20200213163406404" tags="doc powershell" title="PowerShell Aliases">
+<pre>[[aliases|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-7#examples]]
+
+```powershell
+PS&gt; alias
+CommandType     Name
+-----------     ----
+Alias           % -&gt; ForEach-Object
+Alias           ? -&gt; Where-Object
+...
+Alias           bash -&gt; Cygwin64 Terminal.lnk
+...
+Alias           cat -&gt; Get-Content
+Alias           cd -&gt; Set-Location
+...
+Alias           cp -&gt; Copy-Item
+...
+Alias           h -&gt; Get-History
+Alias           history -&gt; Get-History
+...
+Alias           kill -&gt; Stop-Process
+...
+Alias           ls -&gt; Get-ChildItem
+Alias           man -&gt; help
+Alias           md -&gt; mkdir
+...
+Alias           mv -&gt; Move-Item
+...
+Alias           pwd -&gt; Get-Location
+...
+Alias           rm -&gt; Remove-Item
+Alias           rmdir -&gt; Remove-Item
+...
+```
+
+This list is useful to figure out corresponding flags in PowerShell.
+
+Example:
+
+* `ls -a` is list all hidden files in bash.
+* PowerShell `ls` aliases to `Get-ChildItem`
+** Add a `-` after `ls` then hit tab to cycle through possible matches for //hidden files//
+** the flag is named `-Hidden`
+** so `ls -h` then tab turns into `ls -Hidden` to view hidden files
+** `ls -h` works as well</pre>
 </div>
 <div created="20200208195033671" modified="20200208195427624" tags="Windows grep" title="Powershell grep is called findstr">
 <pre>PowerShell does not have `grep`.
