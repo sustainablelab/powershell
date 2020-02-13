@@ -9519,8 +9519,8 @@ Error message and password prompt
 <div created="20200209223230424" modified="20200209223230424" title="$:/state/Excise/--1129349216/type">
 <pre>link</pre>
 </div>
-<div created="20200202174140671" modified="20200202174140671" title="$:/state/showeditpreview">
-<pre>yes</pre>
+<div created="20200202174140671" modified="20200213160638359" title="$:/state/showeditpreview">
+<pre>no</pre>
 </div>
 <div created="20200205212112664" modified="20200211152114939" title="$:/state/sidebar">
 <pre>yes</pre>
@@ -9540,13 +9540,13 @@ Error message and password prompt
 <div created="20200205211656028" modified="20200211140819735" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20200202190739876" modified="20200211140826293" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20200202190739876" modified="20200213154801865" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/More</pre>
 </div>
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200213134817394" list="[[Install Python on Cygwin for Vim omni-complete]] [[Git searching]] [[Bash variables]] [[PowerShell Variables]] [[Python path for package import]] [[Git merge]] [[Install Python packages on Windows]] Contents" modified="20200213153947240" title="$:/StoryList">
+<div created="20200213134817394" list="[[Install Python on Cygwin for Vim omni-complete]] [[Git searching]]" modified="20200213160631675" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9610,8 +9610,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200213154308057" title="$:/temp/search">
-<pre>Git</pre>
+<div created="20200202173605395" modified="20200213155701519" title="$:/temp/search">
+<pre>user-site</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -9998,7 +9998,7 @@ Use a `function` instead of an `alias` if the intent is a piped command or more 
 ** I have no reason to install the Cygwin Python package
 ** [[Run python.exe from Cygwin]] instead</pre>
 </div>
-<div created="20200202180241348" modified="20200209184006790" tags="profile" title="Edit a PowerShell Profile">
+<div created="20200202180241348" modified="20200213155242867" tags="profile" title="Edit a PowerShell Profile">
 <pre>Open the profile in a text editor:
 
 ```powershell
@@ -10043,9 +10043,7 @@ So you can launch brave with `.`:
 PS&gt; .$brave
 ```
 
-But it's easier to remember `brave` without the `.$` prefix. Make an alias instead:
-
-{{Alias brave}}</pre>
+But it's easier to remember `brave` without the `.$` prefix. [[Make an alias instead|PowerShell alias for brave]].</pre>
 </div>
 <div created="20200209211239489" modified="20200209211748486" tags="git setup" title="Git merge">
 <pre>The following is copied from https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git
@@ -10081,7 +10079,7 @@ $ git config mergetool.prompt false
 See additional info here:
 https://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/#fromHistor</pre>
 </div>
-<div created="20200213144234371" modified="20200213154750670" tags="doc git" title="Git searching">
+<div created="20200213144234371" modified="20200213160544614" tags="doc git" title="Git searching">
 <pre>! A cautionary tale
 TiddlyWiki's GitHub Saver ''//autosave-on// '' erased a ton of content I'd added a few days ago. Luckily I went to reference the content, could not find it, knew I wasn't going crazy, and then started cursing...
 
@@ -10310,9 +10308,45 @@ $ git checkout f0ef5bb
 
 Refresh the TiddlyWiki in my web browswer.
 
-</pre>
+I can tell this is the //first// commit where I use the phrase `user-site`.
+
+Bring `HEAD` back to the original point (now I'm glad I didn't do `git reset --hard`)
+
+```bash
+$ git checkout master
+```
+
+Run the search through the diffs in the git log again, but now use this `user-site` seach term:
+
+```bash
+$ git log -S user-site --oneline
+6983715 Saved by TiddlyWiki
+f0ef5bb Saved by TiddlyWiki
+```
+
+OK, I'm pretty sure `f0ef5bb` is where the first commit happened, and `6983715` must be the commit that erased all my work.
+
+Check out `6983715` to make sure `user-site` is missing.
+
+```bash
+$ git checkout 6983715
+```
+
+Refresh browser. Search TiddlyWiki for `user-site` -- no matches as expected. So the latest and greatest before the erase if the commit just before this one.
+
+```bash
+$ git log -n2 --oneline
+6983715 (HEAD) Saved by TiddlyWiki
+084a6b8 Saved by TiddlyWiki
+
+$ git checkout 084a6b8
+Previous HEAD position was 6983715 Saved by TiddlyWiki
+HEAD is now at 084a6b8 Saved by TiddlyWiki
+```
+
+Refresh browser. Yep -- man that was a lot of precious time I would have lost!.</pre>
 </div>
-<div created="20200208201226894" modified="20200213154133872" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
+<div created="20200208201226894" modified="20200213161910803" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
 <pre>! Context
 Python omni complete in Vim `i_CTRL-X_CTRL-O` requires Python is installed. See:
 
@@ -10378,14 +10412,39 @@ But this was for Vim.
 From withinn Vim, now I can:
 
 * execute a Python one-liner from the command line
-* `i_CTRL-X_CTR-O` to omni-complete on any Python37 package that is installed with the Cygwin package manager
+* `i_CTRL-X_CTR-O` to omni-complete on any Python37 package that is visible to Vim
+
+Vim can see any package installed with the Cygwin package manager.
+
+Use omni completion on user-defined packages (or any other package I cannot install with Cygwin, for example `pygame-gui`) by placing them in Cygwin Python `USER_SITE` and adding that path to the `$env:PYTHONPATH` for Windows to import those user-defined packages.
+
+```powershell
+# Microsoft.PowerShell_profile.ps1
+#
+# User-defined packages are in the Cygwin Python USER_SITE path for Vim to see
+# them during omni completion (i_CTRL-X_CTRL-O)
+# Make these packages available to Windows Python by appending to the
+# $env:PYTHONPATH
+$cygpy_USER_SITE = &quot;C:\cygwin64\home\mike\.local\lib\python3.7\site-packages&quot;
+$env:PYTHONPATH = &quot;$cygpy_USER_SITE&quot;
+```
+
+`$env:PYTHONPATH` is empty until set by the PowerShell profile. Make this the first path on `$env:PYTHONPATH`. For other paths, append them like this:
+
+```powershell
+$some_lib_repo = &quot;C:\{path-to-some_lib}&quot;
+$env:PYTHONPATH = &quot;$env:PYTHONPATH;$some_lib_repo&quot;
+```
+
+It is easier to keep packages up to date if they are installed with a package manager, so I do that if I can. If I have to use the `USER_SITE` path, I clone the package from its GitHub repository so that I can easily do manual package updates with `git remote update` and `git pull`.
 
 ! More info
 
 See my two //StackOverflow// answers about Vim omni completion for Python:
 
-* https://stackoverflow.com/questions/2084875/vims-omnicompletion-with-python-just-doesnt-work/57861300#57861300
-* https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501</pre>
+* [[https://stackoverflow.com/questions/2084875/vims-omnicompletion-with-python-just-doesnt-work/57861300#57861300]]
+* [[https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501]]
+</pre>
 </div>
 <div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
@@ -10819,8 +10878,9 @@ function Get-ProfileVariables {
 Set-Alias -Name pv -Value Get-ProfileVariables
 ```</pre>
 </div>
-<div created="20200208193223881" modified="20200213154703304" tags="python setup import package module" title="Python path for package import">
-<pre>Check the PYTHONPATH in PowerShell
+<div created="20200208193223881" modified="20200213155820522" tags="python setup import package module" title="Python path for package import">
+<pre>! Default search path for package import
+Check the PYTHONPATH in PowerShell
 
 ```powershell
 PS&gt; python -c &quot;import sys; print('\n'.join(sys.path))&quot;
@@ -10832,6 +10892,7 @@ C:\Users\mike\AppData\Local\Programs\Python\Python38
 C:\Users\mike\AppData\Local\Programs\Python\Python38\lib\site-packages
 ```
 
+! Add additional search paths for package import
 Check the Windows environment variable `$env:PYTHONPATH`
 
 ```powershell
@@ -10842,12 +10903,29 @@ Expect this variable is empty if not defined in the [[PowerShell profile|Edit a 
 
 Do not permanently change Windows environment variables. [[Add environment variables to the PowerShell Profile]].
 
+Use this method to import a Python project that cannot be installed with `pip`, for example, cloning a repo, then adding the repo path to `$env:PYTHONPATH`.
+
+! Seach path for user-specific packages
 Python also looks for packages in the &quot;user-specific site-packages directory, USER_SITE.&quot; See the [[official documentation|https://docs.python.org/3.7/library/site.html]].
 
-Similar to the [[PowerShell Profile path|PowerShell Profile locations]], the ''user-specific site-packages'' path is defined by the `site` package, even if the path itself does not exist. Create the path, put packages there, and Python is able to import them without editing Windows environment variables or the Python `sys.path`.
+Similar to the [[PowerShell Profile path|PowerShell Profile locations]], the ''user-specific site-packages'' path is defined by the `site` package, even if the path itself does not exist.
 
-//''TODO:'' Does this work as a way to add user-defined packages to the `&amp;omnifunc` omni completion search path (since adding the package through the Cygwin package manager is out of the question in that case).//
+Create the path and put packages there.
 
+Python is able to import them without editing Windows environment variables or the Python `sys.path`.
+
+//This also works as a way to add user-defined packages to the `&amp;omnifunc` omni completion search path.//
+
+(Installing a user-defined package with the Cygwin package manager is out of the question!)
+
+* put user-defined packages in the Cygwin Python `USER_SITE`
+** Vim sees these packages for omni completion
+* add the Cygwin Python `USER_SITE` to my Windows Python `$env:PYTHONPATH` variable
+** `$env:PYTHONPATH` is defined in my PowerShell Profile
+** lets Windows Python run scripts that import user-defined packages, even though the user-defined packages are in the Cygwin Python `USER_SITE` path
+** this is just like the case of adding a repo to the `$env:PYTHONPATH`, but I don't have to do this once for each package -- any package in this folder is visible
+
+! Setup
 Check `USER_SITE` from PowerShell:
 
 ```powershell
@@ -10860,6 +10938,14 @@ Check Windows Python `USER_SITE` from bash:
 ```bash
 $ python.exe -m site --user-site
 C:\Users\mike\AppData\Roaming\Python\Python38\site-packages
+```
+
+The path does not exist yet:
+
+```powershell
+PS&gt; cd $HOME\AppData\Roaming\
+PS&gt; ls Python
+ls : Cannot find path 'C:\Users\mike\AppData\Roaming\Python' because it does not exist.
 ```
 
 Check Cygwin Python `USER_SITE` from bash:
@@ -10879,9 +10965,96 @@ $ ls ~ -a | grep &quot;.local&quot;
 Check Vim Python `USER_SITE` from the Vim command line:
 
 ```vim
-: py3 print(site.getusersitepackages())
+: py3 import site; print(site.getusersitepackages())
 /home/mike/.local/lib/python3.7/site-packages
-```</pre>
+```
+
+This is the same path found at the bash command line. It does not exist yet.
+
+! I create `USER_SITE` when I need it
+* Create the `USER_SITE` paths when I need them.
+** For example, I have no reason to create a separate `USER_SITE` path for my Windows Python since I add the Cygwin Python `USER_SITE` path to the `$env:PYTHONPATH`.
+* Put user-defined packages in the Cygwin Python `USER_SITE` path so Vim can find them.
+* Add the Cygwin Python `USER_SITE` path as a [[temporary Windows environment variable via the PowerShell Profile|Add environment variables to the PowerShell Profile]].
+
+! Create a dummy package to test this setup
+
+First create the path used by Cygwin Python:
+
+```bash
+$ mkdir -p ~/.local/lib/python3.7/site-packages
+$ ls ~ -a | grep &quot;.local&quot;
+.local
+```
+
+Create a package to test the plumbing is OK:
+
+```bash
+$ cd .local/lib/python3.7/site-packages/
+$ mkdir plumbingtest
+$ touch plumbingtest/__init__.py
+$ touch plumbingtest/plumbingtest.py
+$ vim plumbingtest/plumbingtest.py
+```
+
+Create a function in this package to try calling from another script:
+
+```python
+# plumbingtest/plumbingtest.py
+#
+def print_if_pkg_plumbing_is_ok():
+    print(&quot;\nModule import works! USER_SITE plumbing is OK.&quot;)
+if __name__ == '__main__':
+    print_if_pkg_plumbing_is_ok()
+```
+
+Make sure this package works on its own:
+
+```bash
+$ python3.7 plumbingtest/plumbingtest.py
+
+Module import works! USER_SITE plumbing is OK.
+```
+
+Now try writing a script that imports the package and see that omni completion works:
+
+```python
+from plumbingtest import plumbingtest
+plumbingtest.print_if_pkg_plumbing_is_ok()
+```
+
+Do not type the entire second line above. //Test omni completion:// after typing `plumb`, hit `CTRL-X_CTRL-O` twice and the line should complete as shown above.
+
+The `from` blah `import` blah syntax is noisy. The canonical `import blah` syntax is preferred. Edit the package's `__init__.py` to fix this:
+
+```python
+# plumbingtest/__init__.py
+#
+from .plumbingtest import *
+```
+
+Now package import works with the simpler syntax:
+
+```python
+import plumbingtest
+plumb{i_CTRL-X_CTRL-O}
+```
+
+Test omnicompletion again to confirm this still works. This time the first option is `plumbingtest`, but the next option after that is the desired function name.
+
+Omnicompletion shows all of the built in //dunders// (`__doc__`, `__name__`, `__path__`, etc.). 
+
+Pick exactly which package contents to make available in omnicompletion by defining `__all__` in the `plumbingtest.py` script:
+
+```python
+# plumbingtest/plumbingtest.py
+#
+__all__ = ['print_if_pkg_plumbing_is_ok']
+```
+
+//''TODO:'' Nope, I still see all the dunders as omni completion options.//
+
+Lastly, test that Windows Python is able to run the script.</pre>
 </div>
 <div created="20200204175921314" modified="20200205185208693" tags="python cygwin run-scripts" title="Run python.exe from Cygwin">
 <pre>//Issue:// Cygwin does not have access to the Windows USB ports. Python applications using `pyserial` do not work.
