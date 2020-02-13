@@ -229,6 +229,8 @@ Error message and password prompt
 
 <li>Git merge</li>
 
+<li>Git searching</li>
+
 <li>Install Python on Cygwin for Vim omni-complete</li>
 
 <li>Install Python on Windows</li>
@@ -9544,7 +9546,7 @@ Error message and password prompt
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200213134817394" list="[[Python path for package import]] [[Git merge]] [[Install Python packages on Windows]] Contents" modified="20200213140712058" title="$:/StoryList">
+<div created="20200213134817394" list="[[Install Python on Cygwin for Vim omni-complete]] [[Git searching]] [[Bash variables]] [[PowerShell Variables]] [[Python path for package import]] [[Git merge]] [[Install Python packages on Windows]] Contents" modified="20200213153947240" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9608,8 +9610,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200213135926217" title="$:/temp/search">
-<pre>python</pre>
+<div created="20200202173605395" modified="20200213154308057" title="$:/temp/search">
+<pre>Git</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10079,7 +10081,238 @@ $ git config mergetool.prompt false
 See additional info here:
 https://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/#fromHistor</pre>
 </div>
-<div created="20200208201226894" modified="20200213140647032" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
+<div created="20200213144234371" modified="20200213154750670" tags="doc git" title="Git searching">
+<pre>! A cautionary tale
+TiddlyWiki's GitHub Saver ''//autosave-on// '' erased a ton of content I'd added a few days ago. Luckily I went to reference the content, could not find it, knew I wasn't going crazy, and then started cursing...
+
+Somehow this TiddlyWiki was overwritten with a version of the TiddlyWiki that was missing this content.
+
+Now I turn off //autosave// and click the //red checkmark//. This also eliminated the annoying 409 errors.
+
+! Git saves the day
+//But this tiddler is about Git and how amazing it is.//
+
+Since the TiddlyWiki is a Git repository, I thought //maybe// the content was recoverable. I wasn't sure that it existed in a commit, but I hoped this was how the content was lost: a new commit was missing the content, but it still existed in an old commit.
+
+The git log contains more than just the commit messages. It also contains the diffs: the changes between this commit and the previous commit.
+
+My missing content had to do with the Python `USER_SITE` variable.
+
+Search the Git diffs for the first time the word `USER_SITE` showed up in `index.html`:
+
+```bash
+$ git log -L /USER_SITE/:index.html
+commit 1928f28c35f214e7e43913dd209d2974b2ba3134
+Author: sirdigby &lt;sustainablelab@gmail.com&gt;
+Date:   Tue Feb 11 10:20:01 2020 -0500
+
+    Saved by TiddlyWiki
+
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -10459,2797 +10510,2819 @@
++cygpy_USER_SITE                C:\cygwin64\home\mike\.local\lib\python3.7\site-packages
++cygwin                         C:\Users\mike\Downloads\setup-x86_64.exe
++```
++
++The regex `[^A-Z]` says //the first character cannot be a capital letter//.
++
++* `[A-Z]` is all capital letters
++* `[^A-Z]` is all lower-case letters
++** `[a-z]` is similar, but it says //the first letter must be a lower-case letter// which is not exactly what I want (e.g., what if the first character is `_`)
++
++This is impossible to remember, so put in the PowerShell Profile:
++
++```powershell
++# Microsoft.PowerShell_profile.ps1
++#
++# pv -- list profile variables
++function Get-ProfileVariables {
++    Get-Variable | Where-Object {
++        ($_.Value -like &amp;quot;C:\*&amp;quot; -and $_.Name -cmatch '[^A-Z]')
++    }
++}
++Set-Alias -Name pv -Value Get-
+```
+
+OK, I don't see my missing content yet. This didn't work //so well// for `index.html` because the file is a beast. There is a lot more output and it's kind of hard to parse. The most recent occurrence of `USER_SITE` shows up first.
+
+And what I see in that initial part of the output is still visible in the TiddlyWiki, so the change happened some time before that commit: Feb. 11th, //commit hash// `1928f2`.
+
+Use `-S` to just find out //when// the change happened:
+
+```bash
+$ git log -S USER_SITE --oneline
+1928f28 Saved by TiddlyWiki
+6983715 Saved by TiddlyWiki
+084a6b8 Saved by TiddlyWiki
+8f727b8 Saved by TiddlyWiki
+6bf5577 Saved by TiddlyWiki
+5293464 Saved by TiddlyWiki
+f0ef5bb Saved by TiddlyWiki
+```
+
+Now I can see right away the //earliest// commit with `USER_SITE` in its diff is //commit hash// `f0ef5bb`.
+
+Look at the `git diff` between commit `f0ef5bb` and the commit immediately before it.
+
+```bash
+$ git diff f0ef5bb~ f0ef5bb
+```
+
+* the `~` means //immediate ancestor//
+* since I put the ancestor first in the `git diff` command, ancestor content that is missing is prefixed with a `-` sign, content added in commit `f0ef5bb` is prefixed with '+'
+
+Here is the initial output:
+
+```bash
+diff --git a/index.html b/index.html
+index 33f90fe..d251951 100755
+--- a/index.html
++++ b/index.html
+@@ -9530,7 +9530,7 @@ Error message and password prompt
+ &lt;div created=&quot;20200202190739876&quot; modified=&quot;20200209184106443&quot; title=&quot;$:/state/tab/sidebar--595412856&quot;&gt;
+ &lt;pre&gt;$:/core/ui/SideBar/Open&lt;/pre&gt;
+ &lt;/div&gt;
+-&lt;div created=&quot;20200210194506757&quot; list=&quot;[[Install Python on Cygwin for Vim omni-complete]] Contents&quot; modified=&quot;20200210194506757&quot; title=&quot;$:/StoryList&quot;&gt;
++&lt;div created=&quot;20200210194506757&quot; list=&quot;[[Add environment variables to the PowerShell Profile]] [[Python path for package import]] [[Install Python on Cygwin for Vim omni-complete]] Contents&quot; modified=&quot;20200210200815076&quot; title=&quot;$:/StoryList&quot;&gt;
+ &lt;pre&gt;&lt;/pre&gt;
+ &lt;/div&gt;
+ &lt;div created=&quot;20200209183801137&quot; modified=&quot;20200209183803601&quot; title=&quot;$:/temp/advancedsearch&quot;&gt;
+@@ -9594,8 +9594,8 @@ Error message and password prompt
+     }
+ }&lt;/pre&gt;
+ &lt;/div&gt;
+-&lt;div created=&quot;20200202173605395&quot; modified=&quot;20200210194504382&quot; title=&quot;$:/temp/search&quot;&gt;
+-&lt;pre&gt;vim omni&lt;/pre&gt;
++&lt;div created=&quot;20200202173605395&quot; modified=&quot;20200210200810578&quot; title=&quot;$:/temp/search&quot;&gt;
++&lt;pre&gt;powershell profile&lt;/pre&gt;
+ &lt;/div&gt;
+```
+
+Right away, just from the change in the `StoryList`, I know I'm looking in the right place.
+
+Scrolling down a bit I start to find the missing content!
+
+```bash
+ &lt;pre&gt;{
+@@ -10432,7 +10432,7 @@ Name                           Value
+ PSHOME                         C:\Windows\System32\WindowsPowerShell\v1.0
+ ```&lt;/pre&gt;
+ &lt;/div&gt;
+-&lt;div created=&quot;20200208193223881&quot; modified=&quot;20200209184040831&quot; tags=&quot;python setup import package module&quot; title=&quot;Python path for package import&quot;&gt;
++&lt;div created=&quot;20200208193223881&quot; modified=&quot;20200210202105445&quot; tags=&quot;python setup import package module&quot; title=&quot;Python path for package import&quot;&gt;
+ &lt;pre&gt;Check the PYTHONPATH in PowerShell
+
+ ```powershell
+@@ -10453,7 +10453,51 @@ PS&amp;gt; echo $env:PYTHONPATH
+
+ Expect this variable is empty if not defined in the [[PowerShell profile|Edit a PowerShell Profile]].
+
+-Do not permanently change Windows environment variables. [[Add environment variables to the PowerShell Profile]].&lt;/pre&gt;
++Do not permanently change Windows environment variables. [[Add environment variables to the PowerShell Profile]].
++
++Python also looks for packages in the &amp;quot;user-specific site-packages directory, USER_SITE.&amp;quot; See the [[official documentation|https://docs.python.org/3.7/library/site.html]].
++
++Similar to the [[PowerShell Profile path|PowerShell Profile locations]], the ''user-specific site-packages'' path is defined by the `site` package, even if the path itself does not exist. Create the path, put packages there, and Python is able to import them without editing Windows environment variables or the Python `sys.path`.
++
++//''TODO:'' Does this work as a way to add user-defined packages to the `&amp;amp;omnifunc` omni completion search path (since adding the package through the Cygwin package manager is out of the question in that case).//
++
++Check `USER_SITE` from PowerShell:
++
++```powershell
++PS&amp;gt; python -m site --user-site
++C:\Users\mike\AppData\Roaming\Python\Python38\site-packages
++```
++
++Check Windows Python `USER_SITE` from bash:
++
++```bash
++$ python.exe -m site --user-site
++C:\Users\mike\AppData\Roaming\Python\Python38\site-packages
++```
++
++Check Cygwin Python `USER_SITE` from bash:
++
++```bash
++$ python3.7 -m site --user-site
++/home/mike/.local/lib/python3.7/site-packages
++```
++
++The path does not exist yet:
++
++```bash
++$ ls ~ -a | grep &amp;quot;.local&amp;quot;
++
++```
++
++Check Vim Python `USER_SITE` from the Vim command line:
++
++```vim
++: py3 print(site.getusersitepackages())
++/home/mike/.local/lib/python3.7/site-packages
++```
++
++
++&lt;/pre&gt;
+```
+
+Restore the content by pointing to commit `f0ef5bb~` (the ancestor of `f0ef5bb`), opening `index.html` in a browser, and just copying and pasting into my latest version of this TiddlyWiki.
+
+`git reset` moves `HEAD` to a commit. The `--hard` discards all commits after the commit `HEAD` now points to.
+
+It is not common to `git reset --hard` since it changes the working tree to an earlier state in this non-reversable way. In my case, this is fine because I'm working from a local clone that I'm going to erase after I've recovered my content. I'm not going to make changes in this local repo that get pushed back to the GitHub repo.
+
+The other options are:
+
+* `--mixed`
+** the default if no flag is specified
+** resets the (git) index but not the working tree
+* `--soft`
+** does not touch the index or the working tree
+
+`--soft` is not useful to me: I want to change the files on disk so I can open `index.html` in my browser to copy the content.
+
+`--mixed` is actually OK, I just need to then `git-checkout` to put the contents of the (git) index in the working tree (the working files on disk).
+
+So I rather than a `git reset --hard`, I can just do a `git checkout` with the hash number. This is the same as `git reset hash` followed by `git checkout`.
+
+The nice thing here I can keep poking around. `git reset --hard` would prune the newer commits as I dive through the history. But `git checkout` does not prune the index, it only moves the HEAD, so I can checkout the `master` branch again if I think there's something useful in a later commit.
+
+```bash
+$ git checkout f0ef5bb~
+Note: checking out 'f0ef5bb~'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b &lt;new-branch-name&gt;
+
+HEAD is now at 1397af5 Saved by TiddlyWiki
+```
+
+Open this older version of the TiddlyWiki in my web browser:
+
+```bash
+$ explorer index.html
+```
+
+Whoops, I wanted the commit after this, that is I want `f0ef5bb`, not `f0ef5bb~`.
+
+```bash
+$ git checkout f0ef5bb
+```
+
+Refresh the TiddlyWiki in my web browswer.
+
+</pre>
+</div>
+<div created="20200208201226894" modified="20200213154133872" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
 <pre>! Context
 Python omni complete in Vim `i_CTRL-X_CTRL-O` requires Python is installed. See:
 
@@ -10149,11 +10382,10 @@ From withinn Vim, now I can:
 
 ! More info
 
-See my StackOverflow posts:
+See my two //StackOverflow// answers about Vim omni completion for Python:
 
-https://stackoverflow.com/questions/2084875/vims-omnicompletion-with-python-just-doesnt-work/57861300#57861300
-
-https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501</pre>
+* https://stackoverflow.com/questions/2084875/vims-omnicompletion-with-python-just-doesnt-work/57861300#57861300
+* https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501</pre>
 </div>
 <div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
@@ -10587,7 +10819,7 @@ function Get-ProfileVariables {
 Set-Alias -Name pv -Value Get-ProfileVariables
 ```</pre>
 </div>
-<div created="20200208193223881" modified="20200209184040831" tags="python setup import package module" title="Python path for package import">
+<div created="20200208193223881" modified="20200213154703304" tags="python setup import package module" title="Python path for package import">
 <pre>Check the PYTHONPATH in PowerShell
 
 ```powershell
@@ -10608,7 +10840,48 @@ PS&gt; echo $env:PYTHONPATH
 
 Expect this variable is empty if not defined in the [[PowerShell profile|Edit a PowerShell Profile]].
 
-Do not permanently change Windows environment variables. [[Add environment variables to the PowerShell Profile]].</pre>
+Do not permanently change Windows environment variables. [[Add environment variables to the PowerShell Profile]].
+
+Python also looks for packages in the &quot;user-specific site-packages directory, USER_SITE.&quot; See the [[official documentation|https://docs.python.org/3.7/library/site.html]].
+
+Similar to the [[PowerShell Profile path|PowerShell Profile locations]], the ''user-specific site-packages'' path is defined by the `site` package, even if the path itself does not exist. Create the path, put packages there, and Python is able to import them without editing Windows environment variables or the Python `sys.path`.
+
+//''TODO:'' Does this work as a way to add user-defined packages to the `&amp;omnifunc` omni completion search path (since adding the package through the Cygwin package manager is out of the question in that case).//
+
+Check `USER_SITE` from PowerShell:
+
+```powershell
+PS&gt; python -m site --user-site
+C:\Users\mike\AppData\Roaming\Python\Python38\site-packages
+```
+
+Check Windows Python `USER_SITE` from bash:
+
+```bash
+$ python.exe -m site --user-site
+C:\Users\mike\AppData\Roaming\Python\Python38\site-packages
+```
+
+Check Cygwin Python `USER_SITE` from bash:
+
+```bash
+$ python3.7 -m site --user-site
+/home/mike/.local/lib/python3.7/site-packages
+```
+
+The path does not exist yet:
+
+```bash
+$ ls ~ -a | grep &quot;.local&quot;
+
+```
+
+Check Vim Python `USER_SITE` from the Vim command line:
+
+```vim
+: py3 print(site.getusersitepackages())
+/home/mike/.local/lib/python3.7/site-packages
+```</pre>
 </div>
 <div created="20200204175921314" modified="20200205185208693" tags="python cygwin run-scripts" title="Run python.exe from Cygwin">
 <pre>//Issue:// Cygwin does not have access to the Windows USB ports. Python applications using `pyserial` do not work.
