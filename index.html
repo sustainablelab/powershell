@@ -9544,7 +9544,7 @@ Error message and password prompt
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200213134817394" list="[[Install Python on Cygwin for Vim omni-complete]] [[Install Python on Windows]] [[Python path for package import]] [[Git merge]] [[Install Python packages on Windows]] Contents" modified="20200213140111235" title="$:/StoryList">
+<div created="20200213134817394" list="[[Python path for package import]] [[Git merge]] [[Install Python packages on Windows]] Contents" modified="20200213140712058" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -10202,7 +10202,7 @@ Installing collected packages: pip
 Successfully installed pip-20.0.2
 ```</pre>
 </div>
-<div created="20200205210601762" modified="20200213134844292" tags="Windows python setup" title="Install Python packages on Windows">
+<div created="20200205210601762" modified="20200213141436529" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install Python package in Windows Python installation
 
 Pip often needs updating:
@@ -10220,10 +10220,16 @@ python -m pip install --upgrade pip
 ** import as `import cv2`
 * pygame
 ** `SDL2` wrapper
-** //not just for games//
-** make GUIs
+** make GUIs //not just for games//
+** [[Documentation|https://www.pygame.org/docs/]]
 * pygame-gui
-** easier to make GUIs in pygame
+** make GUIs in pygame faster
+** `PS&gt; pip install pygame-gui`
+** import as `pygame_gui`
+** [[pypi|https://pypi.org/project/pygame-gui/]]
+** [[GitHub|https://github.com/MyreMylar/pygame_gui]]
+** [[Documentation|https://pygame-gui.readthedocs.io/en/latest/index.html]]
+*** [[Quick Start Guide|https://pygame-gui.readthedocs.io/en/latest/quick_start.html#quick-start]]
 * pytest
 ** colorize output of `unittest` without any extra effort
 ** simplest use: `python -m pytest -v {thing-to-test}` replaces `python -m unittest discover -v {thing-to-test}`
