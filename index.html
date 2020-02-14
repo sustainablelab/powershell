@@ -177,6 +177,10 @@ Error message and password prompt
 
 <li>$:/state/Excise/--1129349216/type</li>
 
+<li>$:/state/Excise/--1306336513/tagnew</li>
+
+<li>$:/state/Excise/--1306336513/type</li>
+
 <li>$:/state/showeditpreview</li>
 
 <li>$:/state/sidebar</li>
@@ -262,6 +266,8 @@ Error message and password prompt
 <li>Use Vi shortcuts in bash</li>
 
 <li>User-defined bash shortcuts in .minttyrc</li>
+
+<li>User-defined Event types</li>
 
 <li>VIM `find` search path</li>
 
@@ -9521,8 +9527,14 @@ Error message and password prompt
 <div created="20200209223230424" modified="20200209223230424" title="$:/state/Excise/--1129349216/type">
 <pre>link</pre>
 </div>
-<div created="20200202174140671" modified="20200214020217902" title="$:/state/showeditpreview">
+<div created="20200214022525966" modified="20200214022526820" title="$:/state/Excise/--1306336513/tagnew">
 <pre>no</pre>
+</div>
+<div created="20200214022543072" modified="20200214022543072" title="$:/state/Excise/--1306336513/type">
+<pre>link</pre>
+</div>
+<div created="20200202174140671" modified="20200214022652044" title="$:/state/showeditpreview">
+<pre>yes</pre>
 </div>
 <div created="20200205212112664" modified="20200214020025077" title="$:/state/sidebar">
 <pre>yes</pre>
@@ -9542,13 +9554,13 @@ Error message and password prompt
 <div created="20200205211656028" modified="20200211140819735" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20200202190739876" modified="20200214002250723" title="$:/state/tab/sidebar--595412856">
+<div created="20200202190739876" modified="20200214032918968" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200213174223866" list="[[pygame documentation]]" modified="20200214002346968" title="$:/StoryList">
+<div created="20200214022436696" list="Contents" modified="20200214033223984" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9599,11 +9611,11 @@ Error message and password prompt
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1536&quot;
+            &quot;text&quot;: &quot;1360&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;864&quot;
+            &quot;text&quot;: &quot;768&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
@@ -9612,8 +9624,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200214002237884" title="$:/temp/search">
-<pre>pygame</pre>
+<div created="20200202173605395" modified="20200214032922933" title="$:/temp/search">
+<pre>contents</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -9833,7 +9845,7 @@ declare -x USERPROFILE=&quot;C:\\Users\\mike&quot;
 declare -x WINDIR=&quot;C:\\WINDOWS&quot;
 ```</pre>
 </div>
-<div created="20200202180407251" modified="20200211143045243" tags="profile list-links" title="Contents">
+<div created="20200202180407251" modified="20200214033247050" tags="profile list-links" title="Contents">
 <pre>My notes about the PowerShell Profile
 &lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]sort[modified]]&gt;&gt;
 PowerShell Profile snippets
@@ -9841,14 +9853,15 @@ PowerShell Profile snippets
 `.bashrc` setup snippets
 &lt;&lt;list-links &quot;[tag[setup]tag[snippet]!tag[list-links]!sort[modified]]&gt;&gt;
 Python setup
-&lt;&lt;list-links &quot;[tag[python]!sort[modified]]&quot;&gt;&gt;
+&lt;&lt;list-links &quot;[tag[python]tag[setup]!sort[modified]]&quot;&gt;&gt;
 Toolchain setup
 &lt;&lt;list-links &quot;[tag[toolchain]tag[setup]!sort[modified]]&quot;&gt;&gt;
 PowerShell Documentation
 &lt;&lt;list-links &quot;[tag[powershell]tag[doc]!tag[list-links]!sort[modified]]&gt;&gt;
 Bash Documentation
 &lt;&lt;list-links &quot;[tag[bash]tag[doc]!tag[list-links]!sort[modified]]&gt;&gt;
-</pre>
+Python Packages
+&lt;&lt;list-links &quot;[tag[python]tag[package]!tag[setup]!sort[modified]]&quot;&gt;&gt;</pre>
 </div>
 <div created="20200202174104351" modified="20200209183921397" tags="profile" title="Create a PowerShell Profile">
 <pre>{{Profile locations}}
@@ -10971,97 +10984,8 @@ function Get-ProfileVariables {
 Set-Alias -Name pv -Value Get-ProfileVariables
 ```</pre>
 </div>
-<div created="20200214002408060" modified="20200214020220688" tags="python pygame doc" title="pygame documentation">
-<pre>! User-defined Event types
-
-[[pygame.event.Event()|https://www.pygame.org/docs/ref/event.html#pygame.event.Event]] creates a new EventType instance.
-
-!! Example: the pygame_gui 'UI_TEXT_ENTRY_FINISHED' event
-
-!!! Context
-`pygame_gui` creates an event when text entry is finished.
-
-//Text entry// happens to an instance of `UITextEntryLine`.
-
-`UITextEntryLine` is:
-
-&gt; &quot;A GUI element for text entry from a keyboard, on a single line.&quot;
-
-Hitting `Enter` (while the text entry is selected) signifies `UI_TEXT_ENTRY_FINISHED`.
-
-!!! Mechanism
-
-The 'ui_manager' calls the 'ui_text_entry_line.process_event()' method to see what effect (if any) the current 'event' has on the `UITextEntryLine` instance.
-
-```python
-# pygame_gui/elements/ui_text_entry_line.py
-#
-class UITextEntryLine(UIElement):
-    ...
-        if self.selected:
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
-                    entry_finished_event = pygame.event.Event(
-                        pygame.USEREVENT,
-                        {'user_type': pygame_gui.UI_TEXT_ENTRY_FINISHED,
-                        'text': self.text,
-                        'ui_element': self,
-                        'ui_object_id': self.object_ids[-1]}
-                        )
-                    pygame.event.post(entry_finished_event)
-                    processed_event = True
-                ...
-        return processed_event
-```
-
-* if instance is ''selected'' and ''K_RETURN'' is pressed
-* create a ''USEREVENT''
-* the ''USEREVENT'' has attributes (accessed with ''dot'' notation)
-
-`pygame_gui` uses a Python `dict` with string keys: `{'key1': value1, 'key2': value2, ...}` to list the attributes, as suggested in the pygame docs. Here are the attributes `pygame_gui` defines.
-
-!!! 1. user_type
-Event attribute `user_type` has value `pygame_gui.UI_TEXT_ENTRY_FINISHED`
-
-Usage: identify this event in the application
-
-Example:
-
-```python
-if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED
-```
-
-To make this useful, the other custom events defined in `pygame_gui` must share this attribute's `dict` key but use a different `dict` value.
-
-!!! 2. text
-Event attribute `text` has value `self.text`. In this context, `self` is an instance of the `UITextEntryLine` class
-
-* the class `__init__()` method defines `self.text` as an empty string
-* the class has a `get_text()` and `set_text()` to access `self.text`
-* making the `.text` attribute available as an `event` attribute is just a convenience
-
-Usage: convenient way to get the text that was entered
-
-Example:
-
-```python
-if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED:
-    print(&quot;Entered:&quot;, event.text, flush=True)
-```
-
-`flush=True` sends `stdout` to the console while the Python application is running
-
-Make //all// print statements `flush=True` without including `flush=True` in each call:
-
-```python
-from functools import partial
-# UPDATE SCREEN WITH PRINT OUTPUT EVERYTIME PRINT IS CALLED
-print = partial(print, flush=True)
-```
-
-!!! 3.  ui_element
-
-!!! 4.  ui_object_id</pre>
+<div created="20200214002408060" modified="20200214032958480" tags="python pygame doc list-links package" title="pygame documentation">
+<pre>&lt;&lt;list-links &quot;[tag[doc]tag[pygame]!tag[list-links]]&quot;&gt;&gt;</pre>
 </div>
 <div created="20200208193223881" modified="20200213155820522" tags="python setup import package module" title="Python path for package import">
 <pre>! Default search path for package import
@@ -11241,7 +11165,7 @@ __all__ = ['print_if_pkg_plumbing_is_ok']
 
 Lastly, test that Windows Python is able to run the script.</pre>
 </div>
-<div created="20200204175921314" modified="20200205185208693" tags="python cygwin run-scripts" title="Run python.exe from Cygwin">
+<div created="20200204175921314" modified="20200214033158889" tags="setup python cygwin run-scripts" title="Run python.exe from Cygwin">
 <pre>//Issue:// Cygwin does not have access to the Windows USB ports. Python applications using `pyserial` do not work.
 
 //Solution:// Run Python scripts using the [[Windows `python.exe`|Install Python on Windows]] instead of the Cygwin Python installation.
@@ -11280,6 +11204,172 @@ Example: map email address to a function key
 # User-defined shortcuts (KeyFunctions=)
 KeyFunctions=F11:`echo -n sustainablelab@gmail.com`
 ```</pre>
+</div>
+<div created="20200214022544405" modified="20200214032745462" tags="python doc pygame" title="User-defined Event types">
+<pre>[[pygame.event.Event()|https://www.pygame.org/docs/ref/event.html#pygame.event.Event]] creates a new Event object with the given type and attributes.
+
+! Example: ''UI_TEXT_ENTRY_FINISHED''
+
+`pygame_gui` event 'UI_TEXT_ENTRY_FINISHED' demonstrates user-defined events with pygame.event.Event()
+
+!! Context
+`pygame_gui` creates an event when text entry is finished.
+
+//Text entry// happens to an instance of `UITextEntryLine`.
+
+`UITextEntryLine` is:
+
+&gt; &quot;A GUI element for text entry from a keyboard, on a single line.&quot;
+
+Hitting `Enter` (while the text entry is selected) signifies `UI_TEXT_ENTRY_FINISHED`.
+
+Example usage:
+
+Clear the text entry after the user presses `Enter`
+
+```python
+# Example using pygame-gui
+#
+# ---SETUP---
+# Make a GUI manager
+manager = pygame_gui.UIManager(pgui.window_size(gui_win))
+# Make a text entry line
+cmd_entry = pygame_gui.elements.ui_text_entry_line.UITextEntryLine(
+    relative_rect=pygame.Rect(
+        (0,0), # left,top is at top-left corner of window
+        (gui_win.cols,0), # width,height is full-width of gui window, height is set by font-size (so input '0' is ignored)
+        ),
+    manager=manager
+    )
+framerate = 30 # GUI shall run no master than this FPS
+clock = pygame.time.Clock() # -&gt; Clock object
+
+# ---MAIN GAME LOOP---
+quit = False
+while not quit:
+    for event in pygame.event.get():
+
+        if event.type == pygame.USEREVENT and event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED:
+            print(&quot;Entered:&quot;, event.text)
+            # Clear the text entry
+            cmd_entry.set_text('')
+
+        # Update pygame-gui manager events
+        manager.process_events(event)
+
+    # Update pygame clock and pygame-gui manager
+    manager.update(clock.tick(framerate)/1000.0)
+
+    # pygame-gui manager update UI
+    manager.draw_ui(gui_display)
+
+    pygame.display.flip()
+```
+
+TODO: test the above code actually runs
+
+Walk-through how the game loop responds to the `UI_TEXT_ENTRY_FINISHED` event:
+
+* `manager.process_events(event)` is called for each event
+** the 'manager' calls the `process_event(event)` method for each GUI element it manages
+** in this example it only manages one element, `cmd_entry`
+* user types text in the `cmd_entry` //text entry line// then hits `Enter`
+* every keystroke is an event, but the event of interest is the final `Enter`
+** the other keystrokes cause cause letters to appear or disappear, cursor movement, copy/paste, select, etc., all the stuff you expect to happen, and that is thanks to all the magic under the hood of `ui_text_entry_line.py`
+** but ignore that for now because I don't want to change any of that wonderful behavior, I just want to //add// behavior for what happens after the user hits `Enter`
+* `cmd_entry` checks if it is the active GUI element, if so it checks if the `event.type` is `KEYDOWN`, if so it checks if the key was `K_RETURN`, if so it generates an event:
+** `event.type` is `USEREVENT`
+** and this event has several custom attributes:
+** `event.user_type` is `UI_TEXT_ENTRY_FINISHED`
+** `event.text` is the text that was entered //(the manager makes sure the text entry list responds to keystrokes with the expected behavior, and is keeping track of the input text)//
+** there are other attributes, `ui_element` and `ui_object_id`, but they're not needed since there's only one GUI element that generates this event
+* on the next iteration of the game loop, this event is picked up with `if event.type == pygame.USEREVENT`
+** the application catches this event by checking if `event.user_type` is `UI_TEXT_ENTRY_FINISHED`
+** the body of that `if` does whatever needs doing, in this case printing the text entry to the console, then clearing the text entry line
+
+!! Mechanism
+
+The 'ui_manager' calls the 'ui_text_entry_line.process_event()' method to see what effect (if any) the current 'event' has on the `UITextEntryLine` instance.
+
+```python
+# pygame_gui/elements/ui_text_entry_line.py
+#
+class UITextEntryLine(UIElement):
+    ...
+    def process_event(self, event: pygame.event.Event) -&gt; bool:
+        ...
+        if self.selected:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    entry_finished_event = pygame.event.Event(
+                        pygame.USEREVENT,
+                        {'user_type': pygame_gui.UI_TEXT_ENTRY_FINISHED,
+                        'text': self.text,
+                        'ui_element': self,
+                        'ui_object_id': self.object_ids[-1]}
+                        )
+                    pygame.event.post(entry_finished_event)
+                    processed_event = True
+                ...
+        return processed_event
+```
+
+* if instance is ''selected'' and ''K_RETURN'' is pressed
+* create a ''USEREVENT''
+* the ''USEREVENT'' has attributes (accessed with ''dot'' notation)
+
+`pygame_gui` uses a Python `dict` with string keys: `{'key1': value1, 'key2': value2, ...}` to list the attributes, as suggested in the pygame docs. I can define any attributes I want. Here are the attributes `pygame_gui` defines.
+
+!! 1. user_type
+
+It's a good name:
+
+* events already have a `type` attribute
+* and the `type` attribute is USEREVENT
+* so this attribute is //clarifying// which type of USEREVENT happened
+
+Event attribute `user_type` has value `pygame_gui.UI_TEXT_ENTRY_FINISHED`
+
+Usage: identify this event in the application
+
+Example:
+
+```python
+if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED
+```
+
+To make this useful, the other custom events defined in `pygame_gui` must share this attribute's `dict` key but use a different `dict` value.
+
+!! 2. text
+Event attribute `text` has value `self.text`. In this context, `self` is an instance of the `UITextEntryLine` class
+
+* the class `__init__()` method defines `self.text` as an empty string
+* the class has a `get_text()` and `set_text()` to access `self.text`
+* making the `.text` attribute available as an `event` attribute is just a convenience
+
+Usage: convenient way to get the text that was entered
+
+Example:
+
+```python
+if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED:
+    print(&quot;Entered:&quot;, event.text, flush=True)
+```
+
+`flush=True` sends `stdout` to the console while the Python application is running
+
+Make //all// print statements `flush=True` without including `flush=True` in each call:
+
+```python
+from functools import partial
+# UPDATE SCREEN WITH PRINT OUTPUT EVERYTIME PRINT IS CALLED
+print = partial(print, flush=True)
+```
+
+!! 3.  ui_element
+
+!! 4.  ui_object_id
+</pre>
 </div>
 <div created="20200208192741516" modified="20200208192917758" tags="" title="VIM `find` search path">
 <pre>Vim searches directories in `path` when using `gf` or any `find` command.
