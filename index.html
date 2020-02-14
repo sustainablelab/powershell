@@ -253,6 +253,8 @@ Error message and password prompt
 
 <li>PowerShell Variables</li>
 
+<li>pygame documentation</li>
+
 <li>Python path for package import</li>
 
 <li>Run python.exe from Cygwin</li>
@@ -9519,10 +9521,10 @@ Error message and password prompt
 <div created="20200209223230424" modified="20200209223230424" title="$:/state/Excise/--1129349216/type">
 <pre>link</pre>
 </div>
-<div created="20200202174140671" modified="20200213160638359" title="$:/state/showeditpreview">
+<div created="20200202174140671" modified="20200214020217902" title="$:/state/showeditpreview">
 <pre>no</pre>
 </div>
-<div created="20200205212112664" modified="20200211152114939" title="$:/state/sidebar">
+<div created="20200205212112664" modified="20200214020025077" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
 <div created="20200209183806686" modified="20200209183806686" title="$:/state/tab--1498284803">
@@ -9540,13 +9542,13 @@ Error message and password prompt
 <div created="20200205211656028" modified="20200211140819735" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20200202190739876" modified="20200213154801865" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/More</pre>
+<div created="20200202190739876" modified="20200214002250723" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200213134817394" list="[[Git searching]]" modified="20200213163532287" title="$:/StoryList">
+<div created="20200213174223866" list="[[pygame documentation]]" modified="20200214002346968" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9597,11 +9599,11 @@ Error message and password prompt
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1360&quot;
+            &quot;text&quot;: &quot;1536&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;768&quot;
+            &quot;text&quot;: &quot;864&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
@@ -9610,8 +9612,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200213155701519" title="$:/temp/search">
-<pre>user-site</pre>
+<div created="20200202173605395" modified="20200214002237884" title="$:/temp/search">
+<pre>pygame</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10540,7 +10542,7 @@ Installing collected packages: pip
 Successfully installed pip-20.0.2
 ```</pre>
 </div>
-<div created="20200205210601762" modified="20200213141436529" tags="Windows python setup" title="Install Python packages on Windows">
+<div created="20200205210601762" modified="20200214002344187" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install Python package in Windows Python installation
 
 Pip often needs updating:
@@ -10560,6 +10562,7 @@ python -m pip install --upgrade pip
 ** `SDL2` wrapper
 ** make GUIs //not just for games//
 ** [[Documentation|https://www.pygame.org/docs/]]
+** my [[pygame documentation]]
 * pygame-gui
 ** make GUIs in pygame faster
 ** `PS&gt; pip install pygame-gui`
@@ -10967,6 +10970,98 @@ function Get-ProfileVariables {
 }
 Set-Alias -Name pv -Value Get-ProfileVariables
 ```</pre>
+</div>
+<div created="20200214002408060" modified="20200214020220688" tags="python pygame doc" title="pygame documentation">
+<pre>! User-defined Event types
+
+[[pygame.event.Event()|https://www.pygame.org/docs/ref/event.html#pygame.event.Event]] creates a new EventType instance.
+
+!! Example: the pygame_gui 'UI_TEXT_ENTRY_FINISHED' event
+
+!!! Context
+`pygame_gui` creates an event when text entry is finished.
+
+//Text entry// happens to an instance of `UITextEntryLine`.
+
+`UITextEntryLine` is:
+
+&gt; &quot;A GUI element for text entry from a keyboard, on a single line.&quot;
+
+Hitting `Enter` (while the text entry is selected) signifies `UI_TEXT_ENTRY_FINISHED`.
+
+!!! Mechanism
+
+The 'ui_manager' calls the 'ui_text_entry_line.process_event()' method to see what effect (if any) the current 'event' has on the `UITextEntryLine` instance.
+
+```python
+# pygame_gui/elements/ui_text_entry_line.py
+#
+class UITextEntryLine(UIElement):
+    ...
+        if self.selected:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    entry_finished_event = pygame.event.Event(
+                        pygame.USEREVENT,
+                        {'user_type': pygame_gui.UI_TEXT_ENTRY_FINISHED,
+                        'text': self.text,
+                        'ui_element': self,
+                        'ui_object_id': self.object_ids[-1]}
+                        )
+                    pygame.event.post(entry_finished_event)
+                    processed_event = True
+                ...
+        return processed_event
+```
+
+* if instance is ''selected'' and ''K_RETURN'' is pressed
+* create a ''USEREVENT''
+* the ''USEREVENT'' has attributes (accessed with ''dot'' notation)
+
+`pygame_gui` uses a Python `dict` with string keys: `{'key1': value1, 'key2': value2, ...}` to list the attributes, as suggested in the pygame docs. Here are the attributes `pygame_gui` defines.
+
+!!! 1. user_type
+Event attribute `user_type` has value `pygame_gui.UI_TEXT_ENTRY_FINISHED`
+
+Usage: identify this event in the application
+
+Example:
+
+```python
+if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED
+```
+
+To make this useful, the other custom events defined in `pygame_gui` must share this attribute's `dict` key but use a different `dict` value.
+
+!!! 2. text
+Event attribute `text` has value `self.text`. In this context, `self` is an instance of the `UITextEntryLine` class
+
+* the class `__init__()` method defines `self.text` as an empty string
+* the class has a `get_text()` and `set_text()` to access `self.text`
+* making the `.text` attribute available as an `event` attribute is just a convenience
+
+Usage: convenient way to get the text that was entered
+
+Example:
+
+```python
+if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED:
+    print(&quot;Entered:&quot;, event.text, flush=True)
+```
+
+`flush=True` sends `stdout` to the console while the Python application is running
+
+Make //all// print statements `flush=True` without including `flush=True` in each call:
+
+```python
+from functools import partial
+# UPDATE SCREEN WITH PRINT OUTPUT EVERYTIME PRINT IS CALLED
+print = partial(print, flush=True)
+```
+
+!!! 3.  ui_element
+
+!!! 4.  ui_object_id</pre>
 </div>
 <div created="20200208193223881" modified="20200213155820522" tags="python setup import package module" title="Python path for package import">
 <pre>! Default search path for package import
