@@ -263,6 +263,8 @@ Error message and password prompt
 
 <li>Run python.exe from Cygwin</li>
 
+<li>TiddlyWiki GitHub Saver Beware</li>
+
 <li>Use Vi shortcuts in bash</li>
 
 <li>User-defined bash shortcuts in .minttyrc</li>
@@ -9560,7 +9562,7 @@ Error message and password prompt
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200214022436696" list="Contents" modified="20200214033223984" title="$:/StoryList">
+<div list="[[TiddlyWiki GitHub Saver Beware]] Contents" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -11181,6 +11183,40 @@ execute '!python.exe &quot;$(cygpath -w %)&quot;'
 * the surrounding &quot;$()&quot; are necessary to get the `cygpath` output and to treat the backslashes in the Windows path string as a raw string and not as escape sequences
 
 The nice thing about this solution is it does not require editing the Windows environment variables or adding aliases in the Cygwin `.bashrc`.</pre>
+</div>
+<div created="20200216160948857" modified="20200216164447227" tags="setup tiddlywiki save" title="TiddlyWiki GitHub Saver Beware">
+<pre>TiddlyWiki GitHub Saver option works, but be wary of some pitfalls and caveats.
+
+! Pitfalls
+!! How commits get stepped on
+If I save the tiddlywiki, and then I see the &quot;Saved&quot; pop-up, and then I close the Browser, the version that loads up when the Browser reloads is the cached version, //not// the latest version in the GitHub remote repo. The GitHub repo latest commit has content I don't see. I see the content from the previous commit. Now if I edit and save, the content from that latest commit is overwritten. Since it's a git repository, I can recover the content with some sleuthing, but it's annoying work. I have a tiddler about the first time I did this process.
+
+SOLUTION: for now I just hit reload on a TiddlyWiki when I first re-open my browser, before I make any changes to it.
+
+TODO: turn off Browser caching for my GitHub pages sites.
+
+!! Error 409
+Do not use the Autosave feature. Autosave seems great at first. It works, you can stop worrying about hitting the save button. But, then you start seeing Error 409.
+
+I think Error 409 happens because a save is attempted while waiting for a previous save to finish its commit on GitHub.
+
+Test this idea by attempting to saves in rapid succession. Wait for the &quot;Saved&quot; pop-up, then immediately save again. Expect Error 409.
+
+! Caveats
+!! Do not inline large images
+
+Keep changes to index.html small. This is the file that is updating during the save. The way to keep changes to index.html small is to avoid inlining any large data in the file. I came across this inlining iPhone photos in my food journal. The saves started failing after I had a few photos in there. This has to do with GitHub. There is a file size beyond which GitHub struggles to work with it.
+
+!! No such thing as a private GitHub page
+
+The GitHub saver idea is a time saver because you don't need to do the local saves with the prompts (do you want to replace). You just hit save and wait.
+
+If the repo is private, you cannot set up a page for it. Or if you can set up a page for it, that page is still public, even if the repo is private, so you probably //don't want to// set up a page for it. Because there is, as of yet, no such thing as a private page. No pages with a login prompt.
+
+This means if you save to the GitHub repo, but you are loading a local page, it's like saving your changes somewhere else, while you are still viewing the original file. It doesn't exactly make sense. Save needs to save over the thing you're working on.
+
+So the flow for private repos is simply to save locally, then at the end of the day, manually push to the remote repo to share your work, like you would on any other project. The only downside to this is that TiddlyWiki local save is tedious and error-prone. To help avoid errors, I like to name the private file in caps with the TiddlyWiki name. It's not a pages site, so I don't need to call it 'index.html'. This makes it easier to avoid accidentally saving one TiddlyWiki over another. Or if I do follow the 'index.html' scheme, I put a dummy empty file in the folder with the all caps naming convention. This way I see right away if I'm in the right folder, saving over the right 'index.html' file.
+</pre>
 </div>
 <div created="20200209223231304" modified="20200209223413457" tags="bash bashrc setup snippet" title="Use Vi shortcuts in bash">
 <pre>Enable Vi shortcuts on the bash command line:
