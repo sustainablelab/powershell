@@ -9643,16 +9643,16 @@ Both forms return the docstring for `mymodule`.
 <div created="20200204163321249" modified="20200213140133311" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
 </div>
-<div created="20200205211656028" modified="20200211140819735" title="$:/state/tab/moresidebar-1850697562">
+<div created="20200205211656028" modified="20200217211643516" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20200202190739876" modified="20200217211445077" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20200202190739876" modified="20200217211644303" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200217152614846" list="Contents [[Install Python packages on Windows]]" modified="20200217211447960" title="$:/StoryList">
+<div created="20200217152614846" list="Contents [[Write my own package]] [[Install Python packages on Windows]]" modified="20200217212022996" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -11582,18 +11582,27 @@ let &amp;path = &amp;path . ',' . avr_include
 &quot;
 ```</pre>
 </div>
-<div created="20200217210744847" modified="20200217210744847" tags="[[Write my own package]]" title="What is a package">
-<pre>A python script is a `.py` file with running as the intended use:
+<div created="20200217210744847" modified="20200217211913100" tags="[[Write my own package]]" title="What is a package">
+<pre>A python //script// is a `.py` file intended for running with Python:
 
 ```powershell
 $ python myscript.py
 ```
 
-A Python package is a collection of `.py` scripts with `import` as the intended use:
+A Python //package// is a collection of `.py` scripts intended for `import`.
+
+Import in a Python script:
 
 ```python
 import mypackage
 mypackage.mymodule.foo()
+```
+
+Or import at the REPL:
+
+```python
+&gt;&gt;&gt; import mypackage
+&gt;&gt;&gt; mypackage.mymodule.foo()
 ```
 </pre>
 </div>
