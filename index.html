@@ -141,6 +141,10 @@ Error message and password prompt
 
 <p>This <a class="tc-tiddlylink-external" href="https://tiddlywiki.com" rel="noopener noreferrer" target="_blank">TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
 
+<li>'__init__.py' makes it a package</li>
+
+<li>'__main__.py' runs with 'python -m mypackage'</li>
+
 <li>$:/config/AutoSave</li>
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/home</li>
@@ -180,6 +184,8 @@ Error message and password prompt
 <li>$:/state/Excise/--1306336513/tagnew</li>
 
 <li>$:/state/Excise/--1306336513/type</li>
+
+<li>$:/state/Excise/-1811756643/tagnew</li>
 
 <li>$:/state/showeditpreview</li>
 
@@ -243,6 +249,8 @@ Error message and password prompt
 
 <li>Install Python packages on Windows</li>
 
+<li>Make 'import mypackage' work from anywhere</li>
+
 <li>Permission to run scripts in PowerShell</li>
 
 <li>PowerShell alias for bash</li>
@@ -275,6 +283,8 @@ Error message and password prompt
 
 <li>VIM `find` search path</li>
 
+<li>What is a package</li>
+
 <li>Windows Processes</li>
 
 <li>Write my own package</li>
@@ -289,6 +299,79 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
+<div created="20200217210926186" modified="20200217211343243" tags="[[Write my own package]]" title="'__init__.py' makes it a package">
+<pre>Create `__init__.py` in the package top-level folder. This makes Python identify `mypackage` as a package.
+
+* add a `from . import mymodule` to make each module in the package available when client application does `import mypackage`
+
+Example:
+
+```python
+&quot;&quot;&quot;Summary TODO: write this
+
+Help
+----
+TODO: write this
+&quot;&quot;&quot;
+
+from . import mymodule1
+from . import mymodule2
+```
+
+Provide help for `mypackage`.
+
+* add a docstring at the beginning of `__init__.py`
+
+```python
+&quot;&quot;&quot;API for foo
+
+Help
+----
+&gt;&gt;&gt; import mypackage as mp
+&gt;&gt;&gt; help(mp.mymodule)
+&quot;&quot;&quot;
+```
+
+View the help at the REPL:
+
+```python
+&gt;&gt;&gt; help(mypackage)
+```
+
+Or from PowerShell:
+
+```powershell
+PS&gt; python -m pydoc mypackage
+```
+
+Both forms return the docstring for `mypackage`.
+
+Provide help for `mypackge.mymodule`. 
+
+* add a docstring at the start of `mymodule.py`
+
+View the help at the REPL:
+
+```
+&gt;&gt;&gt; help(mp.mymodule)
+```
+
+Or from PowerShell:
+
+```powershell
+PS&gt; python -m pydoc mypackage.mymodule
+```
+
+Both forms return the docstring for `mymodule`.
+</pre>
+</div>
+<div created="20200217211417824" modified="20200217211613742" tags="[[Write my own package]]" title="'__main__.py' runs with 'python -m mypackage'">
+<pre>Execute package as a module (a script).
+
+* create a `__main__.py` in the package top-level folder
+
+`__main__.py` is what runs when package run as module with `python -m mypackage`. Make `__main__.py` an example script showing ways to use the package.</pre>
+</div>
 <div created="20200213140130870" modified="20200213140130870" title="$:/config/AutoSave">
 <pre>no</pre>
 </div>
@@ -9539,6 +9622,9 @@ Error message and password prompt
 <div created="20200214022543072" modified="20200214022543072" title="$:/state/Excise/--1306336513/type">
 <pre>link</pre>
 </div>
+<div created="20200217210640344" modified="20200217210640344" title="$:/state/Excise/-1811756643/tagnew">
+<pre>yes</pre>
+</div>
 <div created="20200202174140671" modified="20200214022652044" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
@@ -9560,13 +9646,13 @@ Error message and password prompt
 <div created="20200205211656028" modified="20200211140819735" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20200202190739876" modified="20200214032918968" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20200202190739876" modified="20200217211445077" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200217152614846" list="[[Write my own package]] Contents [[Install Python packages on Windows]]" modified="20200217170836243" title="$:/StoryList">
+<div created="20200217152614846" list="Contents [[Install Python packages on Windows]]" modified="20200217211447960" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -10719,6 +10805,46 @@ import sys
 print(f&quot;This ran with {sys.version}&quot;)
 ```</pre>
 </div>
+<div created="20200217210816036" modified="20200217210816036" tags="[[Write my own package]]" title="Make 'import mypackage' work from anywhere">
+<pre>`pip install numpy` installs the `numpy` package, then any Python script in any folder on my computer can do:
+
+```python
+import numpy as np
+np.zeros((3,3))
+```
+
+Or I can do the above from the REPL:
+
+```python
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; np.zeros((3,3))
+array([[0., 0., 0.],
+       [0., 0., 0.],
+       [0., 0., 0.]])
+```
+
+I create my own packages with this same 'import from anywhere' behavior by placing them in the `site.USER_SITE` path.
+
+```python
+&gt;&gt;&gt; import site
+&gt;&gt;&gt; site.USER_SITE
+'C:\\Users\\mike\\AppData\\Roaming\\Python\\Python38\\site-packages'
+```
+
+//Multiple Python installations://
+
+The above `site.USER_SITE` is my //Windows// Python `site.USER_SITE` path.  I do not actually put my packages here. Instead, I put my packages in the `site.USER_SITE` for my //Cygwin// Python, because I need them visible to my Cygwin Vim for Python omni completion.
+
+Then to make `import mypackage` also work for my //Windows// Python, I add my //Cygwin// Python `site.USER_SITE` to my Windows `$env:PYTHONPATH`.
+
+Lastly, I make the package a git repository for sharing across computers. In this way, ''git replaces pip'' as my package manager for packages I write.
+
+* instead of `pip install mypackage`
+* I do `git clone https://github.com/sustainablelab/mypackage.git`
+* instead of `pip -U mypackage`
+* I do `git remote update; git pull`
+</pre>
+</div>
 <div created="20200202183205082" modified="20200202185144338" tags="security run-scripts" title="Permission to run scripts in PowerShell">
 <pre>Windows disables running scripts by default.
 
@@ -11456,6 +11582,21 @@ let &amp;path = &amp;path . ',' . avr_include
 &quot;
 ```</pre>
 </div>
+<div created="20200217210744847" modified="20200217210744847" tags="[[Write my own package]]" title="What is a package">
+<pre>A python script is a `.py` file with running as the intended use:
+
+```powershell
+$ python myscript.py
+```
+
+A Python package is a collection of `.py` scripts with `import` as the intended use:
+
+```python
+import mypackage
+mypackage.mymodule.foo()
+```
+</pre>
+</div>
 <div created="20200209184236158" modified="20200211142821805" tags="doc Windows powershell" title="Windows Processes">
 <pre>[[tasklist|https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/finding-the-process-id]]
 
@@ -11477,83 +11618,22 @@ services.exe                   860 Services                   0      7,012 K
 ...
 ```</pre>
 </div>
-<div created="20200217191621348" modified="20200217204758476" tags="python setup package" title="Write my own package">
+<div created="20200217191621348" modified="20200217211513374" tags="python setup package" title="Write my own package">
 <pre>! Reuse a Python script as a package
 
+* [[What is a package]]
+* [[Make 'import mypackage' work from anywhere]]
+* [['__init__.py' makes it a package]]
+* [['__main__.py' runs with 'python -m mypackage']]
+
 !! What is a package?
-A python script is a `.py` file with running as the intended use:
-
-```powershell
-$ python myscript.py
-```
-
-A Python package is a collection of `.py` scripts with `import` as the intended use:
-
-```python
-import mypackage
-mypackage.mymodule.foo()
-```
-
-!! How do I import packages I write
-`pip install numpy` installs the `numpy` package, then any Python script in any folder on my computer can do:
-
-```python
-import numpy as np
-np.zeros((3,3))
-```
-
-Or I can do the above from the REPL:
-
-```python
-&gt;&gt;&gt; import numpy as np
-&gt;&gt;&gt; np.zeros((3,3))
-array([[0., 0., 0.],
-       [0., 0., 0.],
-       [0., 0., 0.]])
-```
-
-I create my own packages with this same 'import from anywhere' behavior by placing them in the `site.USER_SITE` path.
-
-```python
-&gt;&gt;&gt; import site
-&gt;&gt;&gt; site.USER_SITE
-'C:\\Users\\mike\\AppData\\Roaming\\Python\\Python38\\site-packages'
-```
-
-//I put my packages in the `site.USER_SITE` for my Cygwin Python, because I need them visible to my Cygwin Python for Vim omni completion. Then to make the package import work for my Windows Python, I add my Cygwin Python `site.USER_SITE` to my Windows `$env:PYTHONPATH`.//
-
-I make the package a git repository for sharing across computers.
-
-* instead of `pip install mypackage`, I `git clone https://github.com/sustainablelab/mypackage.git`
-* instead of `pip -U mypackage`, I `git remote update; git pull`
-
-!! `__init__.py` makes it a package 
-
-* Create `__init__.py` in the package top-level folder
-** this makes Python identify the package as a package
-** add a `from . import mymodule` to make each module in the package available when client application does `import mypackage`
-** add a docstring at the top
-
-View the `__init__.py` docstring
-
-At the REPL:
-
-```python
-&gt;&gt;&gt; help(mypackage)
-```
-
-Or from PowerShell:
-
-```powershell
-PS&gt; python -m pydoc mypackage
-```
-
+{{What is a package}}
+!! Make `import mypackage` work from anywhere
+{{Make 'import mypackage' work from anywhere}}
+!! `__init__.py` makes it a package
+{{'__init__.py' makes it a package}}
 !! `__main__.py` runs with `python -m mypackage`
-* Create a `__main__.py` in the package top-level folder
-** `__main__.py` is what runs when package run as module with `python -m mypackage`
-** I make this an example script showing ways to use the package
-
-</pre>
+{{'__main__.py' runs with 'python -m mypackage'}}</pre>
 </div>
 
 </div>
