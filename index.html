@@ -231,6 +231,8 @@ Error message and password prompt
 
 <li>Edit a PowerShell Profile</li>
 
+<li>Git amend</li>
+
 <li>Git merge</li>
 
 <li>Git searching</li>
@@ -9562,7 +9564,7 @@ Error message and password prompt
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div list="[[TiddlyWiki GitHub Saver Beware]] Contents" title="$:/StoryList">
+<div created="20200217073214861" list="[[Git amend]] [[Git merge]] Contents" modified="20200217073214861" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9626,8 +9628,8 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200214032922933" title="$:/temp/search">
-<pre>contents</pre>
+<div created="20200202173605395" modified="20200217073212947" title="$:/temp/search">
+<pre>git config</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10061,6 +10063,13 @@ PS&gt; .$brave
 ```
 
 But it's easier to remember `brave` without the `.$` prefix. [[Make an alias instead|PowerShell alias for brave]].</pre>
+</div>
+<div created="20200217073221946" modified="20200217073345673" tags="git setup" title="Git amend">
+<pre>Make the `git commit --amend` command open Vim to edit commit messages:
+
+```bash
+git config --global core.editor &quot;vim&quot;
+```</pre>
 </div>
 <div created="20200209211239489" modified="20200209211748486" tags="git setup" title="Git merge">
 <pre>The following is copied from https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git
