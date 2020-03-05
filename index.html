@@ -10667,7 +10667,7 @@ Installing collected packages: pip
 Successfully installed pip-20.0.2
 ```</pre>
 </div>
-<div created="20200205210601762" modified="20200305222419789" tags="Windows python setup" title="Install Python packages on Windows">
+<div created="20200205210601762" modified="20200305223406897" tags="Windows python setup" title="Install Python packages on Windows">
 <pre>! Install Python package in Windows Python installation
 
 Pip often needs updating:
@@ -10732,17 +10732,23 @@ python -m pip install --upgrade pip
 **** it is used in `IPython`
 **** it is easy to install and is a vast improvement over the out-of-the-box Python REPL even without any customization
 *** `pyvim` is a partially implemented Vim clone to show case what is possible with `python-prompt-toolkit`
+*** `pypager` is a clone of the `less` GNU utility used in the `man` GNU utility -- it is like `less` but with color
+**** `pip install pypager`
+**** install in Cygwin, not in Windows PowerShell
+**** it works on Cygwin
+**** this does not work out of the box on Windows 8
 **** `pip install pyvim`
 **** install in Cygwin, not in Windows
 **** it works in both, but it looks much better in Cygwin for the same reason Vim looks much better in Cygwin
 **** not of any practical use, but it's neat to see
+** the other `prompt-toolkit` examples are not functional for me without some effort
 *** `pymux` is a `tmux` clone with extra functionality
 **** `pip install pymux`
 **** this requires v1.0 of prompt-toolkit, so I need to install this in a virtual environment if I really want to use it, otherwise the `pip install` will uninstall my `prompt-toolkit` v3.0 and install v1.0
 *** `ptterm` is the terminal emulator used in `pymux`
-*** `pypager` is a clone of the `less` GNU utility used in the `man` GNU utility
-**** `pip install pypager`
-**** this does not work out of the box on Windows 8 or on Cygwin
+**** `pip install ptterm`
+**** same issue as `pymux`: uses v1.0, not v3.0 of `prompt-toolkit`
+**** need a virtual environment to install without uninstalling v3.0
 
 ! Examples installing packages
 
