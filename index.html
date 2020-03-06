@@ -267,6 +267,8 @@ Error message and password prompt
 
 <li>PowerShell Variables</li>
 
+<li>ptpython config</li>
+
 <li>pygame documentation</li>
 
 <li>Python path for package import</li>
@@ -9652,7 +9654,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200306130258627" list="[[Install Python packages on Windows]] [[Powershell grep is called findstr]] [[Install Python on Cygwin for Vim omni-complete]]" modified="20200306141258590" title="$:/StoryList">
+<div created="20200306130258627" list="[[ptpython config]] [[Install Python packages on Windows]] [[Powershell grep is called findstr]] [[Install Python on Cygwin for Vim omni-complete]]" modified="20200306141258590" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -11197,6 +11199,40 @@ function Get-ProfileVariables {
     }
 }
 Set-Alias -Name pv -Value Get-ProfileVariables
+```</pre>
+</div>
+<div created="20200306141402429" modified="20200306150002830" tags="python setup cygwin" title="ptpython config">
+<pre>! Install `ptpython`
+Install ptpython on Cygwin using `pip`. This works without any trouble.
+
+```bash
+$ pip install ptpython
+```
+
+! Configuration
+Configuration happens in the sub-package `entry_points`, in module `run_ptpython`:
+
+`site-packages/ptpython/entry_points/run_ptpython.py`
+
+It is easiest to open this file in `Vim` and read its docstring. To access the docstring from a REPL:
+
+```python
+&gt;&gt;&gt; help(ptpython.entry_points.run_ptpython)
+```
+
+The docstring describes what to do. Here's my summary.
+
+
+!! Make a config and use it
+There is an example `config.py` file in the `ptpython` GitHub repo: https://github.com/prompt-toolkit/ptpython
+
+Copy the `config.py` file from https://github.com/prompt-toolkit/ptpython/blob/master/examples/ptpython_config/config.py
+and put it somewhere obvious like `$HOME/ptpython` or wherever dot files live.
+
+Setup `ptpython` as you like by editing this file.
+
+```bash
+$ ptpython --config-file=$HOME/ptpython/config.py
 ```</pre>
 </div>
 <div created="20200214002408060" modified="20200214032958480" tags="python pygame doc list-links package" title="pygame documentation">
