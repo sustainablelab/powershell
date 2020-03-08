@@ -9673,7 +9673,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200308222756228" list="[[Use pip in Cygwin]] Contents [[Install Python packages on Windows]]" modified="20200308223407969" title="$:/StoryList">
+<div created="20200308222756228" list="[[PowerShell alias for bash]] [[Bash alias]] Contents [[Install Python packages on Windows]]" modified="20200308230415556" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200209183803601" title="$:/temp/advancedsearch">
@@ -9737,8 +9737,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200308223359616" title="$:/temp/search">
-<pre>pip</pre>
+<div created="20200202173605395" modified="20200308230407955" title="$:/temp/search">
+<pre>bash</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -11050,8 +11050,10 @@ Unblock the `$PROFILE` with `Unblock-File`:
 PS&gt; Unblock-File $PROFILE
 ```</pre>
 </div>
-<div created="20200202191912861" modified="20200211140556345" tags="profile snippet" title="PowerShell alias for bash" type="">
-<pre>```powershell
+<div created="20200202191912861" modified="20200308235222304" tags="profile snippet" title="PowerShell alias for bash" type="">
+<pre>! Make `bash` open a mintty bash terminal
+
+```powershell
 # Microsoft.PowerShell_profile.ps1
 #
 # bash - open a Cygwin bash mintty terminal
@@ -11060,6 +11062,8 @@ Set-Alias -Name bash -Value $bash
 ```
 
 Note the alias uses the desktop shortcut `.lnk` instead of the `.exe`. 
+
+!! An alias to the `.exe` does not work
 
 This alias to the `.exe` does not work:
 
@@ -11071,7 +11075,24 @@ $bash = &quot;C:\cygwin64\bin\mintty.exe&quot;
 Set-Alias -Name bash -Value $bash
 ```
 
-It opens a mintty terminal, but it is not the Cygwin environment. None of the expected `bash` commands are recognized, not even `ls`. The window icon is a Windows DOS prompt instead of the Cygwin icon.</pre>
+It opens a mintty terminal, but it is not the Cygwin environment. None of the expected `bash` commands are recognized, not even `ls`. The window icon is a Windows DOS prompt instead of the Cygwin icon.
+
+!! Run `bash` within PowerShell
+Another option is to alias bash to `/usr/bin/bash` in the Cygwin directory. Or do not even make any alias, just //prepend// `/usr/bin` to the `env:PATH` variable:
+
+```powershell
+$env:PATH = &quot;C:\cygwin64\bin;$env:PATH&quot;
+```
+
+Now the command `bash` in PowerShell runs bash. Instead of opening a mintty terminal, the `&gt;` prompt changes to a `$` and PowerShell looks the same but it has the Cygwin POSIX layer.
+
+I do not do this because I think the `mintty` terminal looks nicer and has a better UI.
+
+!! Run `mintty` from PowerShell
+
+I like to use alias `bash`, but yet another option is to the `env:PATH` prepend just described, and then open a `mintty` terminal with the command `mintty`.
+
+This opens `/usr/bin/mintty.exe`.</pre>
 </div>
 <div created="20200202191733986" modified="20200211140627900" tags="profile snippet" title="PowerShell alias for brave">
 <pre>```powershell
@@ -11512,7 +11533,7 @@ __all__ = ['print_if_pkg_plumbing_is_ok']
 
 Lastly, test that Windows Python is able to run the script.</pre>
 </div>
-<div created="20200129142804957" modified="20200131141753379" tags="reference tiddlywiki cyginw imagemagick convert" title="Resize images" type="application/x-tiddler">
+<div created="20200129142804957" modified="20200308230345723" tags="cygwin reference tiddlywiki imagemagick convert" title="Resize images" type="application/x-tiddler">
 <pre>! Example
 
 ```bash
