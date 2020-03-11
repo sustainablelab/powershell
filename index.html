@@ -239,8 +239,6 @@ Error message and password prompt
 
 <li>Cygwin packages</li>
 
-<li>Draft of 'ptpython config'</li>
-
 <li>Edit a PowerShell Profile</li>
 
 <li>Git amend</li>
@@ -274,6 +272,8 @@ Error message and password prompt
 <li>PowerShell alias for cygwin</li>
 
 <li>PowerShell Aliases</li>
+
+<li>PowerShell colors</li>
 
 <li>Powershell grep is called findstr</li>
 
@@ -9679,7 +9679,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200311132725886" list="[[Cygwin packages]] [[ptpython config on Windows]] [[Draft of 'ptpython config']] [[Python path for package import]] [[grep Python site-packages]] Contents" modified="20200311153832485" title="$:/StoryList">
+<div created="20200311132725886" list="[[PowerShell colors]] [[Edit a PowerShell Profile]] [[Cygwin packages]] [[ptpython config on Windows]] [[ptpython config]] [[Python path for package import]] [[grep Python site-packages]] Contents" modified="20200311172349897" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9743,8 +9743,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200311153831226" title="$:/temp/search">
-<pre>cygwin packages</pre>
+<div created="20200202173605395" modified="20200311172345412" title="$:/temp/search">
+<pre>powershell</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10215,61 +10215,6 @@ Use a `function` instead of an `alias` if the intent is a piped command or more 
 ** ~~I have no reason to install the Cygwin Python package~~ install it
 ** [[Run python.exe from Cygwin]] ~~instead~~ most of the time
 *** `python.exe` is the Windows Python installation</pre>
-</div>
-<div created="20200306141402429" draft.of="ptpython config" draft.title="ptpython config" modified="20200311155328812" tags="python setup cygwin" title="Draft of 'ptpython config'">
-<pre>! Install `ptpython`
-Install ptpython on Cygwin using `pip`. This works without any trouble.
-
-```bash
-$ pip install ptpython
-```
-
-! Configuration
-Configuration happens in the sub-package `entry_points`, in module `run_ptpython`:
-
-`site-packages/ptpython/entry_points/run_ptpython.py`
-
-It is easiest to open this file in `Vim` and read its docstring. To access the docstring from a REPL:
-
-```python
-&gt;&gt;&gt; help(ptpython.entry_points.run_ptpython)
-```
-
-The docstring describes what to do. Here's my summary.
-
-
-!! Make a config and use it
-There is an example `config.py` file in the `ptpython` GitHub repo: https://github.com/prompt-toolkit/ptpython
-
-Copy the `config.py` file from https://github.com/prompt-toolkit/ptpython/blob/master/examples/ptpython_config/config.py
-and put it in `$HOME/.config/ptpython`
-
-Do not put it in `$HOME/.ptpython`. That is the legacy config directory.
-
-Setup `ptpython` as you like by editing this file.
-
-Start `ptpython` with a different config file:
-
-```bash
-$ ptpython --config-file=$HOME/.config/ptpython/config2.py
-```
-
-I put my config files here to share across machines: 
-
-https://github.com/sustainablelab/.config-ptpython
-
-No point cloning the whole repo. It's faster to download the raw content directly to wherever the config files are needed.
-
-For Cygwin:
-
-https://raw.githubusercontent.com/sustainablelab/.config-ptpython/master/config.py
-
-For Windows:
-
-
-Example downloading with `wget`:
-
-</pre>
 </div>
 <div created="20200202180241348" modified="20200213155242867" tags="profile" title="Edit a PowerShell Profile">
 <pre>Open the profile in a text editor:
@@ -11279,6 +11224,42 @@ Example:
 ** so `ls -h` then tab turns into `ls -Hidden` to view hidden files
 ** `ls -h` works as well</pre>
 </div>
+<div created="20200311172403156" modified="20200311172603431" tags="powershell profile setup" title="PowerShell colors">
+<pre>List and show the foreground colors:
+
+```powershell
+[enum]::GetValues([System.ConsoleColor]) | Foreach-Object {Write-Host $_ -ForegroundColor $_}
+```
+
+List and show the background colors:
+
+```powershell
+[enum]::GetValues([System.ConsoleColor]) | Foreach-Object {Write-Host $_ -BackgroundColor $_}
+```
+
+Both commands output this list:
+
+```
+Black
+DarkBlue
+DarkGreen
+DarkCyan
+DarkRed
+DarkMagenta
+DarkYellow
+Gray
+DarkGray
+Blue
+Green
+Cyan
+Red
+Magenta
+Yellow
+White
+```
+
+The first command colors the text. The second command colors the text's background.</pre>
+</div>
 <div created="20200208195033671" modified="20200208195427624" tags="Windows grep" title="Powershell grep is called findstr">
 <pre>PowerShell does not have `grep`.
 
@@ -11437,7 +11418,7 @@ function Get-ProfileVariables {
 Set-Alias -Name pv -Value Get-ProfileVariables
 ```</pre>
 </div>
-<div created="20200306141402429" modified="20200311153825765" tags="python setup cygwin" title="ptpython config">
+<div created="20200306141402429" modified="20200311162635966" tags="python setup cygwin" title="ptpython config">
 <pre>! Install `ptpython`
 Install ptpython on Cygwin using `pip`. This works without any trouble.
 
@@ -11476,9 +11457,23 @@ $ ptpython --config-file=$HOME/.config/ptpython/config2.py
 ```
 
 I put my config files here to share across machines: 
-https://github.com/sustainablelab/.config-ptpython/blob/master/config.py
 
-https://github.com/sustainablelab/.config-ptpython/blob/master/windows/config.py</pre>
+https://github.com/sustainablelab/.config-ptpython
+
+No point cloning the whole repo. It's faster to download the raw content directly to wherever the config files are needed.
+
+For Cygwin:
+
+https://raw.githubusercontent.com/sustainablelab/.config-ptpython/master/config.py
+
+For Windows:
+
+Example downloading with `wget`:
+
+```bash
+$ cd &quot;$(find $ptpythonw_config -printf '%h')&quot;
+$ wget https://raw.githubusercontent.com/sustainablelab/.config-ptpython/master/Windows/config.py
+```</pre>
 </div>
 <div created="20200311145732387" modified="20200311145839472" tags="reference ptpython python setup Windows" title="ptpython config on Windows">
 <pre>It is not obvious where to place the `config.py` file for `ptpython` on Windows.
