@@ -11224,7 +11224,7 @@ Example:
 ** so `ls -h` then tab turns into `ls -Hidden` to view hidden files
 ** `ls -h` works as well</pre>
 </div>
-<div created="20200311172403156" modified="20200311181540231" tags="powershell profile setup" title="PowerShell colors">
+<div created="20200311172403156" modified="20200311183655883" tags="powershell profile setup" title="PowerShell colors">
 <pre>! New
 Open PowerShell. Go to properties `Alt+Space`, `p`. Click on color tab and change colors. Click on font tab and change font.
 
@@ -11284,12 +11284,51 @@ Yellow
 White
 ```
 
-The first command colors the text. The second command colors the text's background.
+This colors the console text output &quot;Green&quot;, but it has no effect on the syntax highlighted console input text (the text I enter).
+
+```powershell
+$Host.UI.RawUI.ForegroundColor = &quot;Green&quot;
+```
+
+This colors the background for all console text except error messages and a few other output streams.
 
 ```powershell
 $Host.UI.RawUI.BackgroundColor = &quot;Black&quot;
-$Host.UI.RawUI.ForegroundColor = &quot;Green&quot;
-```</pre>
+```
+
+Error messsages default to a black background. Change that with this:
+
+```powershell
+$host.PrivateData.ErrorBackgroundColor = &quot;DarkMagenta&quot;
+```
+
+Discover the other output stream colors set in `PrivateData` by tab-completing `$host.PrivateData.`
+
+The challenge is picking a background color that never hides a text input color.
+
+The default background is &quot;DarkMagenta&quot; (that's why the above example uses it as the background for error output).
+
+Or I can mess with the syntax highlighting color scheme.
+
+These are the token colors:
+
+https://4sysops.com/wiki/change-powershell-console-syntax-highlighting-colors-of-psreadline/
+
+From the above link:
+
+```powershell
+&gt; Get-PSReadlineOption
+```
+
+This returns all the options. Narrow it down by color:
+
+```powershell
+&gt; Get-PSReadlineOption | Select *color
+```
+
+It's actually easier for me //not// to narrow down the selection, otherwise the colors printed after the `SelectionColor` are obscured by a white background.
+
+Unfortunately, I do not have the `-TokenKind` parameter for some reason, so I cannot set these colors.</pre>
 </div>
 <div created="20200208195033671" modified="20200208195427624" tags="Windows grep" title="Powershell grep is called findstr">
 <pre>PowerShell does not have `grep`.
