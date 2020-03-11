@@ -10184,7 +10184,7 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200311154339974" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200311154645518" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>* git
 ** `clone`
 ** `pull`
@@ -10198,6 +10198,10 @@ Use a `function` instead of an `alias` if the intent is a piped command or more 
 ** download files from the web
 * man-pages-posix
 ** documentation for everything
+** typical use:
+*** `man wget &gt; ~/read-the-docs/wget.man`
+*** `vim ~/read-the-docs/wget.man`
+** besides being easier to read documentation in Vim, the `git` documentation is set up for tag-jumping when viewed in Vim
 * make
 ** build anything by declaring dependencies and letting the OS figure out the rest
 ** I usually use this for building C projects
