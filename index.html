@@ -247,6 +247,8 @@ Error message and password prompt
 
 <li>Git searching</li>
 
+<li>grep Python site-packages</li>
+
 <li>Image manipulation</li>
 
 <li>ImageMagick documentation</li>
@@ -278,6 +280,8 @@ Error message and password prompt
 <li>PowerShell Variables</li>
 
 <li>ptpython config</li>
+
+<li>ptpython config on Windows</li>
 
 <li>pygame documentation</li>
 
@@ -9673,7 +9677,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200309120547942" list="[[Use pip in Cygwin]] Contents" modified="20200309120609630" title="$:/StoryList">
+<div created="20200311132725886" list="[[Cygwin packages]] [[ptpython config on Windows]] [[ptpython config]] [[Python path for package import]] [[grep Python site-packages]] Contents" modified="20200311153832485" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9737,8 +9741,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200309120547939" title="$:/temp/search">
-<pre></pre>
+<div created="20200202173605395" modified="20200311153831226" title="$:/temp/search">
+<pre>cygwin packages</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10180,18 +10184,31 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200205212627044" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200311154339974" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>* git
+** `clone`
+** `pull`
+** `status`
+** `remote update`
 * vim
+** `:vimgrep`
 * tree
+** `tree -L2 some_path` -- prints a pretty view of `some_path` two levels deep
+* wget
+** download files from the web
+* man-pages-posix
+** documentation for everything
 * make
+** build anything by declaring dependencies and letting the OS figure out the rest
+** I usually use this for building C projects
 * gcc
 ** latest stable release:
 *** version 7.5, released November 2019
 *** version 7.4 is closest matching Cygwin package
 * python
-** I have no reason to install the Cygwin Python package
-** [[Run python.exe from Cygwin]] instead</pre>
+** ~~I have no reason to install the Cygwin Python package~~ install it
+** [[Run python.exe from Cygwin]] ~~instead~~ most of the time
+*** `python.exe` is the Windows Python installation</pre>
 </div>
 <div created="20200202180241348" modified="20200213155242867" tags="profile" title="Edit a PowerShell Profile">
 <pre>Open the profile in a text editor:
@@ -10594,6 +10611,49 @@ In Vim:
 
 ! Conclusion
 Sure enough, there was another tiddler, unrelated to `user-site` that had content which had been lost somehow. Oy! I think, two hours later, I've recovered everything now.  And now I know the power of Git and Vimdiff to quickly find content changes in the version control history.</pre>
+</div>
+<div created="20200311132630037" modified="20200311145740717" tags="reference python grep" title="grep Python site-packages">
+<pre>''Look directly in source code when documentation is missing or inadequate. ''
+
+With `grep`, this is faster and more educational than searching on //StackOverflow//.
+
+! Shortcut
+Make it as easy as possible for me to get to the source code.
+
+`export` site-packages path variables in my `.bashrc`. I have three site-packages folders:
+
+* Windows Python installation
+* Cygwin Python installation
+* `USERSITE` site-packages
+
+Of course there are other Python installations on my computer as well, like the inevitable Python2 dependencies, and those have site-packages folders too. But I just ignore them. I have no reason to muck around in the Python source files for those installations.
+
+The `USERSITE` is primarily for packages written by me or my friends. But it's also handy for packages I clone for autocomplete visibility in Vim.
+
+// If I cannot install via pip or the Cygwin package manager, I clone the package in my `USERSITE`. Cygwin `pip install` fails for some packages. Even if I `pip install` the package on my Windows Python and only intend to run Windows Python from Cygwin, I still like to install the package on Cygwin to make it visible to Vim's omnicomplete function for Python filetypes.//
+
+```bash
+# ~/.bashrc
+
+# Cygwin Python site-packages folder
+pkgpyc=&quot;/usr/lib/python3.7/site-packages&quot;
+# Make accessible in Vim as $pkgpyc
+export pkgpyc
+
+# Windows Python site-packages folder
+pkgpyw=&quot;/cygdrive/c/Users/mike/AppData/Local/Programs/Python/Python38/Lib/site-packages&quot;
+# Make accessible in Vim as $pkgpyw
+export pkgpyw
+
+# Python USERSITE folder
+pkg=$HOME/.local/lib/python3.7/site-packages/
+# Make accessible in Vim as $pkg
+export pkg
+```
+
+! Example
+
+{{ptpython config on Windows}}</pre>
 </div>
 <div created="20200131141142082" modified="20200131141649924" tags="convert imagemagick reference tiddlywiki listlinks" title="Image manipulation" type="application/x-tiddler">
 <pre>&lt;&lt;list-links &quot;[tag[imagemagick]!tag[listlinks]]&quot;&gt;&gt;</pre>
@@ -11316,7 +11376,7 @@ function Get-ProfileVariables {
 Set-Alias -Name pv -Value Get-ProfileVariables
 ```</pre>
 </div>
-<div created="20200306141402429" modified="20200306150723630" tags="python setup cygwin" title="ptpython config">
+<div created="20200306141402429" modified="20200311153825765" tags="python setup cygwin" title="ptpython config">
 <pre>! Install `ptpython`
 Install ptpython on Cygwin using `pip`. This works without any trouble.
 
@@ -11342,15 +11402,191 @@ The docstring describes what to do. Here's my summary.
 There is an example `config.py` file in the `ptpython` GitHub repo: https://github.com/prompt-toolkit/ptpython
 
 Copy the `config.py` file from https://github.com/prompt-toolkit/ptpython/blob/master/examples/ptpython_config/config.py
-and put it somewhere obvious like `$HOME/.ptpython` or wherever dot files live.
+and put it in `$HOME/.config/ptpython`
+
+Do not put it in `$HOME/.ptpython`. That is the legacy config directory.
 
 Setup `ptpython` as you like by editing this file.
 
+Start `ptpython` with a different config file:
+
 ```bash
-$ ptpython --config-file=$HOME/.ptpython/config.py
+$ ptpython --config-file=$HOME/.config/ptpython/config2.py
 ```
 
-I put my config file here to share across machines: https://github.com/sustainablelab/.ptpython/blob/master/config.py</pre>
+I put my config files here to share across machines: 
+https://github.com/sustainablelab/.config-ptpython/blob/master/config.py
+
+https://github.com/sustainablelab/.config-ptpython/blob/master/windows/config.py</pre>
+</div>
+<div created="20200311145732387" modified="20200311145839472" tags="reference ptpython python setup Windows" title="ptpython config on Windows">
+<pre>It is not obvious where to place the `config.py` file for `ptpython` on Windows.
+
+Go to the `ptpython` source files:
+
+```vim
+:cd $pkgpyw/ptpython
+```
+
+Grep for `config`:
+
+```vim
+:vimgrep /config/ **/*.py
+```
+
+//The `**` makes the search dive into subfolders. `*.py` looks in all Python files.//
+
+''72 results!''
+
+Quick hop forward through results with Alt-/ and after a few hops I see I should be searching for `config_file`...
+
+```vim
+:vimgrep /config_file/ **/*.py
+```
+
+''22 results''
+
+On results 4 of 22 I find what I'm looking for:
+
+```python
+    # Determine config file to be used.
+    config_file = os.path.join(config_dir, &quot;config.py&quot;)
+    legacy_config_file = os.path.join(os.path.expanduser(&quot;~/.ptpython&quot;), &quot;config.py&quot;)
+```
+
+The intended path is the `config_dir`. The legacy path is `~/.ptpython`. //Legacy// is programmer-speak for //the old-way maintained for backwards compatability//. I want to use `config_dir`, not legacy path.
+
+Vim keybinding `gd` with my cursor on the word `config_dir` takes me to its definition in the current file.
+
+```python
+config_dir = appdirs.user_config_dir(&quot;ptpython&quot;, &quot;prompt_toolkit&quot;)
+```
+
+`user_config_dir` probably shows how `config_dir` is created.
+
+`gd` on `appdirs`:
+
+```python
+import appdirs
+```
+
+It's a Python standard module `ptpython` depends on.
+
+Vim keybinding `gf` on `appdirs` opens the module, then `/def user_config_dir` searches for the function definition.
+
+```python
+    if system in [&quot;win32&quot;, &quot;darwin&quot;]:
+        path = user_data_dir(appname, appauthor, None, roaming)
+```
+
+`gd` on `user_data_dir`.... no wait, I am diving too far down. I should have stopped when I got here:
+
+```python
+config_dir = appdirs.user_config_dir(&quot;ptpython&quot;, &quot;prompt_toolkit&quot;)
+```
+
+This call is all I need. Try it myself at the REPL and see what I get.
+
+```python
+&gt;&gt;&gt; import appdirs
+&gt;&gt;&gt; appdirs.user_config_dir(&quot;ptpython&quot;,&quot;prompt_toolkit&quot;)
+'C:\\Users\\username\\AppData\\Local\\prompt_toolkit\\ptpython'
+```
+
+There it is. On Windows, this is the path is for the ptpython config.py file.
+
+Yep, Windows is annoyingly complicated.
+
+On Cygwin the path is straightforward: `~/.config/ptpython/config.py`
+
+```powershell
+&gt; cp C:\cygwin64\home\username\.config\ptpython\config.py C:\Users\username\AppData\Local\prompt_toolkit\ptpython\ 
+```
+
+Now I'll want to edit this quickly in Vim without having to hunt it down again, so back to my `.bashrc`:
+
+```bash
+# ~/.bashrc
+
+# Window ptpython config file
+ptpythonw_config=&quot;/cygdrive/c/Users/mike/AppData/Local/prompt_toolkit/ptpython/config.py&quot;
+# Make accessible in Vim as $ptpythonw_config
+export ptpythonw_config
+```
+
+I may as well do this for my Cygwin installation too, even though it's dead-obvious where it is:
+
+```bash
+# ~/.bashrc
+
+
+# Cygwin ptpython config file
+ptpythonc_config=$HOME/.config/ptpython/config.py
+# Make accessible in Vim as $ptpythonc_config
+export ptpythonc_config
+```
+
+Edit the Windows ptpython config:
+
+```bash
+$ vim $ptpythonw_config
+```
+
+I put all of my config below, erasing the comment lines. I added a `# !` above lines I think are important. Read the `config` file to see the comments for documentation on what each setting does. This is the best (only?) documentation on the settings.
+
+```python
+# !
+repl.show_signature = True
+# !
+repl.show_docstring = True
+repl.show_meta_enter_message = True
+# !
+repl.completion_visualisation = CompletionVisualisation.MULTI_COLUMN
+repl.completion_menu_scroll_offset = 0
+repl.show_line_numbers = True
+repl.show_status_bar = True
+repl.show_sidebar_help = True
+repl.swap_light_and_dark = False
+# !
+repl.highlight_matching_parenthesis = True
+repl.wrap_lines = True
+repl.enable_mouse_support = True
+# !
+repl.complete_while_typing = True
+repl.enable_fuzzy_completion = False
+repl.enable_dictionary_completion = False
+# !
+repl.vi_mode = True
+repl.paste_mode = False
+# !
+repl.prompt_style = &quot;classic&quot;  # 'classic' or 'ipython'
+repl.insert_blank_line_after_output = False
+repl.enable_history_search = False
+# !
+repl.enable_auto_suggest = True
+repl.enable_open_in_editor = True
+repl.enable_system_bindings = True
+repl.confirm_exit = True
+repl.enable_input_validation = True
+# !
+repl.use_code_colorscheme(&quot;native&quot;)
+repl.color_depth = &quot;DEPTH_8_BIT&quot;  # The default, 256 colors.
+# !
+repl.enable_syntax_highlighting = True
+```
+
+! That legacy path...
+The call to `os.path.expanduser('~')` expands to the `$HOME` variable on Windows:
+
+```python
+&gt;&gt;&gt; os.path.expanduser('~')
+'C:\\Users\\username'
+```
+
+```powershell
+&gt; echo $HOME
+C:\Users\username
+```</pre>
 </div>
 <div created="20200214002408060" modified="20200214032958480" tags="python pygame doc list-links package" title="pygame documentation">
 <pre>&lt;&lt;list-links &quot;[tag[doc]tag[pygame]!tag[list-links]]&quot;&gt;&gt;</pre>
