@@ -9679,7 +9679,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200311132725886" list="[[PowerShell colors]] [[Edit a PowerShell Profile]] [[Cygwin packages]] [[ptpython config on Windows]] [[ptpython config]] [[Python path for package import]] [[grep Python site-packages]] Contents" modified="20200311172349897" title="$:/StoryList">
+<div created="20200311132725886" list="[[PowerShell Variables]] [[PowerShell colors]] [[Edit a PowerShell Profile]] [[Cygwin packages]] [[ptpython config on Windows]] [[ptpython config]] [[Python path for package import]] [[grep Python site-packages]] Contents" modified="20200311183736639" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9743,8 +9743,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200311172345412" title="$:/temp/search">
-<pre>powershell</pre>
+<div created="20200202173605395" modified="20200311183732303" title="$:/temp/search">
+<pre>powershell version</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -11375,7 +11375,7 @@ ls : Cannot find path
 ```
 </pre>
 </div>
-<div created="20200202185934789" modified="20200211152001874" tags="powershell doc" title="PowerShell Variables">
+<div created="20200202185934789" modified="20200311184137706" tags="powershell doc" title="PowerShell Variables">
 <pre>[[variables|https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables?view=powershell-7#working-with-variables]]
 
 List all variables:
@@ -11413,6 +11413,20 @@ PS&gt; gv pshome
 Name                           Value                                                         
 ----                           -----                                                         
 PSHOME                         C:\Windows\System32\WindowsPowerShell\v1.0                    
+```
+
+Table variables use dot notation:
+
+```powershell
+&gt; gv PSVersionTable
+Name                           Value
+----                           -----
+PSVersionTable                 {PSVersion, PSEdition, PSCompatibleVersions, Bu...
+
+&gt; $PSVersionTable.PSVersion
+Major  Minor  Build  Revision
+-----  -----  -----  --------
+5      1      18362  628
 ```
 
 Exclude system variables from the list:
