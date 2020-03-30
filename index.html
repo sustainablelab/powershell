@@ -231,6 +231,8 @@ Error message and password prompt
 
 <li>Bash variables</li>
 
+<li>Check SHA sum</li>
+
 <li>Contents</li>
 
 <li>Convert block diagram photos</li>
@@ -9681,7 +9683,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200312231544324" list="[[Bash environment variables]] [[Add environment variables to the PowerShell Profile]] [[Make 'import mypackage' work from anywhere]] [[Git searching]] [[Bash variables]] [[Install Python on Cygwin for Vim omni-complete]] Contents" modified="20200312235526607" title="$:/StoryList">
+<div list="[[Check SHA sum]] Contents" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9745,8 +9747,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200312235454673" title="$:/temp/search">
-<pre>pythonpath</pre>
+<div created="20200202173605395" modified="20200330175745556" title="$:/temp/search">
+<pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10007,6 +10009,84 @@ Use app as `$app`, for example:
 $ echo $app
 $ cd $app
 ```</pre>
+</div>
+<div created="20200330175748043" modified="20200330175914836" tags="reference security" title="Check SHA sum">
+<pre>Verify software was not tampered with. The two methods I've come across are PGP and the SHA sum check.
+
+! Example: //Windirstat//
+
+''Windirstat'' visualizes hard drive usage.
+
+I need to know what is taking up the most space. I'd rather erase a few big files I don't need than spend time hunting through thousands of tiny files. Windirstat makes it easy to jump straight to the biggest files.
+
+Homepage:
+
+https://windirstat.net/
+
+
+Download page:
+
+https://windirstat.net/download.html
+
+The ''actual download links'' on this page go to download servers hosted by ''independent organizations'' (FossHub, SourceForge, Triple). 
+
+The ''author of Windirstat'' provides a //hash// of the downloaded file:
+
+&lt;&lt;&lt;
+The hash of the setup file is SHA1: 6fa92dd2ca691c11dfbfc0a239e34369897a7fab.
+&lt;&lt;&lt;
+
+The idea is that I download the setup file from SourceFourge or wherever. But //before I run the setup// I generate a `SHA1` hash and check that it matches the one above from the author of ''Windirstat''.
+
+I generate the `SHA1` hash and do a //diff// from ''bash''.
+
+Since I download the Windirstat setup file to the usual Windows //Downloads// folder, I have a shortcut in my `.bashrc`:
+
+```bash
+# .bashrc
+Downloads=/cygdrive/c/Users/username/Downloads/
+export Downloads
+```
+
+I have a throw-away directory in my Cygwin home folder for checking hashes:
+
+```bash
+$ mkdir ~/check-sha
+```
+
+Copy the `SHA1` from the ''Windirstat'' website:
+
+&lt;&lt;&lt;
+6fa92dd2ca691c11dfbfc0a239e34369897a7fab.
+&lt;&lt;&lt;
+
+Open Vim on a new file to paste the `SHA1` into:
+
+```bash
+$ vim ~/check-sha/windirstat-sha1
+```
+
+And paste:
+
+```vim
+&quot;+p
+```
+
+Run `SHA1` on the downloaded file and output to another file in the `check-sha` folder:
+
+```bash
+$ sha1sum.exe windirstat1_1_2_setup.exe &gt; ~/check-sha/windirstat-sha1-on-download
+```
+
+Diff the two files with Vim:
+
+```bash
+$ vimdiff windirstat-sha1 windirstat-sha1-on-download
+```
+
+Any differences are color-highlighted. Instead of carefully examining the SHA1 hash, just look for color:
+
+[img[img/screenshot-vimdiff-sha1.PNG]]</pre>
 </div>
 <div created="20200202180407251" modified="20200214033247050" tags="profile list-links" title="Contents">
 <pre>My notes about the PowerShell Profile
