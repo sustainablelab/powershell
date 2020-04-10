@@ -241,6 +241,8 @@ Error message and password prompt
 
 <li>Customize bash commands</li>
 
+<li>cygpath examples</li>
+
 <li>Cygwin packages</li>
 
 <li>Edit a PowerShell Profile</li>
@@ -9683,7 +9685,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200331181507786" list="[[Cygwin packages]] Contents" modified="20200331181507786" title="$:/StoryList">
+<div list="[[cygpath examples]] Contents" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -10296,6 +10298,70 @@ For example `lsfi ~` should list the files in the home directory, instead, it li
 This happens because the alias does a simple substitution. Any arguments passed to `ls`, like the directory name or any flags, end up //at the end of the command//, i.e., after the text substitution.
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
+</div>
+<div created="20200410163050488" modified="20200410171601019" tags="snippet bash cygpath" title="cygpath examples">
+<pre>! Summary
+
+`cygpath` is a utility for expressing paths as ''POSIX'' and ''Windows'' path styles.
+
+Common use case:
+
+* use ''POSIX'' paths in `~/.bashrc`
+* use ''Windows'' paths in `$PROFILE`
+
+
+! Useful flags
+
+* `-w`, `--windows`
+** print with ''Windows'' path style
+* `-a`, `--absolute`
+** print ''absolute'' path (default is ''relative'')
+
+! Examples
+
+Get the `pwd` as a Windows path.
+
+!! ''Windows'' `pwd` //method 1//
+
+```bash
+$(cygpath -w $(pwd))
+```
+
+//Example://
+
+```bash
+$ echo $(cygpath -w $(pwd))
+
+C:\Program Files (x86)\Atmel\Studio\7.0\packs\atmel
+```
+
+// `$(pwd)` is necessary to evaluate variable `pwd` ''before'' passing as an argument to cypgath.//
+
+!! ''Windows'' `pwd` //method 2//
+
+```bash
+$(cygpath -wa .)
+```
+
+//Explanation://
+
+`.` is the `pwd`, but `cygpath` defaults to ''relative'' paths:
+
+```bash
+$ echo $(cygpath -w .)
+.
+```
+
+Add the `-a` flag for the ''absolute'' path:
+
+```bash
+$ echo $(cygpath -wa .)
+
+C:\Program Files (x86)\Atmel\Studio\7.0\packs\atmel
+```
+
+
+</pre>
 </div>
 <div created="20200205212554585" modified="20200331181516696" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>* git
