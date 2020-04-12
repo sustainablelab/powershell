@@ -10297,50 +10297,71 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200412202939289" tags="toolchain setup cygwin" title="Cygwin packages">
-<pre>* git
-** `clone`
-** `pull`
-** `status`
-** `remote update`
-* vim
-** `:vimgrep`
-* tree
-** `tree -L2 some_path` -- prints a pretty view of `some_path` two levels deep
-* wget
-** download files from the web
-* man-pages-posix
-** documentation for everything
-** typical use:
-*** `man wget &gt; ~/read-the-docs/wget.man`
-*** `vim ~/read-the-docs/wget.man`
-** besides being easier to read documentation in Vim, the `git` documentation is set up for tag-jumping when viewed in Vim
-* make
+<div created="20200205212554585" modified="20200412205241822" tags="toolchain setup cygwin" title="Cygwin packages">
+<pre>! git
+* `clone`
+* `pull`
+* `status`
+* `remote update`
+! vim
+* for file diffs:
+** `vimdiff file1 file2`
+** `;dt` or `:diffthis` (put active file in diff mode)
+** `;do` or `:diffoff` (turn diff off for active file)
+* for grep with hopping (uses Vim's quickfix window)
+**  `:vimgrep` then `:cnext`, `:cprevious`
+! tree
+* `tree -L2 some_path` -- prints a pretty view of `some_path` two levels deep
+! wget
+* download files from the web
+! man-pages-posix
+* documentation for everything
+* typical use:
+** `man wget &gt; ~/read-the-docs/wget.man`
+** `vim ~/read-the-docs/wget.man`
+* some documentation supports tag-jumping in Vim, //example:// `git` documentation
+! make
 ** build anything by declaring dependencies and letting the OS figure out the rest
 ** I usually use this for building C projects
-* gcc
-** latest stable release:
-*** version 7.5, released November 2019
-*** version 7.4 is closest matching Cygwin package
-* python
-** ~~I have no reason to install the Cygwin Python package~~ install it for Vim's sake
-** But for most work, like development with pygame, [[Run python.exe from Cygwin]]
-*** `python.exe` is the Windows Python installation
-*** Vim shortcut for this is `;sw` //pneumonic:// ''s''ource with ''w''indows Python
-* imagemagick
-** image manipulation utilities
-** `convert`
-** `identify`
-** see [[ImageMagick documentation]]
-* ctags
-* cscope
+! gcc
+* latest stable release:
+** version 7.5, released November 2019
+** version 7.4 is closest matching Cygwin package
+! python
+* ~~I have no reason to install the Cygwin Python package~~ install it for Vim's sake
+* But for most work, like development with pygame, [[Run python.exe from Cygwin]]
+** `python.exe` is the Windows Python installation
+** Vim shortcut for this is `;sw` //pneumonic:// ''s''ource with ''w''indows Python
+! imagemagick
+* image manipulation utilities
+* `convert`
+* `identify`
+* see [[ImageMagick documentation]]
+! ctags
+* search Cygwin for package `ctags`
+* after installation, check it is in `/usr/bin`:
+
+```bash
+$ whereis ctags
+ctags: /usr/bin/ctags.exe 
+```
+
+! cscope
+* search Cygwin for package `cscope`
+* after installation, check it is in `/usr/bin`:
+
+```bash
+$ whereis cscope
+cscope: /usr/bin/cscope.exe 
+```
 
 ! Utilities to replace Windows stuff
 
 * pdfgrep
 ** Command-line utility for searching text in PDFs
 * xpdf
-** An open-source viewer for Portable Document Format (PDF) files</pre>
+** An open-source viewer for Portable Document Format (PDF) files
+</pre>
 </div>
 <div created="20200202180241348" modified="20200213155242867" tags="profile" title="Edit a PowerShell Profile">
 <pre>Open the profile in a text editor:
