@@ -10299,23 +10299,57 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200414161602157" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200414162359360" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! gnupg2
 * GNU version of PGP
 * `$ which gpg2`
 * `$ gpg2 --help`
-* gnupg2 //should// be part of the base installation, but it is not
-* use this to verify signatures in the future
-* there is a chicken-and-egg problem verifying Cygwin setup itself, but at least if the initial download is valid, this utility lets you check the signature on future downloads when you update the Cygwin setup
 
-* Download:
-** pubring.asc
-** setup-x86_64.exe.sig
-** setup-x86_64.exe
+!! Use `gpg` to verify Cygwin Setup
+
+* gnupg2 //should// be part of the base Cygwin installation, but it is not
+* use this to verify signatures
+
+This is a //chicken-and-egg// problem:
+
+* need Cygwin to get gpg2
+* need gpg2 to verify Cygwin setup
+
+At least if the initial download is valid, check the signature on future downloads when updating the Cygwin setup. Cygwin setup is both the installer for Cygwin and its packge manager)
+
+!! Use `gpg` to verify Cygwin Setup
+
+ Download:
+
+* `pubring.asc`
+** https://cygwin.com/key/pubring.asc
+* `setup-x86_64.exe.sig`
+** https://cygwin.com/setup-x86_64.exe.sig
+* `setup-x86_64.exe`
+** https://cygwin.com/setup-x86_64.exe
+
+Import the Cygwin keys and use them to verify the signature of the setup.exe:
 
 ```
 $ gpg2 --import pubring.asc
 $ gpg2 --verify setup-x86_64.exe.sig setup-x86_64.exe
+```
+
+//Expected output://
+
+```
+gpg: Signature made Sat, Mar 21, 2020  1:35:25 PM EDT
+gpg:                using DSA key 1169DF9F22734F743AA59232A9A262FF676041BA
+gpg: Good signature from &quot;Cygwin &lt;cygwin@cygwin.com&gt;&quot; [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 1169 DF9F 2273 4F74 3AA5  9232 A9A2 62FF 6760 41BA
+gpg: Signature made Sat, Mar 21, 2020  1:35:25 PM EDT
+gpg:                using RSA key 56405CF6FCC81574682A5D561A698DE9E2E56300
+gpg: Good signature from &quot;Cygwin &lt;cygwin@cygwin.com&gt;&quot; [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 5640 5CF6 FCC8 1574 682A  5D56 1A69 8DE9 E2E5 6300
 ```
 
 ! git
