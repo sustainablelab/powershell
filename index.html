@@ -10303,7 +10303,7 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200414165021904" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200414165323876" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! Install Cygwin and Base Packages
 
 Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
@@ -10339,8 +10339,13 @@ Now make `apt-cyg` usable as an exefcutable by installing `apt-cyg` in `/bin`
 ```
 $ install apt-cyg /bin
 ```
+
+If permission is denied, launch PowerShell as an Administor, then from PowerShell launch bash, and try again.
+
+!! Use `apt-cyg` to install `lpass`
 The lastpass command line tool requires `apt-cyg`. The package is not available through the GUI package manager.
 
+!! Use GUI first
 Even to use `apt-cyg`, it is good to install some additional packages through the GUI. At a minimum, install `lynx` and `gnupg2`.
 
 ''The rest of this document lists additional packages I install after the base installation.''
