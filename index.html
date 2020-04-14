@@ -10303,7 +10303,7 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200414171940889" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200414173550868" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! Install Cygwin and Base Packages
 
 Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
@@ -10354,7 +10354,7 @@ This is complex because `lpass` is built from source on Cygwin. As the first ste
 Install the dependencies for building `lpass`
 
 ```
-$ apt-cyg install wget make cmake gcc-core gcc-g++ openssl-devel libcurl-devel libxml2-devel libiconv-devel cygutils-extra
+$ apt-cyg install wget make cmake gcc-core gcc-g++ openssl-devel libcurl-devel libxml2-devel libiconv-devel cygutils-extra asciidoc
 ```
 
 This is a nice advantage over using the Cygwin GUI package manager. ''All packages are installed in one invocation.''
@@ -10388,11 +10388,18 @@ Install:
 $ make install
 ```
 
+Build documentation:
+
+```
+$ make install-doc
+```
+
 Run from any directory, with or without administrator priveleges:
 
 ```
 $ lpass
 ```
+
 
 !!! `apt-cyg` commands
 
