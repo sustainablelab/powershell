@@ -10303,7 +10303,7 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200414173550868" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200414181430945" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! Install Cygwin and Base Packages
 
 Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
@@ -10400,6 +10400,43 @@ Run from any directory, with or without administrator priveleges:
 $ lpass
 ```
 
+!!! Use `lpass`
+
+There is a one-hour timeout. This persists across bash sessions, so exiting bash and opening a new bash session does not logout.
+
+For first time login (or after the timeout):
+
+```
+$ lpass login USERNAME
+```
+
+After that, copy a password to the clipboard:
+
+```
+$ lpass show -c SITENAME
+```
+
+Show a password at the terminal:
+
+```
+$ lpass show -p SITENAME
+```
+
+Combine flags to show password //and// copy to clipboard:
+
+```
+$ lpass show -cp SITENAME
+```
+
+Show password seems dumb, but this is the main point of installing `lpass`. Now scripts can automatically enter LastPass passwords using the show command.
+
+For example, a bash script evaluates the invocation and echoes the results:
+
+```
+$ echo -n $(lpass show -p github.com)
+```
+
+//The -n suppresses any trailing newline resulting from the evaluation//
 
 !!! `apt-cyg` commands
 
