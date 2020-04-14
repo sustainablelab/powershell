@@ -10303,7 +10303,7 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200414170535513" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200414171940889" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! Install Cygwin and Base Packages
 
 Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
@@ -10349,6 +10349,8 @@ The lastpass command line tool requires `apt-cyg`. The package is not available 
 
 //Example using `apt-cyg` to install `lpass`://
 
+This is complex because `lpass` is built from source on Cygwin. As the first step shows, using `apt-cyg` is the easy part. `lpass` is not a Cygwin package. `apt-cyg` is simply a way to quickly get all the necessary dependencies.
+
 Install the dependencies for building `lpass`
 
 ```
@@ -10357,7 +10359,94 @@ $ apt-cyg install wget make cmake gcc-core gcc-g++ openssl-devel libcurl-devel l
 
 This is a nice advantage over using the Cygwin GUI package manager. ''All packages are installed in one invocation.''
 
-`apt-cyg` also recognizes if a package is already installed, even if it was installed with the GUI package manager, so there is ''no need to edit the list'' to omit already-installed packages.
+`apt-cyg` cooperates with the GUI package manager:
+
+* `apt-cyg` recognizes if a package is already installed, even if it was installed with the GUI package manager, so there is ''no need to edit the list'' to omit already-installed packages.
+
+* `apt-cyg` downloads packages from the same file server last used by the Cygwin GUI package manger.
+
+!!! Build `lpass`
+
+Download the source:
+
+```
+$ git clone https://github.com/lastpass/lastpass-cli.git
+```
+
+//Switch to a session with administrator privileges before the build and install.//
+
+Build:
+
+```
+$ cd lastpass-cli/
+$ make
+```
+
+Install:
+
+```
+$ make install
+```
+
+Run from any directory, with or without administrator priveleges:
+
+```
+$ lpass
+```
+
+!!! `apt-cyg` commands
+
+The following was copied from the `apt-cyg` GitHub repository: https://github.com/transcode-open/apt-cyg#operations
+
+
+&lt;&lt;&lt;
+install
+  Install package(s).
+
+remove
+  Remove package(s) from the system.
+
+update
+  Download a fresh copy of the master package list (setup.ini) from the
+  server defined in setup.rc.
+
+download
+  Retrieve package(s) from the server, but do not install/upgrade anything.
+
+show
+  Display information on given package(s).
+
+depends
+  Produce a dependency tree for a package.
+
+rdepends
+  Produce a tree of packages that depend on the named package.
+
+list
+  Search each locally-installed package for names that match regexp. If no
+  package names are provided in the command line, all installed packages will
+  be queried.
+
+listall
+  This will search each package in the master package list (setup.ini) for
+  names that match regexp.
+
+category
+  Display all packages that are members of a named category.
+
+listfiles
+  List all files owned by a given package. Multiple packages can be specified
+  on the command line.
+
+search
+  Search for downloaded packages that own the specified file(s). The path can
+  be relative or absolute, and one or more files can be specified.
+
+searchall
+  Search cygwin.com to retrieve file information about packages. The provided
+  target is considered to be a filename and searchall will return the
+  package(s) which contain this file.
+&lt;&lt;&lt;
 
 !! Use GUI package manager first
 Even to use `apt-cyg`, it is good to install some additional packages through the GUI. At a minimum, install `lynx` and `gnupg2`.
