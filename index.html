@@ -10303,7 +10303,7 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200414163738619" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200414164631233" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! Install Cygwin and Base Packages
 
 Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
@@ -10319,12 +10319,36 @@ Alternatively, `apt-cyg` is a command line version of the Cygwin package manager
 
 https://github.com/transcode-open/apt-cyg
 
+To install `apt-cyg`:
+
+* install `lynx` (just a text-based web-browser)
+* use `lynx` to copy `apt-cyg` to a file
+* install `apt-cyg` in `/bin`
+
+```
+$ lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg &gt; apt-cyg
+$ install apt-cyg /bin
+```
 The lastpass command line tool requires `apt-cyg`. The package is not available through the GUI package manager.
+
+Even to use `apt-cyg`, it is good to install some additional packages through the GUI. At a minimum, install `lynx` and `gnupg2`.
 
 ''The rest of this document lists additional packages I install after the base installation.''
 
+! lynx
+* text-based web browser
+
+Example:
+
+```
+$ lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg &gt; apt-cyg
+```
+
 ! gnupg2
-* GNU version of PGP
+* Latest GNU version of PGP
+
+After installing package, check `gpg2` is available:
+
 * `$ which gpg2`
 * `$ gpg2 --help`
 
