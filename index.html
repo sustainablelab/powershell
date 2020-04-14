@@ -10305,7 +10305,7 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200414214619877" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200414215737426" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! Install Cygwin and Base Packages
 
 Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
@@ -10451,6 +10451,30 @@ gpg: Good signature from &quot;Cygwin &lt;cygwin@cygwin.com&gt;&quot; [unknown]
 gpg: WARNING: This key is not certified with a trusted signature!
 gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: 5640 5CF6 FCC8 1574 682A  5D56 1A69 8DE9 E2E5 6300
+```
+
+This is good. It seems to me like the check failed, particularly the line ''There is no indication that the signature belongs to the owner''. But this is actually the good result.
+
+I have a copy of the `cygwin@cygwin.com` key, and the signature is valid -- ''Good signature from &quot;Cygwin&lt;cygwin@cygwin.com&gt;&quot;''
+
+The reason for the scary message is that I have not marked the keys as trusted.
+
+Compare the fingerprints that are shown to trusted fingerprints. The fingerprint is at the end of the message. Ideally, the trusted fingerprint is delivered in person, but in Cygwin's case, it has not changed on their website, and previous versions of the setup executable were OK, so by now I'd imagine this fingerprint is OK.
+
+There are two trusted Cygwin fingerprints on their website:
+
+* //DSA:// `676041BA`
+** compare this with end of the string where the output says ''using DSA key''
+
+* //RSA:// `1A698DE9E2E56300`.
+** compare this with end of the string where the output says ''using RSA key''
+
+Since these match, I trust the signature.
+
+Mark the keys as trusted in my keyring:
+
+```
+$
 ```
 
 ! git
