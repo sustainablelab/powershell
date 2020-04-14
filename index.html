@@ -9685,7 +9685,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200412202546283" list="[[mintty documentation]] [[User-defined bash shortcuts in .minttyrc]] [[Cygwin packages]] Contents" modified="20200412211644747" title="$:/StoryList">
+<div created="20200414152826141" list="[[Cygwin packages]] [[Check SHA sum]] Contents" modified="20200414154046387" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9749,8 +9749,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200412211640699" title="$:/temp/search">
-<pre>mintty</pre>
+<div created="20200202173605395" modified="20200414154044837" title="$:/temp/search">
+<pre>cygwin packa</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10299,8 +10299,14 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200412205241822" tags="toolchain setup cygwin" title="Cygwin packages">
-<pre>! git
+<div created="20200205212554585" modified="20200414154243669" tags="toolchain setup cygwin" title="Cygwin packages">
+<pre>! gnupg2
+* GNU version of PGP
+* this //should// be part of the base installation, but it is not
+* use this to verify signatures in the future
+* there is a chicken-and-egg problem verifying Cygwin setup itself, but at least if the initial download is valid, this utility lets you check the signature on future downloads when you update the Cygwin setup
+
+! git
 * `clone`
 * `pull`
 * `status`
