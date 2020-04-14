@@ -10299,10 +10299,12 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200414154243669" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200414154758010" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! gnupg2
 * GNU version of PGP
-* this //should// be part of the base installation, but it is not
+* `$ which gpg2`
+* `$ gpg2 --help`
+* gnupg2 //should// be part of the base installation, but it is not
 * use this to verify signatures in the future
 * there is a chicken-and-egg problem verifying Cygwin setup itself, but at least if the initial download is valid, this utility lets you check the signature on future downloads when you update the Cygwin setup
 
