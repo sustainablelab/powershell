@@ -257,6 +257,8 @@ Error message and password prompt
 
 <li>ImageMagick documentation</li>
 
+<li>Install lpass</li>
+
 <li>Install Python on Cygwin for Vim omni-complete</li>
 
 <li>Install Python on Windows</li>
@@ -9685,7 +9687,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200414163049327" list="[[Cygwin packages]] Contents" modified="20200414203703520" title="$:/StoryList">
+<div created="20200414163049327" list="[[Install lpass]] [[Cygwin packages]] Contents" modified="20200414203703520" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -10303,7 +10305,7 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200414203807307" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200414214619877" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! Install Cygwin and Base Packages
 
 Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
@@ -10344,153 +10346,18 @@ If permission is denied, launch PowerShell as an Administor, then from PowerShel
 
 //Any use of `apt-cyg` requires administrator privileges.//
 
-!! Use `apt-cyg` to install `lpass`
-The lastpass command line tool requires `apt-cyg`. The package is not available through the GUI package manager.
-
-//Example using `apt-cyg` to install `lpass`://
-
-This is complex because `lpass` is built from source on Cygwin. As the first step shows, using `apt-cyg` is the easy part. `lpass` is not a Cygwin package. `apt-cyg` is simply a way to quickly get all the necessary dependencies.
-
-Install the dependencies for building `lpass`
+!! `apt-cyg` to install a package
 
 ```
-$ apt-cyg install wget make cmake gcc-core gcc-g++ openssl-devel libcurl-devel libxml2-devel libiconv-devel cygutils-extra asciidoc
+$ apt-cyg install wget
 ```
 
-This is a nice advantage over using the Cygwin GUI package manager. ''All packages are installed in one invocation.''
+Instead of installing a package through the package manager to obtain a utility, a third alternative is to build a tool from source.
 
-`apt-cyg` cooperates with the GUI package manager:
+!! Example of build from source on Cygwin
 
-* `apt-cyg` recognizes if a package is already installed, even if it was installed with the GUI package manager, so there is ''no need to edit the list'' to omit already-installed packages.
+[[Install lpass]] the LastPass command line tool. This is not available as a Cygwin package. Install by building from source.
 
-* `apt-cyg` downloads packages from the same file server last used by the Cygwin GUI package manger.
-
-!!! Build `lpass`
-
-Download the source:
-
-```
-$ git clone https://github.com/lastpass/lastpass-cli.git
-```
-
-//Switch to a session with administrator privileges before the build and install.//
-
-Build:
-
-```
-$ cd lastpass-cli/
-$ make
-```
-
-Install:
-
-```
-$ make install
-```
-
-Build documentation:
-
-```
-$ make install-doc
-```
-
-Run from any directory, with or without administrator priveleges:
-
-```
-$ lpass
-```
-
-!!! Use `lpass`
-
-There is a one-hour timeout. This persists across bash sessions, so exiting bash and opening a new bash session does not logout.
-
-For first time login (or after the timeout):
-
-```
-$ lpass login USERNAME
-```
-
-After that, copy a password to the clipboard:
-
-```
-$ lpass show -c SITENAME
-```
-
-Show a password at the terminal:
-
-```
-$ lpass show -p SITENAME
-```
-
-Combine flags to show password //and// copy to clipboard:
-
-```
-$ lpass show -cp SITENAME
-```
-
-Show password seems dumb, but this is the main point of installing `lpass`. Now scripts can automatically enter LastPass passwords using the show command.
-
-For example, a bash script evaluates the invocation and echoes the results:
-
-```
-$ echo -n $(lpass show -p github.com)
-```
-
-//The -n suppresses any trailing newline resulting from the evaluation//
-
-!!! `apt-cyg` commands
-
-The following was copied from the `apt-cyg` GitHub repository: https://github.com/transcode-open/apt-cyg#operations
-
-
-&lt;&lt;&lt;
-install
-  Install package(s).
-
-remove
-  Remove package(s) from the system.
-
-update
-  Download a fresh copy of the master package list (setup.ini) from the
-  server defined in setup.rc.
-
-download
-  Retrieve package(s) from the server, but do not install/upgrade anything.
-
-show
-  Display information on given package(s).
-
-depends
-  Produce a dependency tree for a package.
-
-rdepends
-  Produce a tree of packages that depend on the named package.
-
-list
-  Search each locally-installed package for names that match regexp. If no
-  package names are provided in the command line, all installed packages will
-  be queried.
-
-listall
-  This will search each package in the master package list (setup.ini) for
-  names that match regexp.
-
-category
-  Display all packages that are members of a named category.
-
-listfiles
-  List all files owned by a given package. Multiple packages can be specified
-  on the command line.
-
-search
-  Search for downloaded packages that own the specified file(s). The path can
-  be relative or absolute, and one or more files can be specified.
-
-searchall
-  Search cygwin.com to retrieve file information about packages. The provided
-  target is considered to be a filename and searchall will return the
-  package(s) which contain this file.
-&lt;&lt;&lt;
 
 !! Use GUI package manager first
 Even to use `apt-cyg`, it is good to install some additional packages through the GUI. At a minimum, install `lynx` and `gnupg2`.
@@ -10498,16 +10365,35 @@ Even to use `apt-cyg`, it is good to install some additional packages through th
 ''The rest of this document lists additional packages I install after the base installation.''
 
 ! lynx
-* text-based web browser
 
-Example:
+`lynx` is a text-based web browser.
+
+//Example using lynx://
+
+Get a single file from a GitHub repo:
+
+* using the command line
+* and ''without cloning''
 
 ```
 $ lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg &gt; apt-cyg
 ```
 
+This downloads a text file from the ''transcode-open'' GitHub repo and writes the contents to a file named `apt-cyg`.
+
+The `apt-cyg` file is then turned into a utility with `install apt-cyg /bin`.
+
 ! gnupg2
-* Latest GNU version of PGP
+
+[[GnuPG 2.2.20|https://gnupg.org/]] is the latest GNU version of [[OpenPGP|https://www.ietf.org/rfc/rfc4880.txt]] which in turn is based on [[PGP|https://en.wikipedia.org/wiki/Pretty_Good_Privacy]] by Philip R. Zimmermann.
+
+PGP is a tool for validating anything received over the internet: messages, media, code, executables, etc. The idea is to automate a rigorous, mathematical check that the thing you received is signed by a person or an organization that you trust.
+
+Unlike the simple SHA, there is a prerequisite that you have a //keyring// of trusted collaborators. Receiving content and a hash of the content and then calculating your own hash to compare with the received hash is just a check that the received content matches the received hash. It is only meaningful if the received hash is trustworthy.
+
+Use PGP to import the public keys of trusted collaborators into your keyring. This keyring builds up over time. A trusted collaborator, for example, is Cygwin, so I import their `pubring.asc` file with `gpg2`.
+
+When you receive a thing over the internet, use PGP before using the thing. PGP checks your keyring to tell you if anyone in your circle of trust signed the thing. If so, you //trust// that the received content was not tampered or altered. It is //trust// because you must trust your collaborators. Math only promises that the content was not altered //after// it was signed.
 
 After installing package, check `gpg2` is available:
 
@@ -10516,31 +10402,37 @@ After installing package, check `gpg2` is available:
 
 !! Use `gpg` to verify Cygwin Setup
 
-* gnupg2 //should// be part of the base Cygwin installation, but it is not
-* use this to verify signatures
+* `gnupg2` //should// be part of the base Cygwin installation, but //it is not!//
+* use `gnupg2` to verify signatures
+* but how do I verify Cygwin Setup for the first time installation?
 
 This is a //chicken-and-egg// problem:
 
 * need Cygwin to get gpg2
 * need gpg2 to verify Cygwin setup
 
-At least if the initial download is valid, check the signature on future downloads when updating the Cygwin setup.
+I cross my fingers that the initial download is valid. From that moment onwards, when I update to the latest Cygwin setup executable, I use `gpg2` to check the signature before running the new Cygwin setup.
 
 !! Use `gpg` to verify Cygwin Setup
 
- Download:
+Download:
 
-* `pubring.asc`
-** https://cygwin.com/key/pubring.asc
-* `setup-x86_64.exe.sig`
-** https://cygwin.com/setup-x86_64.exe.sig
-* `setup-x86_64.exe`
-** https://cygwin.com/setup-x86_64.exe
+* `pubring.asc` -- //public key to check that a signature is actually a signature by cygwin@cygwin.com//
+** download: https://cygwin.com/key/pubring.asc
+* `setup-x86_64.exe.sig` -- //signature for the Cygwin setup//
+** download: https://cygwin.com/setup-x86_64.exe.sig
+* `setup-x86_64.exe` -- //the actual Cygwin setup executable//
+** download: https://cygwin.com/setup-x86_64.exe
 
-Import the Cygwin keys and use them to verify the signature of the setup.exe:
+''Import'' the `cygwin@cygwin.com` public key into my keyring:
 
 ```
 $ gpg2 --import pubring.asc
+```
+
+''Verify'' the signature of the setup executable:
+
+```
 $ gpg2 --verify setup-x86_64.exe.sig setup-x86_64.exe
 ```
 
@@ -11104,6 +10996,153 @@ https://imagemagick.org/script/identify.php
 * [[Color modifications|https://www.imagemagick.org/Usage/color_mods/]]
 ** see `negate`
 * lined-paper chop/rotate/grayscale/negate example [[Convert block diagram photos]]</pre>
+</div>
+<div created="20200414210919171" modified="20200414211001661" tags="LastPass toolchain bash cygwin" title="Install lpass">
+<pre>This is complex because `lpass` is built from source on Cygwin.
+
+The first step is to use `apt-cyg` to install all the dependencies required by the build. 
+
+Install the dependencies for building `lpass`
+
+```
+$ apt-cyg install wget make cmake gcc-core gcc-g++ openssl-devel libcurl-devel libxml2-devel libiconv-devel cygutils-extra asciidoc
+```
+
+This is a nice advantage over using the Cygwin GUI package manager. ''All packages are installed in one invocation.''
+
+`apt-cyg` cooperates with the GUI package manager:
+
+* `apt-cyg` recognizes if a package is already installed, even if it was installed with the GUI package manager, so there is ''no need to edit the list'' to omit already-installed packages.
+
+* `apt-cyg` downloads packages from the same file server last used by the Cygwin GUI package manger.
+
+!!! Build `lpass`
+
+Download the source:
+
+```
+$ git clone https://github.com/lastpass/lastpass-cli.git
+```
+
+//Switch to a session with administrator privileges before the build and install.//
+
+Build:
+
+```
+$ cd lastpass-cli/
+$ make
+```
+
+Install:
+
+```
+$ make install
+```
+
+Build documentation:
+
+```
+$ make install-doc
+```
+
+Run from any directory, with or without administrator priveleges:
+
+```
+$ lpass
+```
+
+!!! Use `lpass`
+
+There is a one-hour timeout. This persists across bash sessions, so exiting bash and opening a new bash session does not logout.
+
+For first time login (or after the timeout):
+
+```
+$ lpass login USERNAME
+```
+
+After that, copy a password to the clipboard:
+
+```
+$ lpass show -c SITENAME
+```
+
+Show a password at the terminal:
+
+```
+$ lpass show -p SITENAME
+```
+
+Combine flags to show password //and// copy to clipboard:
+
+```
+$ lpass show -cp SITENAME
+```
+
+Show password seems dumb, but this is the main point of installing `lpass`. Now scripts can automatically enter LastPass passwords using the show command.
+
+For example, a bash script evaluates the invocation and echoes the results:
+
+```
+$ echo -n $(lpass show -p github.com)
+```
+
+//The -n suppresses any trailing newline resulting from the evaluation//
+
+!!! `apt-cyg` commands
+
+The following was copied from the `apt-cyg` GitHub repository: https://github.com/transcode-open/apt-cyg#operations
+
+
+&lt;&lt;&lt;
+install
+  Install package(s).
+
+remove
+  Remove package(s) from the system.
+
+update
+  Download a fresh copy of the master package list (setup.ini) from the
+  server defined in setup.rc.
+
+download
+  Retrieve package(s) from the server, but do not install/upgrade anything.
+
+show
+  Display information on given package(s).
+
+depends
+  Produce a dependency tree for a package.
+
+rdepends
+  Produce a tree of packages that depend on the named package.
+
+list
+  Search each locally-installed package for names that match regexp. If no
+  package names are provided in the command line, all installed packages will
+  be queried.
+
+listall
+  This will search each package in the master package list (setup.ini) for
+  names that match regexp.
+
+category
+  Display all packages that are members of a named category.
+
+listfiles
+  List all files owned by a given package. Multiple packages can be specified
+  on the command line.
+
+search
+  Search for downloaded packages that own the specified file(s). The path can
+  be relative or absolute, and one or more files can be specified.
+
+searchall
+  Search cygwin.com to retrieve file information about packages. The provided
+  target is considered to be a filename and searchall will return the
+  package(s) which contain this file.
+&lt;&lt;&lt;
+</pre>
 </div>
 <div created="20200208201226894" modified="20200312235450359" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
 <pre>! Context
