@@ -235,6 +235,8 @@ Error message and password prompt
 
 <li>Bash variables</li>
 
+<li>Build Cygwin binary from source</li>
+
 <li>Check SHA sum</li>
 
 <li>Contents</li>
@@ -246,8 +248,6 @@ Error message and password prompt
 <li>Customize bash commands</li>
 
 <li>Cygwin packages</li>
-
-<li>Draft of 'Cygwin packages'</li>
 
 <li>Edit a PowerShell Profile</li>
 
@@ -266,6 +266,8 @@ Error message and password prompt
 <li>ImageMagick documentation</li>
 
 <li>Install apt-cyg</li>
+
+<li>Install Cygwin</li>
 
 <li>Install lpass</li>
 
@@ -9703,7 +9705,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200414163049327" list="[[Install apt-cyg]] [[Draft of 'Cygwin packages']] [[Install lpass]] Contents" modified="20200415030501410" title="$:/StoryList">
+<div created="20200414163049327" list="[[Build Cygwin binary from source]] [[Install apt-cyg]] [[Cygwin packages]] [[Install Cygwin]] [[gpg guide]] Contents" modified="20200415031946660" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9767,8 +9769,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200415023946887" title="$:/temp/search">
-<pre>apt-cyg</pre>
+<div created="20200202173605395" modified="20200415031741860" title="$:/temp/search">
+<pre>Install Cygwin</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10029,6 +10031,26 @@ Use app as `$app`, for example:
 $ echo $app
 $ cd $app
 ```</pre>
+</div>
+<div created="20200415030856814" modified="20200415031122703" tags="[[Cygwin packages]]" title="Build Cygwin binary from source">
+<pre>Some of these tools are exclusively Windows programs, such as the `atprogram` backend utility used by AtmelStudio.
+
+Some of these tools are exclusively Linux programs, like all of the GNU software, e.g., `gnupg2`.
+
+And sometimes the tool is available through Cygwin, but the packages are out of date, such as Python or any Python package. I end up using both the Cygwin package installation and the Windows installation.
+
+//Whatever gets the job done.//
+
+Point is that building from source on Cygwin is a useful tool. I don't use it all the time, but it opens up a lot of options, particularly for ''free'' software in the ''libre'' sense. A great example for electronics work is http://www.geda-project.org/.
+
+!! Example of build from source on Cygwin
+
+LastPass is secure but somewhat inconvenient. Make it more convenient by installating `lpass`, the LastPass command line tool. This tool is recognized on the LastPass website. It is legitimate.
+
+`lpass` is not available as a Cygwin package. Install by building from source.
+
+!! [[Install lpass]]
+</pre>
 </div>
 <div created="20200330175748043" modified="20200414162755746" tags="reference security" title="Check SHA sum">
 <pre>Verify software was not tampered with. The two methods I've come across are PGP and the SHA sum check.
@@ -10321,195 +10343,12 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200415023741888" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200415031940061" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! Install Cygwin and Base Packages
 
-Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
+See [[Install Cygwin]].
 
-//The setup executable installs Cygwin. The same executable also launches the Cygwin package manager GUI.//
-
-Run `setup-x86_64.exe` once to install the base package.
-
-! Install More Packages
-While using Cygwin, I find I need additional packages. Run  `setup-x86_64.exe` again to install additional packages.
-
-Alternatively, `apt-cyg` is a command line version of the Cygwin package manager.
-
-https://github.com/transcode-open/apt-cyg
-
-To install `apt-cyg`:
-
-* install `lynx` (just a text-based web-browser)
-* use `lynx` to copy `apt-cyg` to a file
-
-```
-$ lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg &gt; apt-cyg
-```
-
-File `apt-cyg` is just a bash script. It's a plaint text file. Look at it in Vim:
-
-```
-$ vim apt-cyg
-```
-
-Now make `apt-cyg` usable as an executable by installing `apt-cyg` in `/bin`
-
-```
-$ install apt-cyg /bin
-```
-
-If permission is denied, launch PowerShell as an Administor, then from PowerShell launch bash, and try again.
-
-//Any use of `apt-cyg` requires administrator privileges.//
-
-!! `apt-cyg` to install a package
-
-```
-$ apt-cyg install wget
-```
-
-Instead of installing a package through the package manager to obtain a utility, a third alternative is to build a tool from source.
-
-!! Example of build from source on Cygwin
-
-[[Install lpass]] the LastPass command line tool. This is not available as a Cygwin package. Install by building from source.
-
-
-!! Use GUI package manager first
-Even to use `apt-cyg`, it is good to install some additional packages through the GUI. At a minimum, install `lynx` and `gnupg2`.
-
-''The rest of this document lists additional packages I install after the base installation.''
-
-! lynx
-
-`lynx` is a text-based web browser.
-
-//Example using lynx://
-
-Get a single file from a GitHub repo:
-
-* using the command line
-* and ''without cloning''
-
-```
-$ lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg &gt; apt-cyg
-```
-
-This downloads a text file from the ''transcode-open'' GitHub repo and writes the contents to a file named `apt-cyg`.
-
-The `apt-cyg` file is then turned into a utility with `install apt-cyg /bin`.
-
-! gnupg2
-
-Install package `gnupg2`, then look for executable `gpg2`.
-
-The documentation is a little opaque. I wrote a short [[gpg guide]].
-
-! git
-* `clone`
-* `pull`
-* `status`
-* `remote update`
-! vim
-* for file diffs:
-** `vimdiff file1 file2`
-** `;dt` or `:diffthis` (put active file in diff mode)
-** `;do` or `:diffoff` (turn diff off for active file)
-* for grep with hopping (uses Vim's quickfix window)
-**  `:vimgrep` then `:cnext`, `:cprevious`
-! tree
-* `tree -L2 some_path` -- prints a pretty view of `some_path` two levels deep
-! wget
-* download files from the web
-! man-pages-posix
-* documentation for everything
-* typical use:
-** `man wget &gt; ~/read-the-docs/wget.man`
-** `vim ~/read-the-docs/wget.man`
-* some documentation supports tag-jumping in Vim, //example:// `git` documentation
-! make
-** build anything by declaring dependencies and letting the OS figure out the rest
-** I usually use this for building C projects
-! gcc
-* latest stable release:
-** version 7.5, released November 2019
-** version 7.4 is closest matching Cygwin package
-! python
-* ~~I have no reason to install the Cygwin Python package~~ install it for Vim's sake
-* But for most work, like development with pygame, [[Run python.exe from Cygwin]]
-** `python.exe` is the Windows Python installation
-** Vim shortcut for this is `;sw` //pneumonic:// ''s''ource with ''w''indows Python
-! imagemagick
-* image manipulation utilities
-* `convert`
-* `identify`
-* see [[ImageMagick documentation]]
-! ctags
-* search Cygwin for package `ctags`
-* after installation, check it is in `/usr/bin`:
-
-```bash
-$ whereis ctags
-ctags: /usr/bin/ctags.exe 
-```
-
-! cscope
-* search Cygwin for package `cscope`
-* after installation, check it is in `/usr/bin`:
-
-```bash
-$ whereis cscope
-cscope: /usr/bin/cscope.exe 
-```
-
-! Utilities to replace Windows stuff
-
-* pdfgrep
-** Command-line utility for searching text in PDFs
-* xpdf
-** An open-source viewer for Portable Document Format (PDF) files
-</pre>
-</div>
-<div created="20200205212554585" draft.of="Cygwin packages" draft.title="Cygwin packages" modified="20200415025551288" tags="toolchain setup cygwin" title="Draft of 'Cygwin packages'">
-<pre>! Install Cygwin and Base Packages
-
-Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
-
-//The setup executable installs Cygwin. The same executable also launches the Cygwin package manager GUI.//
-
-Run `setup-x86_64.exe` once to install the base package.
-
-! Install More Packages
-While using Cygwin, I find I need additional packages. Run  `setup-x86_64.exe` again to install additional packages.
-
-Alternatively, `apt-cyg` is a command line version of the Cygwin package manager.
-
-!! [[Install apt-cyg]]
-
-! Install More Executables
-
-While using Cygwin, I find I need to install tools that are not available as Cygwin packages.
-
-Some of these tools are exclusively Windows programs, such as the `atprogram` backend utility used by AtmelStudio.
-
-Some of these tools are exclusively Linux programs, like all of the GNU software, e.g., `gnupg2`.
-
-And sometimes the tool is available through Cygwin, but the packages are out of date, such as Python or any Python package. I end up using both the Cygwin package installation and the Windows installation.
-
-//Whatever gets the job done.//
-
-Point is that building from source on Cygwin is a useful tool. I don't use it all the time, but it opens up a lot of options, particularly for ''free'' software in the ''libre'' sense. A great example for electronics work is http://www.geda-project.org/.
-
-!! Example of build from source on Cygwin
-
-LastPass is secure but somewhat inconvenient. Make it more convenient by installating `lpass`, the LastPass command line tool. This tool is recognized on the LastPass website. It is legitimate.
-
-`lpass` is not available as a Cygwin package. Install by building from source.
-
-!! [[Install lpass]]
-
-!! Use GUI package manager first
-Even to use `apt-cyg`, it is good to install some additional packages through the GUI. At a minimum, install `lynx` and `gnupg2`.
+See [[gpg guide]]. Package `gpg2` is listed below.
 
 ''The rest of this document lists additional packages I install after the base installation.''
 
@@ -11341,6 +11180,59 @@ searchall
   package(s) which contain this file.
 ```
 &lt;&lt;&lt;
+</pre>
+</div>
+<div created="20200415031810133" modified="20200415033431019" tags="[[Cygwin packages]]" title="Install Cygwin">
+<pre>Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
+
+//The Cygwin site recommends verifying the signature.//
+
+If you do not have `pgp/gpg/gpgp2`, just download and run the `setup` file. Later you will have Cygwin set up with package `gpg2`.  
+
+//The setup executable installs Cygwin. The same executable also launches the Cygwin package manager GUI.//
+
+Run `setup-x86_64.exe` once to install the base package.
+
+! Install More Packages
+
+While using Cygwin, I find I need additional packages. Run  `setup-x86_64.exe` again to install additional packages.
+
+! Update the package manager
+
+After some time, the Cygwin package manager opens with a message that you should download the latest version of the package manager.
+
+Download the setup file again from the same link as the initial install:
+
+* Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
+
+* Verify the signature on the new `setup-x86_64.exe` file before running it. See [[gpg guide]].
+
+That is all there is to updating to the latest version of the Cygwin package manager.
+
+! Install Packages from the command line
+
+Alternatively, `apt-cyg` is a command line version of the Cygwin package manager.
+
+!! [[Install apt-cyg]]
+
+!! Use GUI package manager first
+Even to use `apt-cyg`, it is good to install some additional packages through the GUI. At a minimum, install `lynx` and `gnupg2`.
+
+! Install More Executables
+
+While using Cygwin, I find I need to install tools that are not available as Cygwin packages.
+
+That is when I build other people's software from source to run as a Cygwin binary.
+
+!! [[Build Cygwin binary from source]]
+
+I also build my own software from source on Cygwin:
+
+* a Cygwin binary using X Windows
+* a native Windows binary
+* an embedded processor
+
+I do not do any builds in the Windows environment. I do not build from PowerShell or use Microsoft Visual Studio. I try to avoid installing software that has Visual Studio Code dependencies (which I admit excludes a lot of cool stuff).
 </pre>
 </div>
 <div created="20200414210919171" modified="20200415030455600" tags="LastPass toolchain bash cygwin" title="Install lpass">
