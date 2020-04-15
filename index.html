@@ -189,6 +189,10 @@ Error message and password prompt
 
 <li>$:/state/Excise/-1811756643/tagnew</li>
 
+<li>$:/state/Excise/-749417250/tagnew</li>
+
+<li>$:/state/Excise/-749417250/type</li>
+
 <li>$:/state/showeditpreview</li>
 
 <li>$:/state/sidebar</li>
@@ -250,6 +254,8 @@ Error message and password prompt
 <li>Git merge</li>
 
 <li>Git searching</li>
+
+<li>gpg guide</li>
 
 <li>grep Python site-packages</li>
 
@@ -9660,6 +9666,12 @@ Both forms return the docstring for `mymodule`.
 <div created="20200217210640344" modified="20200217210640344" title="$:/state/Excise/-1811756643/tagnew">
 <pre>yes</pre>
 </div>
+<div created="20200415023656405" modified="20200415023656405" title="$:/state/Excise/-749417250/tagnew">
+<pre>yes</pre>
+</div>
+<div created="20200415023658779" modified="20200415023658779" title="$:/state/Excise/-749417250/type">
+<pre>link</pre>
+</div>
 <div created="20200202174140671" modified="20200214022652044" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
@@ -10305,7 +10317,7 @@ This happens because the alias does a simple substitution. Any arguments passed 
 
 Use a `function` instead of an `alias` if the intent is a piped command or more complexity.</pre>
 </div>
-<div created="20200205212554585" modified="20200414215737426" tags="toolchain setup cygwin" title="Cygwin packages">
+<div created="20200205212554585" modified="20200415023741888" tags="toolchain setup cygwin" title="Cygwin packages">
 <pre>! Install Cygwin and Base Packages
 
 Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
@@ -10385,97 +10397,9 @@ The `apt-cyg` file is then turned into a utility with `install apt-cyg /bin`.
 
 ! gnupg2
 
-[[GnuPG 2.2.20|https://gnupg.org/]] is the latest GNU version of [[OpenPGP|https://www.ietf.org/rfc/rfc4880.txt]] which in turn is based on [[PGP|https://en.wikipedia.org/wiki/Pretty_Good_Privacy]] by Philip R. Zimmermann.
+Install package `gnupg2`, then look for executable `gpg2`.
 
-PGP is a tool for validating anything received over the internet: messages, media, code, executables, etc. The idea is to automate a rigorous, mathematical check that the thing you received is signed by a person or an organization that you trust.
-
-Unlike the simple SHA, there is a prerequisite that you have a //keyring// of trusted collaborators. Receiving content and a hash of the content and then calculating your own hash to compare with the received hash is just a check that the received content matches the received hash. It is only meaningful if the received hash is trustworthy.
-
-Use PGP to import the public keys of trusted collaborators into your keyring. This keyring builds up over time. A trusted collaborator, for example, is Cygwin, so I import their `pubring.asc` file with `gpg2`.
-
-When you receive a thing over the internet, use PGP before using the thing. PGP checks your keyring to tell you if anyone in your circle of trust signed the thing. If so, you //trust// that the received content was not tampered or altered. It is //trust// because you must trust your collaborators. Math only promises that the content was not altered //after// it was signed.
-
-After installing package, check `gpg2` is available:
-
-* `$ which gpg2`
-* `$ gpg2 --help`
-
-!! Use `gpg` to verify Cygwin Setup
-
-* `gnupg2` //should// be part of the base Cygwin installation, but //it is not!//
-* use `gnupg2` to verify signatures
-* but how do I verify Cygwin Setup for the first time installation?
-
-This is a //chicken-and-egg// problem:
-
-* need Cygwin to get gpg2
-* need gpg2 to verify Cygwin setup
-
-I cross my fingers that the initial download is valid. From that moment onwards, when I update to the latest Cygwin setup executable, I use `gpg2` to check the signature before running the new Cygwin setup.
-
-!! Use `gpg` to verify Cygwin Setup
-
-Download:
-
-* `pubring.asc` -- //public key to check that a signature is actually a signature by cygwin@cygwin.com//
-** download: https://cygwin.com/key/pubring.asc
-* `setup-x86_64.exe.sig` -- //signature for the Cygwin setup//
-** download: https://cygwin.com/setup-x86_64.exe.sig
-* `setup-x86_64.exe` -- //the actual Cygwin setup executable//
-** download: https://cygwin.com/setup-x86_64.exe
-
-''Import'' the `cygwin@cygwin.com` public key into my keyring:
-
-```
-$ gpg2 --import pubring.asc
-```
-
-''Verify'' the signature of the setup executable:
-
-```
-$ gpg2 --verify setup-x86_64.exe.sig setup-x86_64.exe
-```
-
-//Expected output://
-
-```
-gpg: Signature made Sat, Mar 21, 2020  1:35:25 PM EDT
-gpg:                using DSA key 1169DF9F22734F743AA59232A9A262FF676041BA
-gpg: Good signature from &quot;Cygwin &lt;cygwin@cygwin.com&gt;&quot; [unknown]
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.
-Primary key fingerprint: 1169 DF9F 2273 4F74 3AA5  9232 A9A2 62FF 6760 41BA
-gpg: Signature made Sat, Mar 21, 2020  1:35:25 PM EDT
-gpg:                using RSA key 56405CF6FCC81574682A5D561A698DE9E2E56300
-gpg: Good signature from &quot;Cygwin &lt;cygwin@cygwin.com&gt;&quot; [unknown]
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.
-Primary key fingerprint: 5640 5CF6 FCC8 1574 682A  5D56 1A69 8DE9 E2E5 6300
-```
-
-This is good. It seems to me like the check failed, particularly the line ''There is no indication that the signature belongs to the owner''. But this is actually the good result.
-
-I have a copy of the `cygwin@cygwin.com` key, and the signature is valid -- ''Good signature from &quot;Cygwin&lt;cygwin@cygwin.com&gt;&quot;''
-
-The reason for the scary message is that I have not marked the keys as trusted.
-
-Compare the fingerprints that are shown to trusted fingerprints. The fingerprint is at the end of the message. Ideally, the trusted fingerprint is delivered in person, but in Cygwin's case, it has not changed on their website, and previous versions of the setup executable were OK, so by now I'd imagine this fingerprint is OK.
-
-There are two trusted Cygwin fingerprints on their website:
-
-* //DSA:// `676041BA`
-** compare this with end of the string where the output says ''using DSA key''
-
-* //RSA:// `1A698DE9E2E56300`.
-** compare this with end of the string where the output says ''using RSA key''
-
-Since these match, I trust the signature.
-
-Mark the keys as trusted in my keyring:
-
-```
-$
-```
+The documentation is a little opaque. I wrote a short [[gpg guide]].
 
 ! git
 * `clone`
@@ -10943,6 +10867,169 @@ In Vim:
 
 ! Conclusion
 Sure enough, there was another tiddler, unrelated to `user-site` that had content which had been lost somehow. Oy! I think, two hours later, I've recovered everything now.  And now I know the power of Git and Vimdiff to quickly find content changes in the version control history.</pre>
+</div>
+<div created="20200415023701047" modified="20200415023701047" tags="[[Cygwin packages]]" title="gpg guide">
+<pre>[[GnuPG 2.2.20|https://gnupg.org/]] is the latest GNU version of [[OpenPGP|https://www.ietf.org/rfc/rfc4880.txt]] which in turn is based on [[PGP|https://en.wikipedia.org/wiki/Pretty_Good_Privacy]] by Philip R. Zimmermann.
+
+PGP is a tool for validating anything received over the internet: messages, media, code, executables, etc. The idea is to automate a rigorous, mathematical check that the thing you received is signed by a person or an organization that you trust.
+
+Unlike the simple SHA, there is a prerequisite that you have a //keyring// of trusted collaborators. Receiving content and a hash of the content and then calculating your own hash to compare with the received hash is just a check that the received content matches the received hash. It is only meaningful if the received hash is trustworthy.
+
+Use PGP to import the public keys of trusted collaborators into your keyring. This keyring builds up over time. A trusted collaborator, for example, is Cygwin, so I import their `pubring.asc` file with `gpg2`.
+
+When you receive a thing over the internet, use PGP before using the thing. PGP checks your keyring to tell you if anyone in your circle of trust signed the thing. If so, you //trust// that the received content was not tampered or altered. It is //trust// because you must trust your collaborators. Math only promises that the content was not altered //after// it was signed.
+
+After installing package, check `gpg2` is available:
+
+* `$ which gpg2`
+* `$ gpg2 --help`
+
+!! Use `gpg` to verify Cygwin Setup
+
+* `gnupg2` //should// be part of the base Cygwin installation, but //it is not!//
+* use `gnupg2` to verify signatures
+* but how do I verify Cygwin Setup for the first time installation?
+
+This is a //chicken-and-egg// problem:
+
+* need Cygwin to get gpg2
+* need gpg2 to verify Cygwin setup
+
+I cross my fingers that the initial download is valid. From that moment onwards, when I update to the latest Cygwin setup executable, I use `gpg2` to check the signature before running the new Cygwin setup.
+
+!! Use `gpg` to verify Cygwin Setup
+
+Download:
+
+* `pubring.asc` -- //public key to check that a signature is actually a signature by cygwin@cygwin.com//
+** download: https://cygwin.com/key/pubring.asc
+* `setup-x86_64.exe.sig` -- //signature for the Cygwin setup//
+** download: https://cygwin.com/setup-x86_64.exe.sig
+* `setup-x86_64.exe` -- //the actual Cygwin setup executable//
+** download: https://cygwin.com/setup-x86_64.exe
+
+''Import'' the `cygwin@cygwin.com` public key into my keyring:
+
+```
+$ gpg2 --import pubring.asc
+```
+
+''Verify'' the signature of the setup executable:
+
+```
+$ gpg2 --verify setup-x86_64.exe.sig setup-x86_64.exe
+```
+
+//Expected output://
+
+```
+gpg: Signature made Sat, Mar 21, 2020  1:35:25 PM EDT
+gpg:                using DSA key 1169DF9F22734F743AA59232A9A262FF676041BA
+gpg: Good signature from &quot;Cygwin &lt;cygwin@cygwin.com&gt;&quot; [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 1169 DF9F 2273 4F74 3AA5  9232 A9A2 62FF 6760 41BA
+gpg: Signature made Sat, Mar 21, 2020  1:35:25 PM EDT
+gpg:                using RSA key 56405CF6FCC81574682A5D561A698DE9E2E56300
+gpg: Good signature from &quot;Cygwin &lt;cygwin@cygwin.com&gt;&quot; [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 5640 5CF6 FCC8 1574 682A  5D56 1A69 8DE9 E2E5 6300
+```
+
+This is good. It seems to me like the check failed, particularly the line ''There is no indication that the signature belongs to the owner''. But this is actually the good result.
+
+I have a copy of the `cygwin@cygwin.com` key, and the signature is valid -- ''Good signature from &quot;Cygwin&lt;cygwin@cygwin.com&gt;&quot;''
+
+The reason for the scary message is that I have not marked the keys as trusted.
+
+Compare the fingerprints that are shown to trusted fingerprints. The fingerprint is at the end of the message. Ideally, the trusted fingerprint is delivered in person, but in Cygwin's case, it has not changed on their website, and previous versions of the setup executable were OK, so by now I'd imagine this fingerprint is OK.
+
+There are two trusted Cygwin fingerprints on their website:
+
+* //DSA:// `676041BA`
+** compare this with end of the string where the output says ''using DSA key''
+
+* //RSA:// `1A698DE9E2E56300`.
+** compare this with end of the string where the output says ''using RSA key''
+
+Since these match, I trust the signature.
+
+The full fingerprints are available with `--fingerprint`, or `--list-keys` or just `-k`:
+
+```
+$ gpg2 --fingerprint
+pub   dsa1024 2008-06-13 [SC]
+      1169 DF9F 2273 4F74 3AA5  9232 A9A2 62FF 6760 41BA
+uid           [ unknown] Cygwin &lt;cygwin@cygwin.com&gt;
+
+pub   rsa4096 2020-02-27 [SC] [expires: 2022-02-26]
+      5640 5CF6 FCC8 1574 682A  5D56 1A69 8DE9 E2E5 6300
+uid           [ unknown] Cygwin &lt;cygwin@cygwin.com&gt;
+
+```
+
+If this is the first key imported in my keyring, the only way to change the above message is to give this key ultimate trust.
+
+I'm not sure this is a good idea, but here is the process.
+
+```
+$ gpg2 --edit-key Cygwin
+```
+
+//This launches an interactive session where the prompt changes//
+
+```
+gpg (GnuPG) 2.2.20-unknown; Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+
+pub  dsa1024/A9A262FF676041BA
+     created: 2008-06-13  expires: never       usage: SC
+     trust: unknown       validity: unknown
+sub  elg1024/0AF098B5A1DB7B5C
+     created: 2008-06-13  expires: never       usage: E 
+[ unknown] (1). Cygwin &lt;cygwin@cygwin.com&gt;
+
+gpg&gt; 
+```
+
+Type `help` for a list of commands. One of these is `trust`.
+
+```
+gpg&gt; trust
+
+Please decide how far you trust this user to correctly verify other users' keys
+(by looking at passports, checking fingerprints from different sources, etc.)
+
+  1 = I don't know or won't say
+  2 = I do NOT trust
+  3 = I trust marginally
+  4 = I trust fully
+  5 = I trust ultimately
+  m = back to the main menu
+
+Your decision? 5
+Do you really want to set this key to ultimate trust? (y/N) y
+
+pub  dsa1024/A9A262FF676041BA
+     created: 2008-06-13  expires: never       usage: SC
+     trust: ultimate      validity: unknown
+```
+
+Now the same `--verify` gives the expected output. But remember, this is only ''good'' output if I am sure I ultimately trust Cygwin.
+
+```
+$ gpg2 --verify setup-x86_64.exe.sig setup-x86_64.exe
+gpg: Signature made Sat, Mar 21, 2020  1:35:25 PM EDT
+gpg:                using DSA key 1169DF9F22734F743AA59232A9A262FF676041BA
+gpg: Good signature from &quot;Cygwin &lt;cygwin@cygwin.com&gt;&quot; [ultimate]
+gpg: Signature made Sat, Mar 21, 2020  1:35:25 PM EDT
+gpg:                using RSA key 56405CF6FCC81574682A5D561A698DE9E2E56300
+gpg: Good signature from &quot;Cygwin &lt;cygwin@cygwin.com&gt;&quot; [full]
+```
+</pre>
 </div>
 <div created="20200311132630037" modified="20200311145740717" tags="reference python grep" title="grep Python site-packages">
 <pre>''Look directly in source code when documentation is missing or inadequate. ''
