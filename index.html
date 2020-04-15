@@ -9705,7 +9705,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200414163049327" list="[[Build Cygwin binary from source]] [[Install apt-cyg]] [[Cygwin packages]] [[Install Cygwin]] [[gpg guide]] Contents" modified="20200415031946660" title="$:/StoryList">
+<div created="20200414163049327" list="[[Install lpass]] [[Build Cygwin binary from source]] [[Install apt-cyg]] [[Cygwin packages]] [[Install Cygwin]] [[gpg guide]] Contents" modified="20200415051906074" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9769,8 +9769,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200415031741860" title="$:/temp/search">
-<pre>Install Cygwin</pre>
+<div created="20200202173605395" modified="20200415051903959" title="$:/temp/search">
+<pre>lpass</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10032,7 +10032,7 @@ $ echo $app
 $ cd $app
 ```</pre>
 </div>
-<div created="20200415030856814" modified="20200415031122703" tags="[[Cygwin packages]]" title="Build Cygwin binary from source">
+<div created="20200415030856814" modified="20200415052017257" tags="[[Cygwin packages]]" title="Build Cygwin binary from source">
 <pre>Some of these tools are exclusively Windows programs, such as the `atprogram` backend utility used by AtmelStudio.
 
 Some of these tools are exclusively Linux programs, like all of the GNU software, e.g., `gnupg2`.
@@ -10045,7 +10045,7 @@ Point is that building from source on Cygwin is a useful tool. I don't use it al
 
 !! Example of build from source on Cygwin
 
-LastPass is secure but somewhat inconvenient. Make it more convenient by installating `lpass`, the LastPass command line tool. This tool is recognized on the LastPass website. It is legitimate.
+LastPass is secure but somewhat inconvenient. Make it more convenient by installating `lpass`, the LastPass command line tool. This tool is recognized on the LastPass website. See https://support.logmeininc.com/lastpass and search for ''Use the LastPass Command Line Application''.
 
 `lpass` is not available as a Cygwin package. Install by building from source.
 
@@ -11182,7 +11182,7 @@ searchall
 &lt;&lt;&lt;
 </pre>
 </div>
-<div created="20200415031810133" modified="20200415033431019" tags="[[Cygwin packages]]" title="Install Cygwin">
+<div created="20200415031810133" modified="20200415051900015" tags="[[Cygwin packages]]" title="Install Cygwin">
 <pre>Download installer `setup-x86_64.exe` from https://www.cygwin.com/install.html
 
 //The Cygwin site recommends verifying the signature.//
@@ -11211,11 +11211,15 @@ That is all there is to updating to the latest version of the Cygwin package man
 
 ! Install Packages from the command line
 
-Alternatively, `apt-cyg` is a command line version of the Cygwin package manager.
+Alternatively, `apt-cyg` is a command line version of the Cygwin package manager, by Steve Jungels.
 
 !! [[Install apt-cyg]]
 
+Steve has stopped developing `apt-cyg` as of 2017, but it still works. Details here: 
+https://github.com/transcode-open/apt-cyg/blob/master/status.md
+
 !! Use GUI package manager first
+
 Even to use `apt-cyg`, it is good to install some additional packages through the GUI. At a minimum, install `lynx` and `gnupg2`.
 
 ! Install More Executables
