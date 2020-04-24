@@ -9710,7 +9710,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200423152032415" list="[[Install and Use lpass]] [[Build Cygwin binary from source]] Contents" modified="20200423152535471" title="$:/StoryList">
+<div created="20200424140706884" list="[[Install and Use lpass]]" modified="20200424141139687" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9774,8 +9774,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200423152029486" title="$:/temp/search">
-<pre>lpass</pre>
+<div created="20200202173605395" modified="20200424141137254" title="$:/temp/search">
+<pre>apt</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -11095,7 +11095,7 @@ https://imagemagick.org/script/identify.php
 ** see `negate`
 * lined-paper chop/rotate/grayscale/negate example [[Convert block diagram photos]]</pre>
 </div>
-<div created="20200414210919171" modified="20200423152616006" tags="LastPass toolchain bash cygwin" title="Install and Use lpass">
+<div created="20200414210919171" modified="20200424150807411" tags="LastPass toolchain bash cygwin" title="Install and Use lpass">
 <pre>The LastPass browser extension is the right tool most of the time. But when pushing repositories, or doing anything with private repositories, it is annoying to have a browser open, click the icon, copy password, and paste.
 
 My main use is to put password entry into scripts //without putting my password in the script itself.// `lpass` gives me a command line invocation that fetches the password from my vault. Then I can do a `git push`, for example, without having to paste username/password.
@@ -11148,17 +11148,28 @@ $ lpass
 
 !!! Use `lpass`
 
-There is a one-hour timeout. This persists across bash sessions, so exiting bash and opening a new bash session does not logout.
+First login. This is independent of logging into LastPass through the browser extension or through the website.
 
-For first time login (or after the timeout):
+At the command line, the following command opens the Cygwin `pinentry` application:
 
 ```
 $ lpass login USERNAME
 ```
 
-This opens a `pinentry` popup that takes the LastPass master password, just like logging into LastPass via the browser extension or the website. If two-factor authentication is enabled, `lpass` requires the authentication step, again just like logging into LastPass via other methods.
+`USERNAME` is the email address for my LastPass account.
 
-After that, `lpass` commands have access to the vault.
+This is similar to the LastPass browser extension login, except the prompt just asks for a password.
+
+If two-factor is enabled, two-factor authentication is required. Authentication works exactly as it does when logging in through the browser extension or through the website.
+
+//I keep the entire `lpass login USERNAME` hard-coded to a shortcut key. Pressing the shortcut key pastes it at the command line. 
+This is configured in my `~/.minttyrc` so that I can access it within Cygwin.//
+
+The `pinentry` popup takes the LastPass master password. After two-factor authentication, `lpass` commands have access to my vault until the session timeouts. After timeout, I have to login again. The timeout is configured via an environment variable.
+
+Examples using `lpass` and configuring the timeout are shown below.
+
+!!! Examples
 
 //Example:// copy a password to the clipboard:
 
@@ -11166,7 +11177,7 @@ After that, `lpass` commands have access to the vault.
 $ lpass show -cp SITENAME
 ```
 
-This is a combination of the flags `c` for copy and `p` for password.
+This is a combination of the flags `c` for copy and `p` for password. The long version of these flags are `--clip` and `--password`.
 
 //Example:// show a password at the terminal:
 
@@ -11186,16 +11197,71 @@ On its own, `-c` is not useful. It copies all notes to the clipboard:
 $ lpass show -c SITENAME
 ```
 
-Show username and show password may seem useless, but these invocations are actually the main point of installing `lpass`. Now scripts can automatically enter LastPass usernames and passwords using the show command.
+!!! Invoke lpass with a shortcut key
 
-For example, a bash script evaluates the invocation and echoes the results:
+`show` username and password may seem useless, but //these invocations are actually the main point of installing// `lpass`.
+
+With `show`, scripts can automatically enter LastPass usernames and passwords without hardcoding in a file.
+
+For example, here are bash commands that evaluate the username/password invocations for GitHub, and echo the result:
 
 ```
 $ echo -n $(lpass show --username github.com)
 $ echo -n $(lpass show --password github.com)
 ```
 
-//The -n suppresses any trailing newline resulting from the evaluation//</pre>
+//The -n suppresses any trailing newline resulting from the evaluation//
+
+For each username or password shortcut, use `~/.minttryc` to map a shortcut key.
+
+!!! Environment variables
+
+There is a one-hour timeout. This persists across bash sessions, so exiting bash and opening a new bash session does not logout.
+
+Change the timeout by setting environment variable LPASS_AGENT_TIMEOUT in the `~/.lpass/env` file.
+
+```bash
+$ ls ~/.lpass/
+agent.sock
+blob
+iterations
+session_privatekey
+session_server
+session_sessionid
+session_token
+session_uid
+upload-queue
+username
+verify
+```
+
+If the `env` file does not exist, create it
+
+```bash
+$ vim ~/.lpass/env
+```
+
+Add this line to quit after four hours:
+
+```env
+LPASS_AGENT_TIMEOUT=14400
+```
+
+Or set timeout to 0 to never quit:
+
+```env
+LPASS_AGENT_TIMEOUT=0
+```
+
+Or disable the agent by adding this line:
+
+```env
+LPASS_AGENT_DISABLE=1
+```
+
+There are several environment variables for LastPass having to do with which programs are invoked for the clipboard and pinentry and how the LastPass AGENT behaves. See the `lpass` documentation.
+
+//There are several ways to set environment variables. See `lpass` documentation section `Configuration`.//</pre>
 </div>
 <div created="20200415024041747" modified="20200415030642279" tags="[[Cygwin packages]]" title="Install apt-cyg">
 <pre>https://github.com/transcode-open/apt-cyg
