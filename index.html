@@ -9716,7 +9716,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200509193332488" list="pandoc Contents" modified="20200509193341881" title="$:/StoryList">
+<div created="20200513201906261" list="pandoc Contents" modified="20200513201906261" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -11945,7 +11945,7 @@ convert GumGirl.png -negate negate-GumGirl.png
 
 ! [[Documentation|https://www.imagemagick.org/Usage/color_mods/#negate]]</pre>
 </div>
-<div created="20200509173952963" modified="20200509193350284" tags="setup cygwin powershell toolchain" title="pandoc">
+<div created="20200509173952963" modified="20200513202153025" tags="setup cygwin powershell toolchain" title="pandoc">
 <pre>! Download
 
 https://pandoc.org/installing.html
@@ -11957,11 +11957,13 @@ This downloads `pandoc-2.9.2.1-windows-x86_64.msi`.
 ! Install
 Double-click `pandoc-2.9.2.1-windows-x86_64.msi`.
 
+This adds Pandoc to the `$env:PATH` environment variable, but does not add a trailing semicolon. I erased this from `$env:PATH` and added it the way I add my other tools, via the `$PROFILE`.
+
 Add the path to `pandoc.exe` to `$env:PATH` in the PowerShell `$PROFILE`:
 
 ```PowerShell
 # pandoc
-$env:PATH += &quot;C:\Users\mike\AppData\Local\Pandoc&quot;
+$env:PATH += &quot;C:\Users\mike\AppData\Local\Pandoc;&quot;
 ```
 
 ! Usage
