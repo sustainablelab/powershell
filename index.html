@@ -9718,7 +9718,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200516142937577" list="[[Use pip]] Contents" modified="20200516143157576" title="$:/StoryList">
+<div created="20200516142937577" list="Contents [[Use pip]] [[Git searching]]" modified="20200516150734744" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9782,8 +9782,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200516143833440" title="$:/temp/search">
-<pre></pre>
+<div created="20200202173605395" modified="20200516150316163" title="$:/temp/search">
+<pre>git diff</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10647,13 +10647,15 @@ $ git config mergetool.prompt false
 See additional info here:
 https://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/#fromHistor</pre>
 </div>
-<div created="20200213144234371" modified="20200213163729373" tags="doc git" title="Git searching">
+<div created="20200213144234371" modified="20200516150724014" tags="doc git" title="Git searching">
 <pre>! A cautionary tale
 TiddlyWiki's GitHub Saver ''//autosave-on// '' erased a ton of content I'd added a few days ago. Luckily I went to reference the content, could not find it, knew I wasn't going crazy, and then started cursing...
 
 Somehow this TiddlyWiki was overwritten with a version of the TiddlyWiki that was missing this content.
 
-Now I turn off //autosave// and click the //red checkmark//. This also eliminated the annoying 409 errors.
+Now I turn off //autosave// and click the //red checkmark// and //refresh the view// in my browser before I start editing. This also eliminated the annoying 409 errors.
+
+It's not really TiddlyWiki's fault. The trouble is that when I open my browser it restores my last session. Instead of reloading every web page, the browser loads up the local cache for each page. I don't know what triggers an update of the local cache for this TiddlyWiki, but it does not happen every time I save. So at the start of a work session, if this TiddlyWiki is in a tab restored when I open the browser, I make sure to reload this tab.
 
 ! Git saves the day
 //But this tiddler is about Git and how amazing it is.//
