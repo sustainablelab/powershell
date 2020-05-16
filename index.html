@@ -257,6 +257,8 @@ Error message and password prompt
 
 <li>Git amend</li>
 
+<li>Git diff between this commit and previous</li>
+
 <li>Git merge</li>
 
 <li>Git searching</li>
@@ -9718,7 +9720,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200516142937577" list="Contents [[Use pip]] [[Git searching]]" modified="20200516150734744" title="$:/StoryList">
+<div created="20200516142937577" list="Contents [[Use pip]] [[Git diff between this commit and previous]]" modified="20200516151918511" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9782,8 +9784,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200516150316163" title="$:/temp/search">
-<pre>git diff</pre>
+<div created="20200202173605395" modified="20200516151921410" title="$:/temp/search">
+<pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -10611,6 +10613,16 @@ But it's easier to remember `brave` without the `.$` prefix. [[Make an alias ins
 
 ```bash
 git config --global core.editor &quot;vim&quot;
+```</pre>
+</div>
+<div created="20200516151708706" modified="20200516151911821" tags="git reference" title="Git diff between this commit and previous">
+<pre>Show changes between this commit and the previous commit
+
+* ''red'' `-` : previous commit
+* ''green'' `+` : this commit
+
+```bash
+$ git diff HEAD~ HEAD
 ```</pre>
 </div>
 <div created="20200209211239489" modified="20200209211748486" tags="git setup" title="Git merge">
