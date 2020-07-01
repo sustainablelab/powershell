@@ -183,6 +183,10 @@ Error message and password prompt
 
 <li>$:/state/edit/references-1742993775</li>
 
+<li>$:/state/Excise/--1039635271/tagnew</li>
+
+<li>$:/state/Excise/--1039635271/type</li>
+
 <li>$:/state/Excise/--1129349216/type</li>
 
 <li>$:/state/Excise/--1306336513/tagnew</li>
@@ -277,6 +281,10 @@ Error message and password prompt
 
 <li>Install Cygwin</li>
 
+<li>Install MSYS2 and MinGW</li>
+
+<li>Install Python for MinGW</li>
+
 <li>Install Python on Cygwin for Vim omni-complete</li>
 
 <li>Install Python on Windows</li>
@@ -285,9 +293,11 @@ Error message and password prompt
 
 <li>Make 'import mypackage' work from anywhere</li>
 
-<li>MinGW and MSYS2</li>
-
 <li>mintty documentation</li>
+
+<li>MSYS2 and MinGW</li>
+
+<li>MSYS2 Package Manager pacman</li>
 
 <li>Negate images</li>
 
@@ -9677,6 +9687,12 @@ Both forms return the docstring for `mymodule`.
 <div created="20200209183841700" modified="20200209183841700" title="$:/state/edit/references-1742993775">
 <pre>show</pre>
 </div>
+<div created="20200701215117280" modified="20200701215117280" title="$:/state/Excise/--1039635271/tagnew">
+<pre>yes</pre>
+</div>
+<div created="20200701215126337" modified="20200701215126337" title="$:/state/Excise/--1039635271/type">
+<pre>link</pre>
+</div>
 <div created="20200209223230424" modified="20200209223230424" title="$:/state/Excise/--1129349216/type">
 <pre>link</pre>
 </div>
@@ -9722,7 +9738,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200701213759364" list="[[MinGW and MSYS2]] Contents" modified="20200701213759364" title="$:/StoryList">
+<div created="20200701213759364" list="[[MSYS2 and MinGW]] [[Install Python for MinGW]] Contents" modified="20200701220322830" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -11540,6 +11556,111 @@ I also build my own software from source on Cygwin:
 I do not do any builds in the Windows environment. I do not build from PowerShell or use Microsoft Visual Studio. I try to avoid installing software that has Visual Studio Code dependencies (which I admit excludes a lot of cool stuff).
 </pre>
 </div>
+<div created="20200701215127040" modified="20200701215127040" tags="[[MSYS2 and MinGW]]" title="Install MSYS2 and MinGW">
+<pre>* [[Read about and download MSYS2|https://www.msys2.org/]]
+** follow link to download msys2-x86_64-20200629.exe (or whatever the latest is)
+** paste SHA256 sum into file `sha-given`
+** run SHA checksum to verify:
+
+```bash
+$ sha256sum.exe msys2-x86_64-20200629.exe &gt; sha-calc
+$ vimdiff sha-given sha-calc
+```
+
+* (assuming SHA256 checksums match) run the .exe to install MSYS2
+** install to default: `C:\msys64`
+** let MSYS run at the end of the install
+
+A mintty terminal opens in directory `home/username`. Run the package manager:
+
+```bash
+$ pacman -Syu
+:: Synchronizing package databases...
+ mingw32 is up to date
+ mingw64 is up to date
+ msys is up to date
+:: Starting core system upgrade...
+ there is nothing to do
+:: Starting full system upgrade...
+ there is nothing to do
+```
+</pre>
+</div>
+<div created="20200701220209245" modified="20200701220209245" tags="[[MSYS2 and MinGW]]" title="Install Python for MinGW">
+<pre>```bash
+$ pacman -S mingw-w64-x86_64-python
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (26) mingw-w64-x86_64-bzip2-1.0.8-1
+              mingw-w64-x86_64-ca-certificates-20190110-1
+              mingw-w64-x86_64-expat-2.2.9-1
+              mingw-w64-x86_64-gcc-libs-10.1.0-3
+              mingw-w64-x86_64-gettext-0.19.8.1-9  mingw-w64-x86_64-gmp-6.2.0-1
+              mingw-w64-x86_64-libffi-3.3-1  mingw-w64-x86_64-libiconv-1.16-1
+              mingw-w64-x86_64-libsystre-1.0.1-4
+              mingw-w64-x86_64-libtasn1-4.16.0-1
+              mingw-w64-x86_64-libtre-git-r128.6fb7206-2
+              mingw-w64-x86_64-libwinpthread-git-8.0.0.5906.c9a21571-1
+              mingw-w64-x86_64-mpc-1.1.0-1  mingw-w64-x86_64-mpdecimal-2.4.2-1
+              mingw-w64-x86_64-mpfr-4.0.2-2  mingw-w64-x86_64-ncurses-6.2-1
+              mingw-w64-x86_64-openssl-1.1.1.g-1
+              mingw-w64-x86_64-p11-kit-0.23.20-2
+              mingw-w64-x86_64-readline-8.0.004-1
+              mingw-w64-x86_64-sqlite3-3.32.3-1  mingw-w64-x86_64-tcl-8.6.10-1
+              mingw-w64-x86_64-termcap-1.3.1-5  mingw-w64-x86_64-tk-8.6.10-1
+              mingw-w64-x86_64-xz-5.2.5-1  mingw-w64-x86_64-zlib-1.2.11-7
+              mingw-w64-x86_64-python-3.8.3-2
+```
+
+This install take awhile.
+
+Installing make in the msys2 shell it is also available in the mingw64 shell, and vice versa. It doesn't seem to matter which shell I use.
+
+But installing the mingw-w64-x86_64 Python3.8.3-2, it is only available in the mingw shell. It is not available in the msys2 shell.
+
+Python is not much use without pip. Unlike the Windows installation of Python, installing Python on mingw64 does not install pip.
+
+Install pip with pacman:
+
+```bash
+$ pacman -S mingw-w64-x86_64-python-pip
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (25) mingw-w64-x86_64-python-appdirs-1.4.3-1
+              mingw-w64-x86_64-python-attrs-19.3.0-1
+              mingw-w64-x86_64-python-cachecontrol-0.12.6-1
+              mingw-w64-x86_64-python-certifi-2019.11.28-1
+              mingw-w64-x86_64-python-chardet-3.0.4-1
+              mingw-w64-x86_64-python-colorama-0.4.3-1
+              mingw-w64-x86_64-python-contextlib2-0.6.0-1
+              mingw-w64-x86_64-python-distlib-0.3.0-1
+              mingw-w64-x86_64-python-html5lib-1.0.1-1
+              mingw-w64-x86_64-python-idna-2.9-1
+              mingw-w64-x86_64-python-lockfile-0.12.2-1
+              mingw-w64-x86_64-python-msgpack-1.0.0-1
+              mingw-w64-x86_64-python-ordered-set-3.1.1-1
+              mingw-w64-x86_64-python-packaging-20.3-1
+              mingw-w64-x86_64-python-pep517-0.8.2-1
+              mingw-w64-x86_64-python-progress-1.5-1
+              mingw-w64-x86_64-python-pyparsing-2.4.7-1
+              mingw-w64-x86_64-python-pytoml-0.1.21-1
+              mingw-w64-x86_64-python-requests-2.23.0-1
+              mingw-w64-x86_64-python-retrying-1.3.3-1
+              mingw-w64-x86_64-python-setuptools-47.1.1-1
+              mingw-w64-x86_64-python-six-1.14.0-1
+              mingw-w64-x86_64-python-urllib3-1.25.9-1
+              mingw-w64-x86_64-python-webencodings-0.5.1-1
+              mingw-w64-x86_64-python-pip-20.0.2-1
+
+Total Download Size:    2.79 MiB
+Total Installed Size:  12.22 MiB
+
+:: Proceed with installation? [Y/n]
+```
+</pre>
+</div>
 <div created="20200208201226894" modified="20200312235450359" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
 <pre>! Context
 Python omni complete in Vim `i_CTRL-X_CTRL-O` requires Python is installed. See:
@@ -11954,39 +12075,48 @@ Lastly, I make the package a git repository for sharing across computers. In thi
 * I do `git remote update; git pull`
 </pre>
 </div>
-<div created="20200701191214089" modified="20200701214700250" tags="setup toolchain" title="MinGW and MSYS2">
-<pre>! Install
-* [[Read about and download MSYS2|https://www.msys2.org/]]
-** follow link to download msys2-x86_64-20200629.exe (or whatever the latest is)
-** paste SHA256 sum into file `sha-given`
-** run SHA checksum to verify:
+<div created="20200412211656665" modified="20200412211720766" tags="bash doc" title="mintty documentation">
+<pre>https://github.com/mintty/mintty/wiki</pre>
+</div>
+<div created="20200701191214089" modified="20200701220320097" tags="setup toolchain" title="MSYS2 and MinGW">
+<pre>MSYS2 and MinGW come together in one installation.
 
-```bash
-$ sha256sum.exe msys2-x86_64-20200629.exe &gt; sha-calc
-$ vimdiff sha-given sha-calc
-```
+* MinGW is a set of GNU build tools for native Windows builds.
+* MSYS2 provides a POSIX emulation layer and runs slower.
 
-* (assuming SHA256 checksums match) run the .exe to install MSYS2
-** install to default: `C:\msys64`
-** let MSYS run at the end of the install
+From https://www.msys2.org/wiki/MSYS2-introduction/
 
-A mintty terminal opens in directory `home/username`. Run the package manager:
+&lt;&lt;&lt;
+Use msys2 shell for running pacman, makepkg, makepkg-mingw and for building POSIX-dependent software that you don't intend to distribute. Use mingw shells for building native Windows software and other tasks.
+&lt;&lt;&lt;
 
-```bash
-$ pacman -Syu
-:: Synchronizing package databases...
- mingw32 is up to date
- mingw64 is up to date
- msys is up to date
-:: Starting core system upgrade...
- there is nothing to do
-:: Starting full system upgrade...
- there is nothing to do
-```
+The installer provides a shell for each:
 
-! Package manager
+* `C:\msys64\mingw64.exe`
+* `C:\msys64\msys2.exe`
 
-See help:
+The shells share the same home directory:
+
+* install location (`C:\msys64\`)
+* followed by `/home/username/`
+
+The root directory is `/` (you cannot *see* above `/home`).
+
+MinGW uses the POSIX folder notation even though it's the native Windows one.
+
+Installing utilities by a general name, e.g., `make`, provides installs that are callable from either shells.
+
+Installing with the *shell-specific name* only installs for one. For example, `mingw-w64-x86_64-python` only provides python for the MinGW shell.
+
+! Contents
+!! [[Install MSYS2 and MinGW]]
+
+!! [[MSYS2 Package Manager pacman]]
+
+!! [[Install Python for MinGW]]</pre>
+</div>
+<div created="20200701220117650" modified="20200701220117650" tags="[[MSYS2 and MinGW]]" title="MSYS2 Package Manager pacman">
+<pre>See help:
 
 ```bash
 $ pacman --help
@@ -12080,92 +12210,7 @@ msys/python 3.8.3-1
 Use `mingw` whenever possible because it's faster.
 
 And I don't know how to install the `msys/python 3.8.3-1` package anyway.
-
-```bash
-$ pacman -S mingw-w64-x86_64-python
-resolving dependencies...
-looking for conflicting packages...
-
-Packages (26) mingw-w64-x86_64-bzip2-1.0.8-1
-              mingw-w64-x86_64-ca-certificates-20190110-1
-              mingw-w64-x86_64-expat-2.2.9-1
-              mingw-w64-x86_64-gcc-libs-10.1.0-3
-              mingw-w64-x86_64-gettext-0.19.8.1-9  mingw-w64-x86_64-gmp-6.2.0-1
-              mingw-w64-x86_64-libffi-3.3-1  mingw-w64-x86_64-libiconv-1.16-1
-              mingw-w64-x86_64-libsystre-1.0.1-4
-              mingw-w64-x86_64-libtasn1-4.16.0-1
-              mingw-w64-x86_64-libtre-git-r128.6fb7206-2
-              mingw-w64-x86_64-libwinpthread-git-8.0.0.5906.c9a21571-1
-              mingw-w64-x86_64-mpc-1.1.0-1  mingw-w64-x86_64-mpdecimal-2.4.2-1
-              mingw-w64-x86_64-mpfr-4.0.2-2  mingw-w64-x86_64-ncurses-6.2-1
-              mingw-w64-x86_64-openssl-1.1.1.g-1
-              mingw-w64-x86_64-p11-kit-0.23.20-2
-              mingw-w64-x86_64-readline-8.0.004-1
-              mingw-w64-x86_64-sqlite3-3.32.3-1  mingw-w64-x86_64-tcl-8.6.10-1
-              mingw-w64-x86_64-termcap-1.3.1-5  mingw-w64-x86_64-tk-8.6.10-1
-              mingw-w64-x86_64-xz-5.2.5-1  mingw-w64-x86_64-zlib-1.2.11-7
-              mingw-w64-x86_64-python-3.8.3-2
-```
-
-This install take awhile.
-
-Installing make in the msys2 shell it is also available in the mingw64 shell, and vice versa. It doesn't seem to matter which shell I use.
-
-But installing the mingw-w64-x86_64 Python3.8.3-2, it is only available in the mingw shell. It is not available in the msys2 shell.
-
-Python is not much use without pip. Unlike the Windows installation of Python, installing Python on mingw64 does not install pip.
-
-Install pip with pacman:
-
-```bash
-$ pacman -S mingw-w64-x86_64-python-pip
-resolving dependencies...
-looking for conflicting packages...
-
-Packages (25) mingw-w64-x86_64-python-appdirs-1.4.3-1
-              mingw-w64-x86_64-python-attrs-19.3.0-1
-              mingw-w64-x86_64-python-cachecontrol-0.12.6-1
-              mingw-w64-x86_64-python-certifi-2019.11.28-1
-              mingw-w64-x86_64-python-chardet-3.0.4-1
-              mingw-w64-x86_64-python-colorama-0.4.3-1
-              mingw-w64-x86_64-python-contextlib2-0.6.0-1
-              mingw-w64-x86_64-python-distlib-0.3.0-1
-              mingw-w64-x86_64-python-html5lib-1.0.1-1
-              mingw-w64-x86_64-python-idna-2.9-1
-              mingw-w64-x86_64-python-lockfile-0.12.2-1
-              mingw-w64-x86_64-python-msgpack-1.0.0-1
-              mingw-w64-x86_64-python-ordered-set-3.1.1-1
-              mingw-w64-x86_64-python-packaging-20.3-1
-              mingw-w64-x86_64-python-pep517-0.8.2-1
-              mingw-w64-x86_64-python-progress-1.5-1
-              mingw-w64-x86_64-python-pyparsing-2.4.7-1
-              mingw-w64-x86_64-python-pytoml-0.1.21-1
-              mingw-w64-x86_64-python-requests-2.23.0-1
-              mingw-w64-x86_64-python-retrying-1.3.3-1
-              mingw-w64-x86_64-python-setuptools-47.1.1-1
-              mingw-w64-x86_64-python-six-1.14.0-1
-              mingw-w64-x86_64-python-urllib3-1.25.9-1
-              mingw-w64-x86_64-python-webencodings-0.5.1-1
-              mingw-w64-x86_64-python-pip-20.0.2-1
-
-Total Download Size:    2.79 MiB
-Total Installed Size:  12.22 MiB
-
-:: Proceed with installation? [Y/n]
-```
-
-! Shells
-
-From https://www.msys2.org/wiki/MSYS2-introduction/
-
-
-&lt;&lt;&lt;
-Use msys2 shell for running pacman, makepkg, makepkg-mingw and for building POSIX-dependent software that you don't intend to distribute. Use mingw shells for building native Windows software and other tasks.
-&lt;&lt;&lt;
 </pre>
-</div>
-<div created="20200412211656665" modified="20200412211720766" tags="bash doc" title="mintty documentation">
-<pre>https://github.com/mintty/mintty/wiki</pre>
 </div>
 <div created="20200131141132167" modified="20200131141322777" tags="reference imagemagick convert" title="Negate images" type="application/x-tiddler">
 <pre>! Example
