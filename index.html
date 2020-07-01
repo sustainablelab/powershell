@@ -11954,7 +11954,7 @@ Lastly, I make the package a git repository for sharing across computers. In thi
 * I do `git remote update; git pull`
 </pre>
 </div>
-<div created="20200701191214089" modified="20200701214253563" tags="setup toolchain" title="MinGW and MSYS2">
+<div created="20200701191214089" modified="20200701214700250" tags="setup toolchain" title="MinGW and MSYS2">
 <pre>! Install
 * [[Read about and download MSYS2|https://www.msys2.org/]]
 ** follow link to download msys2-x86_64-20200629.exe (or whatever the latest is)
@@ -12109,9 +12109,11 @@ Packages (26) mingw-w64-x86_64-bzip2-1.0.8-1
 
 This install take awhile.
 
-Installing Python in the msys2 shell it is also available in the mingw64 shell, and vice versa. It doesn't seem to matter which shell I use.
+Installing make in the msys2 shell it is also available in the mingw64 shell, and vice versa. It doesn't seem to matter which shell I use.
 
-Python is not much use without pip. Unlike the Windows installation of Python, installing Python on msys2/mingw64 does not install pip.
+But installing the mingw-w64-x86_64 Python3.8.3-2, it is only available in the mingw shell. It is not available in the msys2 shell.
+
+Python is not much use without pip. Unlike the Windows installation of Python, installing Python on mingw64 does not install pip.
 
 Install pip with pacman:
 
