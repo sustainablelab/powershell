@@ -285,6 +285,8 @@ Error message and password prompt
 
 <li>Install Python for MinGW</li>
 
+<li>Install Python for MSYS2</li>
+
 <li>Install Python on Cygwin for Vim omni-complete</li>
 
 <li>Install Python on Windows</li>
@@ -9738,7 +9740,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200701213759364" list="[[MSYS2 and MinGW]] [[Install Python for MinGW]] Contents" modified="20200701220322830" title="$:/StoryList">
+<div created="20200701213759364" list="[[MSYS2 and MinGW]] [[Install Python for MSYS2]] Contents" modified="20200701220822163" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -11586,8 +11588,10 @@ $ pacman -Syu
 ```
 </pre>
 </div>
-<div created="20200701220209245" modified="20200701220209245" tags="[[MSYS2 and MinGW]]" title="Install Python for MinGW">
-<pre>```bash
+<div created="20200701220209245" modified="20200701220715282" tags="[[MSYS2 and MinGW]]" title="Install Python for MinGW">
+<pre>Install Python for MinGW:
+
+```bash
 $ pacman -S mingw-w64-x86_64-python
 resolving dependencies...
 looking for conflicting packages...
@@ -11660,6 +11664,59 @@ Total Installed Size:  12.22 MiB
 :: Proceed with installation? [Y/n]
 ```
 </pre>
+</div>
+<div created="20200701220826277" modified="20200701221031437" title="Install Python for MSYS2">
+<pre>Open an msys2 shell. First install the latest Python3:
+
+```bash
+$ pacman -S python3
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) mpdecimal-2.4.2-2  python-3.8.3-1
+
+Total Download Size:    16.44 MiB
+Total Installed Size:  108.85 MiB
+
+:: Proceed with installation? [Y/n] y
+:: Retrieving packages...
+ mpdecimal-2.4.2-...    86.7 KiB   963 KiB/s 00:00 [#####################] 100%
+ python-3.8.3-1-x...    16.4 MiB  4.83 MiB/s 00:03 [#####################] 100%
+(2/2) checking keys in keyring                     [#####################] 100%
+(2/2) checking package integrity                   [#####################] 100%
+(2/2) loading package files                        [#####################] 100%
+(2/2) checking for file conflicts                  [#####################] 100%
+(2/2) checking available disk space                [#####################] 100%
+:: Processing package changes...
+(1/2) installing mpdecimal                         [#####################] 100%
+(2/2) installing python                            [#####################] 100%
+```
+
+Now install pip:
+
+```bash
+$ pacman -S python3-pip
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (2) python-setuptools-47.1.1-1  python-pip-20.1.1-1
+
+Total Download Size:    2.22 MiB
+Total Installed Size:  10.91 MiB
+
+:: Proceed with installation? [Y/n] y
+:: Retrieving packages...
+ python-setuptool...   490.3 KiB  1354 KiB/s 00:00 [#####################] 100%
+ python-pip-20.1....  1785.0 KiB  4.54 MiB/s 00:00 [#####################] 100%
+(2/2) checking keys in keyring                     [#####################] 100%
+(2/2) checking package integrity                   [#####################] 100%
+(2/2) loading package files                        [#####################] 100%
+(2/2) checking for file conflicts                  [#####################] 100%
+(2/2) checking available disk space                [#####################] 100%
+:: Processing package changes...
+(1/2) installing python-setuptools                 [#####################] 100%
+(2/2) installing python-pip                        [#####################] 100%
+```</pre>
 </div>
 <div created="20200208201226894" modified="20200312235450359" tags="setup cygwin python vim" title="Install Python on Cygwin for Vim omni-complete">
 <pre>! Context
@@ -12078,7 +12135,7 @@ Lastly, I make the package a git repository for sharing across computers. In thi
 <div created="20200412211656665" modified="20200412211720766" tags="bash doc" title="mintty documentation">
 <pre>https://github.com/mintty/mintty/wiki</pre>
 </div>
-<div created="20200701191214089" modified="20200701220320097" tags="setup toolchain" title="MSYS2 and MinGW">
+<div created="20200701191214089" modified="20200701220819265" tags="setup toolchain" title="MSYS2 and MinGW">
 <pre>MSYS2 and MinGW come together in one installation.
 
 * MinGW is a set of GNU build tools for native Windows builds.
@@ -12106,14 +12163,16 @@ MinGW uses the POSIX folder notation even though it's the native Windows one.
 
 Installing utilities by a general name, e.g., `make`, provides installs that are callable from either shells.
 
-Installing with the *shell-specific name* only installs for one. For example, `mingw-w64-x86_64-python` only provides python for the MinGW shell.
+I think installing with the //shell-specific name// only installs for one. For example, `mingw-w64-x86_64-python` only provides python for the MinGW shell.
 
 ! Contents
 !! [[Install MSYS2 and MinGW]]
 
 !! [[MSYS2 Package Manager pacman]]
 
-!! [[Install Python for MinGW]]</pre>
+!! [[Install Python for MinGW]]
+
+!! [[Install Python for MSYS2]]</pre>
 </div>
 <div created="20200701220117650" modified="20200701220117650" tags="[[MSYS2 and MinGW]]" title="MSYS2 Package Manager pacman">
 <pre>See help:
