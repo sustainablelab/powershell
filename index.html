@@ -9722,7 +9722,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div list="[[MinGW and MSYS2]] Contents" title="$:/StoryList">
+<div created="20200701213759364" list="[[MinGW and MSYS2]] Contents" modified="20200701213759364" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9786,8 +9786,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200701191321824" title="$:/temp/search">
-<pre>msys</pre>
+<div created="20200202173605395" modified="20200701213749152" title="$:/temp/search">
+<pre>pip</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -11954,7 +11954,7 @@ Lastly, I make the package a git repository for sharing across computers. In thi
 * I do `git remote update; git pull`
 </pre>
 </div>
-<div created="20200701191214089" modified="20200701200600270" tags="setup toolchain" title="MinGW and MSYS2">
+<div created="20200701191214089" modified="20200701214253563" tags="setup toolchain" title="MinGW and MSYS2">
 <pre>! Install
 * [[Read about and download MSYS2|https://www.msys2.org/]]
 ** follow link to download msys2-x86_64-20200629.exe (or whatever the latest is)
@@ -11984,6 +11984,8 @@ $ pacman -Syu
  there is nothing to do
 ```
 
+! Package manager
+
 See help:
 
 ```bash
@@ -12000,6 +12002,10 @@ operations:
     pacman {-T --deptest}  [options] [package(s)]
     pacman {-U --upgrade}  [options] &lt;file(s)&gt;
 ```
+
+And read the docs:
+
+https://www.msys2.org/docs/package-management/
 
 !! Install a package
 Install packages:
@@ -12040,6 +12046,110 @@ Try running `make` again
 ```bash
 $ make
 make: *** No targets specified and no makefile found.  Stop.
+```
+
+!! Check if a package exists
+
+Is any Python installed?
+
+```bash
+$ pacman -Qs python
+
+```
+
+No. Search for Python3 packages:
+
+```bash
+$ pacman -Ss python3
+```
+
+This returns an insane number of results, because it's not just Python, but Python packages.
+
+Grep the results for &quot;python 3&quot; to limit this to Python 3 builds:
+
+```bash
+$ pacman -Ss python3 | grep &quot;python 3&quot;
+mingw32/mingw-w64-i686-python 3.8.3-2
+mingw64/mingw-w64-x86_64-python 3.8.3-2
+msys/python 3.8.3-1
+```
+
+`mingw` is native windows
+`msys` is the POSIX emulation layer
+
+Use `mingw` whenever possible because it's faster.
+
+And I don't know how to install the `msys/python 3.8.3-1` package anyway.
+
+```bash
+$ pacman -S mingw-w64-x86_64-python
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (26) mingw-w64-x86_64-bzip2-1.0.8-1
+              mingw-w64-x86_64-ca-certificates-20190110-1
+              mingw-w64-x86_64-expat-2.2.9-1
+              mingw-w64-x86_64-gcc-libs-10.1.0-3
+              mingw-w64-x86_64-gettext-0.19.8.1-9  mingw-w64-x86_64-gmp-6.2.0-1
+              mingw-w64-x86_64-libffi-3.3-1  mingw-w64-x86_64-libiconv-1.16-1
+              mingw-w64-x86_64-libsystre-1.0.1-4
+              mingw-w64-x86_64-libtasn1-4.16.0-1
+              mingw-w64-x86_64-libtre-git-r128.6fb7206-2
+              mingw-w64-x86_64-libwinpthread-git-8.0.0.5906.c9a21571-1
+              mingw-w64-x86_64-mpc-1.1.0-1  mingw-w64-x86_64-mpdecimal-2.4.2-1
+              mingw-w64-x86_64-mpfr-4.0.2-2  mingw-w64-x86_64-ncurses-6.2-1
+              mingw-w64-x86_64-openssl-1.1.1.g-1
+              mingw-w64-x86_64-p11-kit-0.23.20-2
+              mingw-w64-x86_64-readline-8.0.004-1
+              mingw-w64-x86_64-sqlite3-3.32.3-1  mingw-w64-x86_64-tcl-8.6.10-1
+              mingw-w64-x86_64-termcap-1.3.1-5  mingw-w64-x86_64-tk-8.6.10-1
+              mingw-w64-x86_64-xz-5.2.5-1  mingw-w64-x86_64-zlib-1.2.11-7
+              mingw-w64-x86_64-python-3.8.3-2
+```
+
+This install take awhile.
+
+Installing Python in the msys2 shell it is also available in the mingw64 shell, and vice versa. It doesn't seem to matter which shell I use.
+
+Python is not much use without pip. Unlike the Windows installation of Python, installing Python on msys2/mingw64 does not install pip.
+
+Install pip with pacman:
+
+```bash
+$ pacman -S mingw-w64-x86_64-python-pip
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (25) mingw-w64-x86_64-python-appdirs-1.4.3-1
+              mingw-w64-x86_64-python-attrs-19.3.0-1
+              mingw-w64-x86_64-python-cachecontrol-0.12.6-1
+              mingw-w64-x86_64-python-certifi-2019.11.28-1
+              mingw-w64-x86_64-python-chardet-3.0.4-1
+              mingw-w64-x86_64-python-colorama-0.4.3-1
+              mingw-w64-x86_64-python-contextlib2-0.6.0-1
+              mingw-w64-x86_64-python-distlib-0.3.0-1
+              mingw-w64-x86_64-python-html5lib-1.0.1-1
+              mingw-w64-x86_64-python-idna-2.9-1
+              mingw-w64-x86_64-python-lockfile-0.12.2-1
+              mingw-w64-x86_64-python-msgpack-1.0.0-1
+              mingw-w64-x86_64-python-ordered-set-3.1.1-1
+              mingw-w64-x86_64-python-packaging-20.3-1
+              mingw-w64-x86_64-python-pep517-0.8.2-1
+              mingw-w64-x86_64-python-progress-1.5-1
+              mingw-w64-x86_64-python-pyparsing-2.4.7-1
+              mingw-w64-x86_64-python-pytoml-0.1.21-1
+              mingw-w64-x86_64-python-requests-2.23.0-1
+              mingw-w64-x86_64-python-retrying-1.3.3-1
+              mingw-w64-x86_64-python-setuptools-47.1.1-1
+              mingw-w64-x86_64-python-six-1.14.0-1
+              mingw-w64-x86_64-python-urllib3-1.25.9-1
+              mingw-w64-x86_64-python-webencodings-0.5.1-1
+              mingw-w64-x86_64-python-pip-20.0.2-1
+
+Total Download Size:    2.79 MiB
+Total Installed Size:  12.22 MiB
+
+:: Proceed with installation? [Y/n]
 ```
 
 ! Shells
