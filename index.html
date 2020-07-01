@@ -11954,8 +11954,91 @@ Lastly, I make the package a git repository for sharing across computers. In thi
 * I do `git remote update; git pull`
 </pre>
 </div>
-<div created="20200701191214089" modified="20200701191349799" tags="setup toolchain" title="MinGW and MSYS2">
-<pre></pre>
+<div created="20200701191214089" modified="20200701193430908" tags="setup toolchain" title="MinGW and MSYS2">
+<pre>* [[Read about and download MSYS2|https://www.msys2.org/]]
+** follow link to download msys2-x86_64-20200629.exe (or whatever the latest is)
+** paste SHA256 sum into file `sha-given`
+** run SHA checksum to verify:
+
+```bash
+$ sha256sum.exe msys2-x86_64-20200629.exe &gt; sha-calc
+$ vimdiff sha-given sha-calc
+```
+
+* (assuming SHA256 checksums match) run the .exe to install MSYS2
+** install to default: `C:\msys64`
+** let MSYS run at the end of the install
+
+A mintty terminal opens in directory `home/username`. Run the package manager:
+
+```bash
+$ pacman -Syu
+:: Synchronizing package databases...
+ mingw32 is up to date
+ mingw64 is up to date
+ msys is up to date
+:: Starting core system upgrade...
+ there is nothing to do
+:: Starting full system upgrade...
+ there is nothing to do
+```
+
+See help:
+
+```bash
+$ pacman --help
+usage:  pacman &lt;operation&gt; [...]
+operations:
+    pacman {-h --help}
+    pacman {-V --version}
+    pacman {-D --database} &lt;options&gt; &lt;package(s)&gt;
+    pacman {-F --files}    [options] [package(s)]
+    pacman {-Q --query}    [options] [package(s)]
+    pacman {-R --remove}   [options] &lt;package(s)&gt;
+    pacman {-S --sync}     [options] [package(s)]
+    pacman {-T --deptest}  [options] [package(s)]
+    pacman {-U --upgrade}  [options] &lt;file(s)&gt;
+```
+
+Install packages:
+
+```bash
+$ make
+bash: make: command not found
+```
+
+Install `make`:
+
+```bash
+$ pacman -S make
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) make-4.3-1
+
+Total Download Size:   0.45 MiB
+Total Installed Size:  1.48 MiB
+
+:: Proceed with installation? [Y/n] y
+:: Retrieving packages...
+ make-4.3-1-x86_64     456.7 KiB  1279 KiB/s 00:00 [#####################] 100%
+(1/1) checking keys in keyring                     [#####################] 100%
+(1/1) checking package integrity                   [#####################] 100%
+(1/1) loading package files                        [#####################] 100%
+(1/1) checking for file conflicts                  [#####################] 100%
+(1/1) checking available disk space                [#####################] 100%
+:: Processing package changes...
+(1/1) installing make                              [#####################] 100%
+:: Running post-transaction hooks...
+(1/1) Updating the info directory file...
+```
+
+Try running `make` again
+
+```bash
+$ make
+make: *** No targets specified and no makefile found.  Stop.
+```</pre>
 </div>
 <div created="20200412211656665" modified="20200412211720766" tags="bash doc" title="mintty documentation">
 <pre>https://github.com/mintty/mintty/wiki</pre>
