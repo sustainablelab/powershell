@@ -12135,7 +12135,7 @@ Lastly, I make the package a git repository for sharing across computers. In thi
 <div created="20200412211656665" modified="20200412211720766" tags="bash doc" title="mintty documentation">
 <pre>https://github.com/mintty/mintty/wiki</pre>
 </div>
-<div created="20200701191214089" modified="20200701220819265" tags="setup toolchain" title="MSYS2 and MinGW">
+<div created="20200701191214089" modified="20200702041727433" tags="setup toolchain" title="MSYS2 and MinGW">
 <pre>MSYS2 and MinGW come together in one installation.
 
 * MinGW is a set of GNU build tools for native Windows builds.
@@ -12172,7 +12172,20 @@ I think installing with the //shell-specific name// only installs for one. For e
 
 !! [[Install Python for MinGW]]
 
-!! [[Install Python for MSYS2]]</pre>
+!! [[Install Python for MSYS2]]
+
+!! [[TODO: install pygame]]
+
+The install fails on MinGW and MSYS2 for the same reason: the `sdl-config` script is not on the path. From https://www.pygame.org/wiki/GettingStarted:
+
+&lt;&lt;&lt;
+Compiling from linux shouldn't give you any problems. One thing you must keep in mind is that most linux RPM packages separate the actual library from the &quot;dev&quot; files needed to compile. To build you will need to make sure the packages like &quot;SDL-dev&quot; are installed.
+
+ 
+
+You can check to see if SDL is ready to be built from by running the command sdl-config and seeing if it is found. If the sdl-config script is not on the path (or you have more than one?) Set the environment variable SDL_CONFIG to its location.
+Sometimes you will have the SDL libraries installed in once location, and the other SDL libraries in another. This tricks the pygame config scripts, but you can help it out by setting the environment LOCALBASE to a path prefix where the other libraries are. The common case for this is SDL installed in /usr and other SDL libs installed in /usr/local. The command for this situation is &quot;LOCALBASE=/usr/local python setup.py install&quot;.
+&gt;&gt;&gt;</pre>
 </div>
 <div created="20200701220117650" modified="20200701220117650" tags="[[MSYS2 and MinGW]]" title="MSYS2 Package Manager pacman">
 <pre>See help:
