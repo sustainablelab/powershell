@@ -249,6 +249,8 @@ Error message and password prompt
 
 <li>check-manifest</li>
 
+<li>Combine two images</li>
+
 <li>Contents</li>
 
 <li>Convert block diagram photos</li>
@@ -9742,7 +9744,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200714204425584" list="[[Convert block diagram photos]] check-manifest [[MSYS2 and MinGW]] [[Install Python for MSYS2]] Contents" modified="20200714204425584" title="$:/StoryList">
+<div list="[[Combine two images]] [[Convert block diagram photos]] check-manifest [[MSYS2 and MinGW]] [[Install Python for MSYS2]] Contents" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -10302,6 +10304,22 @@ $ git commit -m 'Generate MANIFEST file with check-manifest'
 ```
 </pre>
 </div>
+<div created="20200717225440234" modified="20200717225855878" tags="imagemagick" title="Combine two images">
+<pre>```bash
+$ convert img/render/vis-analog-out-render-U1.png img/render/vis-analog-out-render-ZIF.png +append img/render/vis-analog-out-render.png
+```
+
+From the documentation for `convert`:
+
+&lt;&lt;&lt;
+Image Sequence Operators:
+
+-append
+
+append an image sequence top to bottom (use +append for left to right)
+
+&gt;&gt;&gt;</pre>
+</div>
 <div created="20200202180407251" modified="20200214033247050" tags="profile list-links" title="Contents">
 <pre>My notes about the PowerShell Profile
 &lt;&lt;list-links &quot;[tag[profile]!tag[snippet]!tag[list-links]sort[modified]]&gt;&gt;
@@ -10320,7 +10338,7 @@ Bash Documentation
 Python Packages
 &lt;&lt;list-links &quot;[tag[python]tag[package]!tag[setup]!sort[modified]]&quot;&gt;&gt;</pre>
 </div>
-<div created="20200306222034877" modified="20200714204557622" title="Convert block diagram photos">
+<div created="20200306222034877" modified="20200717225436017" tags="imagemagick" title="Convert block diagram photos">
 <pre>! New
 
 The crop command is called trim. `-trim` on its own gets rid of any //unused// area:
