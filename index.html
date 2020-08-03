@@ -13217,13 +13217,17 @@ __all__ = ['print_if_pkg_plumbing_is_ok']
 
 Lastly, test that Windows Python is able to run the script.</pre>
 </div>
-<div created="20200803172112806" modified="20200803174945148" tags="readthedocs" title="ReadTheDocs">
-<pre>! Host documentation on //readthedocs//
+<div created="20200803172112806" modified="20200803175815563" tags="readthedocs" title="ReadTheDocs">
+<pre>! Host documentation on //ReadTheDocs//
 
 !! How it works
-[[readthedocs|https://docs.readthedocs.io/en/stable/]] detects when your GitHub repository has a new commit. It clones your repository, then uses [[Sphinx|https://pypi.org/project/Sphinx/]] to rebuild the documentation.
 
-I created an [[example project on GitHub|https://github.com/sustainablelab/avrcycles]] that has its [[documentation on readthedocs|https://avrcycles.readthedocs.io/en/latest/index.html]].
+* [[ReadTheDocs|https://docs.readthedocs.io/en/stable/]] detects when your GitHub repository has a new commit and re-clones your repository
+* ReadTheDocs uses [[Sphinx|https://pypi.org/project/Sphinx/]] to rebuild the documentation via the `make html` target defined in the `Makefile` in your project's top-level `docs` folder
+
+!! Example project `avrcycles`
+
+I created an [[example project on GitHub|https://github.com/sustainablelab/avrcycles]]. Here is its [[documentation on readthedocs|https://avrcycles.readthedocs.io/en/latest/index.html]].
 
 ! Toolchain
 
@@ -13278,6 +13282,13 @@ Welcome to avrcycles's documentation!
     README on homepage &lt;README&gt;
 ```
 
+The list -- `usage`, `implementation`, etc. -- are reST file names in the `docs` folder, but without the `.rst` extension. The idea is that now it is easy to split the documentation up across multiple files. The actual name that appears in the table-of-contents is not the filename but whatever the first //section// name is in the `.rst` file. A //section// is a heading with `=` as the underline character.
+
+Names inside `&lt;&gt;` are the filenames, and the preceding text is what I want the table-of-contents to actually show.
+
+As mentioned, the table-of-contents uses headings with the `=` underline as contents to display. If a `.rst` file has multiple headings, they show up in the same level in the table-of-contents, as if they were in separate files.
+
+Headings with the `*` underline become sub-headings in the table-of-contents, resulting in a fold/unfold icon.
 
 !! Use the ReadTheDocs HTML theme
 
