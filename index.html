@@ -11918,7 +11918,7 @@ See my two //StackOverflow// answers about Vim omni completion for Python:
 * [[https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501]]
 </pre>
 </div>
-<div created="20200812033527772" modified="20200812033844338" tags="python setup linux" title="Install Python on Linux Mint">
+<div created="20200812033527772" modified="20200812034720128" tags="python setup linux" title="Install Python on Linux Mint">
 <pre>! Check what is //already// installed
 
 ```bash
@@ -11928,7 +11928,54 @@ $ python3 --version
 Python 3.6.9
 ```
 
-</pre>
+! Find out about the python3 installation
+
+```bash
+$ sudo apt show python3
+Package: python3
+Version: 3.6.7-1~18.04
+Priority: important
+Section: python
+Source: python3-defaults
+Origin: Ubuntu
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Original-Maintainer: Matthias Klose &lt;doko@debian.org&gt;
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 191 kB
+Provides: python3-profiler
+Pre-Depends: python3-minimal (= 3.6.7-1~18.04)
+Depends: python3.6 (&gt;= 3.6.7-1~), libpython3-stdlib (= 3.6.7-1~18.04)
+Suggests: python3-doc (&gt;= 3.6.7-1~18.04), python3-tk (&gt;= 3.6.7-1~), python3-venv (&gt;= 3.6.7-1~18.04)
+Replaces: python3-minimal (&lt;&lt; 3.1.2-2)
+Homepage: https://www.python.org/
+Task: minimal, ubuntu-core
+Cnf-Extra-Commands: python
+Cnf-Priority-Bonus: 5
+Supported: 5y
+Download-Size: 47.2 kB
+APT-Manual-Installed: yes
+APT-Sources: http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages
+Description: interactive high-level object-oriented language (default python3 version)
+ Python, the high-level, interactive object oriented language,
+ includes an extensive class library with lots of goodies for
+ network programming, system administration, sounds and graphics.
+ .
+ This package is a dependency package, which depends on Debian's default
+ Python 3 version (currently v3.6).
+
+N: There is 1 additional record. Please use the '-a' switch to see it
+```
+
+! Upgrade the python3 installation
+
+```bash
+$ sudo apt install python3
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+python3 is already the newest version (3.6.7-1~18.04).
+0 upgraded, 0 newly installed, 0 to remove and 21 not upgraded.
+```</pre>
 </div>
 <div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
