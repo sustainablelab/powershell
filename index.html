@@ -11918,7 +11918,7 @@ See my two //StackOverflow// answers about Vim omni completion for Python:
 * [[https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501]]
 </pre>
 </div>
-<div created="20200812033527772" modified="20200812041009071" tags="python setup linux" title="Install Python on Linux Mint">
+<div created="20200812033527772" modified="20200812042424699" tags="python setup linux" title="Install Python on Linux Mint">
 <pre>! Check what is //already// installed
 
 ```bash
@@ -11964,16 +11964,40 @@ Get the latest Python package for your Linux Mint distribution using `sudo apt i
 
 For example, I get Python 3.6.7, even though the latest stable release is Python 3.8.5.
 
-!! 2. Download source from python.org
+!! 2. Build Python from source
 
-* Go to https://www.python.org/downloads/
-* click `Download Python 3.8.5`
+Not too bad. And only way to get the latest release of Python.
 
-Save `Python-3.8.5.tar.xz` in `/opt`. 
+! Build Python from source.
+
+!! Install the build dependencies
+
+```bash
+$ sudo apt install build-essential checkinstall
+$ sudo apt install libreadline-gplv2-dev \
+libncursesw5-dev \
+libssl-dev \
+libsqlite3-dev \
+tk-dev \
+libgdbm-dev \
+libc6-dev \
+libbz2-dev \
+libffi-dev \
+zlib1g-dev
+```
+
+!! Download the compressed source distribution
+
+Download the source to `/opt`.
 
 //`/opt` is the folder for software that is not part of the default Linux Mint installation.//
 
-!! Alternatively, download from the command line
+Download:
+
+* from the command line with `wget`
+* or with your web browser
+
+!!! Download from the command line
 
 ```bash
 $ cd /opt
@@ -11989,7 +12013,31 @@ Saving to: ‘Python-3.8.5.tgz’
 Python-3.8.5.tgz          100%[====================================&gt;]  23.03M  12.9MB/s    in 1.8s    
 
 2020-08-12 00:07:35 (12.9 MB/s) - ‘Python-3.8.5.tgz’ saved [24149103/24149103]
-```</pre>
+```
+
+!!! Download from web browser
+
+* Go to https://www.python.org/downloads/
+* click `Download Python 3.8.5`
+
+Save `Python-3.8.5.tar.xz` in `/opt`. 
+
+!! Extract the archive file
+
+This extracts the archive into folder `Python-3.8.5`:
+
+```bash
+$ sudo tar xzf Python-3.8.5.tgz
+```
+
+Enter the folder and run the `configure` script. The `altinstall` prevents replacing the default /usr/bin/python.
+
+```bash
+$ cd Python-3.8.5
+$ sudo ./configure --enable-optimizations
+$ sudo make altinstall
+```
+</pre>
 </div>
 <div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
