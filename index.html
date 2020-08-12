@@ -9812,8 +9812,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200812033514027" title="$:/temp/search">
-<pre>python</pre>
+<div created="20200202173605395" modified="20200812045148981" title="$:/temp/search">
+<pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -11918,7 +11918,7 @@ See my two //StackOverflow// answers about Vim omni completion for Python:
 * [[https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501]]
 </pre>
 </div>
-<div created="20200812033527772" modified="20200812043518329" tags="python setup linux" title="Install Python on Linux Mint">
+<div created="20200812033527772" modified="20200812045142981" tags="python setup linux" title="Install Python on Linux Mint">
 <pre>! Check what is //already// installed
 
 ```bash
@@ -12047,6 +12047,12 @@ Installing collected packages: setuptools, pip
 Successfully installed pip-20.1.1 setuptools-47.1.0
 ```
 
+! Remove the downloaded archive file
+
+```bash
+$ sudo rm Python-3.8.5.tgz
+```
+
 ! Check the version
 
 `python3` still uses the default installation Python.
@@ -12065,11 +12071,32 @@ $ pip3.8 --version
 pip 20.1.1 from /usr/local/lib/python3.8/site-packages/pip (python 3.8)
 ```
 
-! Remove the downloaded archive file
+But when running `pip` as a module, it is just `pip`:
 
 ```bash
-$ sudo rm Python-3.8.5.tgz
-```</pre>
+$ python3.8 -m pip install --upgrade-pip
+```
+
+! Do some test installs with pip
+
+Create a virtual environment:
+
+```bash
+$ cd ~
+$ python3.8 -m venv ~/test
+$ . test/bin/activate
+(test) $ pip3.8 install microspec
+Collecting microspec
+  Downloading microspec-0.1.1a3-py3-none-any.whl (325 kB)
+     |████████████████████████████████| 325 kB 1.9 MB/s 
+Collecting pyserial
+  Downloading pyserial-3.4-py2.py3-none-any.whl (193 kB)
+     |████████████████████████████████| 193 kB 16.2 MB/s 
+Installing collected packages: pyserial, microspec
+Successfully installed microspec-0.1.1a3 pyserial-3.4
+```
+
+</pre>
 </div>
 <div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
