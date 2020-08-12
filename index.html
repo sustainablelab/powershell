@@ -11918,7 +11918,7 @@ See my two //StackOverflow// answers about Vim omni completion for Python:
 * [[https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501]]
 </pre>
 </div>
-<div created="20200812033527772" modified="20200812042801515" tags="python setup linux" title="Install Python on Linux Mint">
+<div created="20200812033527772" modified="20200812043518329" tags="python setup linux" title="Install Python on Linux Mint">
 <pre>! Check what is //already// installed
 
 ```bash
@@ -12020,7 +12020,7 @@ Python-3.8.5.tgz          100%[====================================&gt;]  23.03M
 * Go to https://www.python.org/downloads/
 * click `Download Python 3.8.5`
 
-Save `Python-3.8.5.tar.xz` in `/opt`. 
+Save `Python-3.8.5.tgz` in `/opt`. 
 
 !! Extract the archive file
 
@@ -12040,7 +12040,36 @@ $ sudo make altinstall
 
 Running `./configure` takes about a minute. Lots of stuff happens.
 
-Running `make altinstall` takes even longer.</pre>
+Running `make altinstall` takes even longer. It ends with this message:
+
+```
+Installing collected packages: setuptools, pip
+Successfully installed pip-20.1.1 setuptools-47.1.0
+```
+
+! Check the version
+
+`python3` still uses the default installation Python.
+
+`python3.8` invokes this `alt` installation of the latest Python.
+
+```bash
+$ python3.8 --version
+Python 3.8.5
+```
+
+Likewise, `pip3.8` invokes the `pip` for this version of Python:
+
+```bash
+$ pip3.8 --version
+pip 20.1.1 from /usr/local/lib/python3.8/site-packages/pip (python 3.8)
+```
+
+! Remove the downloaded archive file
+
+```bash
+$ sudo rm Python-3.8.5.tgz
+```</pre>
 </div>
 <div created="20200205185215208" modified="20200205211105244" tags="python setup Windows" title="Install Python on Windows">
 <pre>* Go to the latest official [[Python download page|https://www.python.org/downloads/release/python-381/]]
