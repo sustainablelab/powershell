@@ -9748,7 +9748,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div created="20200812033353198" list="[[Install Python on Linux Mint]] [[Install Python on Windows]] ReadTheDocs [[Combine two images]] [[Convert block diagram photos]] check-manifest [[MSYS2 and MinGW]] [[Install Python for MSYS2]] Contents" modified="20200812033518891" title="$:/StoryList">
+<div list="[[Install Python on Linux Mint]] [[Install Python on Windows]] ReadTheDocs [[Combine two images]] [[Convert block diagram photos]] check-manifest [[MSYS2 and MinGW]] [[Install Python for MSYS2]] Contents" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -11918,7 +11918,7 @@ See my two //StackOverflow// answers about Vim omni completion for Python:
 * [[https://stackoverflow.com/questions/9555289/vim-omnicomplete-and-python-documentation/60131501#60131501]]
 </pre>
 </div>
-<div created="20200812033527772" modified="20200812045142981" tags="python setup linux" title="Install Python on Linux Mint">
+<div created="20200812033527772" modified="20200813174551770" tags="python setup linux" title="Install Python on Linux Mint">
 <pre>! Check what is //already// installed
 
 ```bash
@@ -11946,6 +11946,71 @@ Building dependency tree
 Reading state information... Done
 python3 is already the newest version (3.6.7-1~18.04).
 0 upgraded, 0 newly installed, 0 to remove and 21 not upgraded.
+```
+
+//This is not the latest Python3 distribution.//
+
+! Install pip and venv
+
+This default Python3 distribution does not come with `pip` or `venv`. 
+
+Try creating a virtual environment:
+
+```bash
+$ python3 -m venv test
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt-get install python3-venv
+```
+
+And try listing the installed packages:
+
+```bash
+$ python3 -m pip list
+/usr/bin/python3: No module named pip
+```
+
+If you plan to upgrade to the newest available Python, skip the following pip and venv installations and go to the next section. When installing Python yourself, pip and venv are included.
+
+To continue with this version of Python3, install pip and venv.
+
+!! Install `pip`
+
+```bash
+$ sudo apt install python3-pip
+...
+Recommended packages:
+  python3-setuptools python3-wheel
+The following NEW packages will be installed:
+  python3-pip
+...
+```
+
+!!! Python package management //without// pip
+
+As the above message shows, it is possible to install some Python packages with the Linux package manger //instead of using// `pip`.
+
+The packages all start with `python3-`.
+
+So to install package `blah`, you can try `sudo apt install python3-blah` instead of the usual `pip install blah`.
+
+The downside to this approach is:
+
+* this is only a small subset of what is on PyPI
+* the packages will not be the latest versions
+
+!! Install `venv`
+
+```bash
+$ sudo apt install python3-venv
+...
+The following additional packages will be installed:
+  python-pip-whl python3.6-venv
+The following NEW packages will be installed:
+  python-pip-whl python3-venv python3.6-venv
+...
 ```
 
 ! There is no installer for Linux
