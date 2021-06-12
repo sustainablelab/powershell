@@ -9748,7 +9748,7 @@ Both forms return the docstring for `mymodule`.
 <div created="20200211152143416" modified="20200211152202232" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div list="[[Install Python on Linux Mint]] [[Install Python on Windows]] ReadTheDocs [[Combine two images]] [[Convert block diagram photos]] check-manifest [[MSYS2 and MinGW]] [[Install Python for MSYS2]] Contents" title="$:/StoryList">
+<div created="20210612201427716" list="[[ptpython config on Windows]] [[Install Python on Linux Mint]] [[Install Python on Windows]] [[Combine two images]] [[Convert block diagram photos]] check-manifest [[MSYS2 and MinGW]] [[Install MSYS2 and MinGW]] [[Install Python for MSYS2]] Contents" modified="20210612202054905" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200209183801137" modified="20200309120600586" title="$:/temp/advancedsearch">
@@ -9799,11 +9799,11 @@ Both forms return the docstring for `mymodule`.
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1360&quot;
+            &quot;text&quot;: &quot;1280&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;768&quot;
+            &quot;text&quot;: &quot;720&quot;
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
@@ -9812,8 +9812,8 @@ Both forms return the docstring for `mymodule`.
     }
 }</pre>
 </div>
-<div created="20200202173605395" modified="20200812045148981" title="$:/temp/search">
-<pre></pre>
+<div created="20200202173605395" modified="20210612201932011" title="$:/temp/search">
+<pre>ptpython</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.21">
 <pre>{
@@ -11619,7 +11619,7 @@ I also build my own software from source on Cygwin:
 I do not do any builds in the Windows environment. I do not build from PowerShell or use Microsoft Visual Studio. I try to avoid installing software that has Visual Studio Code dependencies (which I admit excludes a lot of cool stuff).
 </pre>
 </div>
-<div created="20200701215127040" modified="20200701215127040" tags="[[MSYS2 and MinGW]]" title="Install MSYS2 and MinGW">
+<div created="20200701215127040" modified="20210612203308285" tags="[[MSYS2 and MinGW]]" title="Install MSYS2 and MinGW">
 <pre>* [[Read about and download MSYS2|https://www.msys2.org/]]
 ** follow link to download msys2-x86_64-20200629.exe (or whatever the latest is)
 ** paste SHA256 sum into file `sha-given`
@@ -11629,6 +11629,8 @@ I do not do any builds in the Windows environment. I do not build from PowerShel
 $ sha256sum.exe msys2-x86_64-20200629.exe &gt; sha-calc
 $ vimdiff sha-given sha-calc
 ```
+
+//If your PowerShell does not have `sha256sum.exe`, use cmdlet `Get-FileHash`. The rest of the command is the same.//
 
 * (assuming SHA256 checksums match) run the .exe to install MSYS2
 ** install to default: `C:\msys64`
